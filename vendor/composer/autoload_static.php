@@ -11,6 +11,8 @@ class ComposerStaticInit8e91146bf4b8f27ca5886d21aad89c69
         'Alg_DTWP_Admin_Settings_Page' => __DIR__ . '/../..' . '/classes/admin_settings/alg-dtwp-admin-settings-page.php',
         'Alg_DTWP_Callbacks' => __DIR__ . '/../..' . '/classes/alg-dtwp-callbacks.php',
         'Alg_DTWP_Core' => __DIR__ . '/../..' . '/classes/alg-dtwp-core.php',
+        'Alg_DTWP_Discussions' => __DIR__ . '/../..' . '/classes/discussions/alg-dtwp-discussions.php',
+        'Alg_DTWP_Discussions_Tab' => __DIR__ . '/../..' . '/classes/discussions/alg-dtwp-discussions-tab.php',
         'Alg_DTWP_Registry' => __DIR__ . '/../..' . '/classes/alg-dtwp-registry.php',
         'Alg_DTWP_Singleton' => __DIR__ . '/../..' . '/classes/design_patterns/alg-dtwp-singleton.php',
         'Alg_DTWP_WP_Plugin' => __DIR__ . '/../..' . '/classes/alg-dtwp-wp-plugin.php',

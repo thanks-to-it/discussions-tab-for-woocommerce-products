@@ -23,21 +23,21 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Settings' ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_action_links() {
+		public function get_action_links($links) {
 			$custom_links = array( '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=' . self::$admin_tab_id . '' ) . '">' . __( 'Settings', 'discussions-tab-for-woocommerce-products' ) . '</a>' );
-			return $custom_links;
+			return array_merge( $custom_links, $links );
 		}
 
-		public function create_main_general_settings() {
+		public function create_main_general_settings($settings) {
 			$new_settings = array(
 				array(
-					'title' => __( 'General options', 'wish-list-for-woocommerce' ),
+					'title' => __( 'General options', 'discussions-tab-for-woocommerce-products' ),
 					'type'  => 'title',
 					'id'    => 'alg_dtwp_opt_general',
 				),
 				array(
-					'title'   => __( 'Enable plugin', 'wish-list-for-woocommerce' ),
-					'desc'    => __( 'Enables plugin "Discussions tab for WooCommerce Products".', 'wish-list-for-woocommerce' ),
+					'title'   => __( 'Enable plugin', 'discussions-tab-for-woocommerce-products' ),
+					'desc'    => __( 'Enables plugin "Discussions tab for WooCommerce Products".', 'discussions-tab-for-woocommerce-products' ),
 					'id'      => $this->option_enable,
 					'default' => 'yes',
 					'type'    => 'checkbox',
@@ -48,11 +48,12 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Settings' ) ) {
 				),
 			);
 
-			return $new_settings;
+			return array_merge( $new_settings, $settings );
 		}
 
-		public function get_sections() {
-			return array( $this->section_general => 'General' );
+		public function get_sections($sections) {
+			$new_sections = array( $this->section_general => 'General' );
+			return array_merge( $new_sections, $sections );
 		}
 	}
 }
