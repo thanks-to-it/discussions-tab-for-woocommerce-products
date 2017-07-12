@@ -60,7 +60,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			add_filter( 'woocommerce_product_tabs', array( $callbacks, 'discussions_wc_product_tabs' ) );
 
 			// Insert comments as discussion comment type in database
-			add_action( 'comment_form', array( $callbacks, 'discussions_comment_form' ) );
+			add_action( 'comment_form_top', array( $callbacks, 'discussions_comment_form' ) );
 			add_filter( 'preprocess_comment', array( $callbacks, 'discussions_preprocess_comment' ) );
 
 			// Hides discussion comments on improper places
@@ -68,6 +68,18 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 
 			// Loads discussion comments
 			add_filter( 'comments_template_query_args', array( $callbacks, 'discussions_filter_comments_template_query_args' ) );
+
+			// Changes comments template
+			add_filter( 'comments_template', array( $callbacks, 'discussions_comments_template_loader' ) );
+
+			// Changes respond form id
+			add_action('alg_dtwp_after_comments_template',array($callbacks,'discussions_change_respond_form_id'));
+
+			// Tags the respond form so it can have it's ID changed
+			add_action('comment_form_before',array($callbacks, 'discussions_tag_respond_form' ));
+
+			add_filter('comment_reply_link_args',array($callbacks,'change_reply_link_respond_id'));
+
 
 			//add_filter( 'woocommerce_product_review_list_args', array( $callbacks, 'discussions_wc_product_review_list_args' ) );
 			//add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );

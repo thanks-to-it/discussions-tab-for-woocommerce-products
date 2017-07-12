@@ -168,8 +168,64 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 			return $this->registry->get_discussions()->add_discussions_comment_type_to_wp_list_comments( $args );
 		}
 
-		public function discussions_filter_comments_template_query_args($args){
-			return $this->registry->get_discussions()->filter_discussions_comments_template_query_args($args);
+		/**
+		 * Loads discussion comments
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $args
+		 *
+		 * @return mixed
+		 */
+		public function discussions_filter_comments_template_query_args( $args ) {
+			return $this->registry->get_discussions()->filter_discussions_comments_template_query_args( $args );
+		}
+
+		/**
+		 * Changes discussions comments template
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $template
+		 *
+		 * @return mixed
+		 */
+		public function discussions_comments_template_loader( $template ) {
+			return $this->registry->get_discussions()->load_discussions_comments_template( $template );
+		}
+
+		/**
+		 * Changes respond form id
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		public function discussions_change_respond_form_id() {
+			$this->registry->get_discussions()->change_respond_form_id();
+		}
+
+		/**
+		 * Tags the respond form so it can have it's ID changed
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		public function discussions_tag_respond_form() {
+			$this->registry->get_discussions()->tag_respond_form();
+		}
+
+		/**
+		 * Change reply link respond id
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $args
+		 */
+		public function change_reply_link_respond_id( $args ) {
+			return $this->registry->get_discussions()->change_reply_link_respond_id( $args );
 		}
 
 	}

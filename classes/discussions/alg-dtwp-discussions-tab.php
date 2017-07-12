@@ -46,7 +46,8 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 		 */
 		function add_discussions_tab_content() {
 			$this->is_discussion_tab = true;
-			comments_template( '/comments.php' );
+			comments_template();
+			do_action('alg_dtwp_after_comments_template');
 			$this->is_discussion_tab = false;
 		}
 
