@@ -55,13 +55,22 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 		 */
 		private function handle_discussions() {
 			$callbacks = $this->callbacks;
+
+			// Adds discussion tab in product page
 			add_filter( 'woocommerce_product_tabs', array( $callbacks, 'discussions_wc_product_tabs' ) );
-			add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );
+
+			// Insert comments as discussion comment type in database
 			add_action( 'comment_form', array( $callbacks, 'discussions_comment_form' ) );
 			add_filter( 'preprocess_comment', array( $callbacks, 'discussions_preprocess_comment' ) );
 
-			//add_action( 'pre_get_comments', array( $callbacks, 'discussions_pre_get_comments' ) );
+			// Hides discussion comments on improper places
+			add_action( 'pre_get_comments', array( $callbacks, 'discussions_pre_get_comments' ) );
+
+			// Loads discussion comments
+			add_filter( 'comments_template_query_args', array( $callbacks, 'discussions_filter_comments_template_query_args' ) );
+
 			//add_filter( 'woocommerce_product_review_list_args', array( $callbacks, 'discussions_wc_product_review_list_args' ) );
+			//add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );
 		}
 
 		/**
@@ -71,7 +80,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 		 * @since   1.0.0
 		 */
 		private function handle_admin_settings() {
-			$callbacks = $this->callbacks;
+			$callbacks      = $this->callbacks;
 			$admin_settings = $this->registry->get_admin_settings();
 			$admin_id       = Alg_DTWP_Admin_Settings::$admin_tab_id;
 

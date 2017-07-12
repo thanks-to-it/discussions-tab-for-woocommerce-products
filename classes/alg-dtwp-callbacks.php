@@ -152,9 +152,9 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 */
-		/*public function discussions_pre_get_comments( \WP_Comment_Query $query ) {
+		public function discussions_pre_get_comments( \WP_Comment_Query $query ) {
 			$this->registry->get_discussions()->hide_discussion_comments_on_default_callings( $query );
-		}*/
+		}
 
 		/**
 		 * Adds dicussions comment type to wp_list_comments
@@ -164,9 +164,13 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 *
 		 * @param $query
 		 */
-		/*public function discussions_wc_product_review_list_args( $args ) {
+		public function discussions_wc_product_review_list_args( $args ) {
 			return $this->registry->get_discussions()->add_discussions_comment_type_to_wp_list_comments( $args );
-		}*/
+		}
+
+		public function discussions_filter_comments_template_query_args($args){
+			return $this->registry->get_discussions()->filter_discussions_comments_template_query_args($args);
+		}
 
 	}
 }

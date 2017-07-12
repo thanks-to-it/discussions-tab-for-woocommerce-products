@@ -15,7 +15,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 
 	class Alg_DTWP_Discussions {
 
-		public static $comment_type_id = 'alg_dtwp_discussions';
+		public static $comment_type_id = 'alg_dtwp_comment';
 
 		/**
 		 * Filters comments
@@ -76,14 +76,20 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 */
-		/*public function hide_discussion_comments_on_default_callings( \WP_Comment_Query $query ) {
-			if ( $query->query_vars['type'] !== self::$comment_type_id ) {
-				$query->query_vars['type__not_in'] = array_merge(
-					(array) $query->query_vars['type__not_in'],
-					array(self::$comment_type_id)
-				);
+		public function hide_discussion_comments_on_default_callings( \WP_Comment_Query $query ) {
+			global $pagenow;
+			if (
+				$query->query_vars['type'] === self::$comment_type_id ||
+				! empty( $pagenow ) && $pagenow == 'edit-comments.php'
+			) {
+				return;
 			}
-		}*/
+
+			$query->query_vars['type__not_in'] = array_merge(
+				(array) $query->query_vars['type__not_in'],
+				array( self::$comment_type_id )
+			);
+		}
 
 		/**
 		 * Adds dicussions comment type to wp_list_comments
@@ -93,7 +99,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 *
 		 * @param $args
 		 */
-		/*public function add_discussions_comment_type_to_wp_list_comments( $args ) {
+		public function add_discussions_comment_type_to_wp_list_comments( $args ) {
 			$plugin            = Alg_DTWP_Core::get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
@@ -103,6 +109,19 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			$args['type'] = self::$comment_type_id;
 			//error_log( print_r( $args, true ) );
 			return $args;
-		}*/
+		}
+
+		public function filter_discussions_comments_template_query_args($args){
+			$plugin            = Alg_DTWP_Core::get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if (
+				! $is_discussion_tab
+			) {
+				return $args;
+			}
+
+			$args['type'] = self::$comment_type_id;
+			return $args;
+		}
 	}
 }
