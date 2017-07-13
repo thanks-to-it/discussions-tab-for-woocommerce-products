@@ -11,6 +11,7 @@ return array(
     'Alg_DTWP_Callbacks' => $baseDir . '/classes/alg-dtwp-callbacks.php',
     'Alg_DTWP_Core' => $baseDir . '/classes/alg-dtwp-core.php',
     'Alg_DTWP_Discussions' => $baseDir . '/classes/discussions/alg-dtwp-discussions.php',
+    'Alg_DTWP_Discussions_Comments_CMB' => $baseDir . '/classes/discussions/alg-dtwp-discussions-comments-cmb.php',
     'Alg_DTWP_Discussions_Tab' => $baseDir . '/classes/discussions/alg-dtwp-discussions-tab.php',
     'Alg_DTWP_Registry' => $baseDir . '/classes/alg-dtwp-registry.php',
     'Alg_DTWP_Singleton' => $baseDir . '/classes/design_patterns/alg-dtwp-singleton.php',

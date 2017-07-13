@@ -183,7 +183,7 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		}
 
 		/**
-		 * Changes discussions comments template
+		 * Swaps woocommerce template (single-product-reviews.php) with default comments template
 		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
@@ -202,8 +202,8 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 */
-		public function discussions_change_respond_form_id() {
-			$this->registry->get_discussions()->change_respond_form_id();
+		public function discussions_js_fix_comment_parent_id_and_cancel_btn() {
+			$this->registry->get_discussions()->js_fix_comment_parent_id_and_cancel_btn();
 		}
 
 		/**
@@ -212,8 +212,18 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 */
-		public function discussions_tag_respond_form() {
-			$this->registry->get_discussions()->tag_respond_form();
+		public function discussions_create_respond_form_wrapper_start() {
+			$this->registry->get_discussions()->create_respond_form_wrapper_start();
+		}
+
+		/**
+		 * Tags the respond form so it can have it's ID changed
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		public function discussions_create_respond_form_wrapper_end() {
+			$this->registry->get_discussions()->create_respond_form_wrapper_end();
 		}
 
 		/**
@@ -224,8 +234,40 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 *
 		 * @param $args
 		 */
-		public function change_reply_link_respond_id( $args ) {
+		public function discussions_change_reply_link_respond_id( $args ) {
 			return $this->registry->get_discussions()->change_reply_link_respond_id( $args );
+		}
+
+		/**
+		 * Fixes comments number
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $count
+		 * @param $post_id
+		 */
+		public function discussions_fix_comments_number( $count, $post_id ) {
+			return $this->registry->get_discussions()->fix_comments_number( $count, $post_id );
+		}
+
+		/**
+		 * Fixes products reviews count
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $count
+		 * @param $product
+		 *
+		 * @return array|int
+		 */
+		public function discussions_fix_reviews_number( $count, $product ) {
+			return $this->registry->get_discussions()->fix_reviews_number( $count, $product );
+		}
+
+		public function discussions_add_comments_cmb(){
+			$this->registry->get_discussions_comments_cmb()->add_comments_cmb();
 		}
 
 	}

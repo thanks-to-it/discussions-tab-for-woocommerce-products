@@ -59,7 +59,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			// Adds discussion tab in product page
 			add_filter( 'woocommerce_product_tabs', array( $callbacks, 'discussions_wc_product_tabs' ) );
 
-			// Insert comments as discussion comment type in database
+			// Inserts comments as discussion comment type in database
 			add_action( 'comment_form_top', array( $callbacks, 'discussions_comment_form' ) );
 			add_filter( 'preprocess_comment', array( $callbacks, 'discussions_preprocess_comment' ) );
 
@@ -69,17 +69,25 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			// Loads discussion comments
 			add_filter( 'comments_template_query_args', array( $callbacks, 'discussions_filter_comments_template_query_args' ) );
 
-			// Changes comments template
+			// Swaps woocommerce template (single-product-reviews.php) with default comments template
 			add_filter( 'comments_template', array( $callbacks, 'discussions_comments_template_loader' ) );
 
-			// Changes respond form id
-			add_action('alg_dtwp_after_comments_template',array($callbacks,'discussions_change_respond_form_id'));
+			// Fixes comment parent_id and cancel btn
+			add_action( 'alg_dtwp_after_comments_template', array( $callbacks, 'discussions_js_fix_comment_parent_id_and_cancel_btn' ) );
 
 			// Tags the respond form so it can have it's ID changed
-			add_action('comment_form_before',array($callbacks, 'discussions_tag_respond_form' ));
+			add_action( 'comment_form_before', array( $callbacks, 'discussions_create_respond_form_wrapper_start' ) );
+			add_action( 'comment_form_after', array( $callbacks, 'discussions_create_respond_form_wrapper_end' ) );
 
-			add_filter('comment_reply_link_args',array($callbacks,'change_reply_link_respond_id'));
+			// Change reply link respond id
+			add_filter( 'comment_reply_link_args', array( $callbacks, 'discussions_change_reply_link_respond_id' ) );
 
+			// Fixes comments count
+			add_filter( 'get_comments_number', array( $callbacks, 'discussions_fix_comments_number' ), 10, 2 );
+			add_filter( 'woocommerce_product_review_count', array( $callbacks, 'discussions_fix_reviews_number' ), 10, 2 );
+
+			// Add discussion comments meta box
+			add_action( 'add_meta_boxes', array($callbacks, 'discussions_add_comments_cmb' ));
 
 			//add_filter( 'woocommerce_product_review_list_args', array( $callbacks, 'discussions_wc_product_review_list_args' ) );
 			//add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );

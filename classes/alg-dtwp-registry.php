@@ -26,6 +26,11 @@ if ( ! class_exists( 'Alg_DTWP_Registry' ) ) {
 		private $discussions_tab;
 
 		/**
+		 * @var Alg_DTWP_Discussions_Comments_CMB
+		 */
+		private $dicussions_comments_cmb;
+
+		/**
 		 * @var Alg_DTWP_Discussions
 		 *
 		 */
@@ -65,6 +70,18 @@ if ( ! class_exists( 'Alg_DTWP_Registry' ) ) {
 				$this->discussions = new Alg_DTWP_Discussions();
 			}
 			return $this->discussions;
+		}
+
+		/**
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @return Alg_DTWP_Discussions_Comments_CMB
+		 */
+		public function get_discussions_comments_cmb() {
+			if ( $this->dicussions_comments_cmb == null ) {
+				$this->dicussions_comments_cmb = new Alg_DTWP_Discussions_Comments_CMB();
+			}
+			return $this->dicussions_comments_cmb;
 		}
 
 	}

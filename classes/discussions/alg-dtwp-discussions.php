@@ -16,7 +16,8 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 	class Alg_DTWP_Discussions {
 
 		public static $comment_type_id = 'alg_dtwp_comment';
-		public $discussions_respond_id = 'alg_dtwp_respond';
+		public $discussions_respond_id_wrapper = 'alg_dtwp_respond';
+		public $discussions_respond_id_location = 'alg_dtwp_respond_location';
 
 		/**
 		 * Filters comments
@@ -151,7 +152,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		}
 
 		/**
-		 * Changes discussions comments template
+		 * Swaps woocommerce template (single-product-reviews.php) with default comments template
 		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
@@ -179,18 +180,30 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 */
-		public function change_respond_form_id() {
-			$respond_id = $this->discussions_respond_id;
+		public function js_fix_comment_parent_id_and_cancel_btn() {
+			$respond_id = $this->discussions_respond_id_wrapper;
 			?>
             <script>
 				jQuery(document).ready(function ($) {
-					var tag_input = $("input[name='<?php echo $respond_id?>']");
-					if (tag_input.length) {
-						var respond = tag_input.parent().find("#respond");
-						if (respond.length) {
-							respond.attr('id', '<?php echo $respond_id; ?>');
+					$('.comment-reply-link').on('click', function (e) {
+						var respond_wrapper = $('#' + '<?php echo $respond_id;?>');
+						if (!respond_wrapper.length) {
+							e.preventDefault();
+							return;
 						}
-					}
+
+						var edit_link = $(this).parent().find('.comment-edit-link').attr('href');
+						var edit_link_arr = edit_link.split("&c=");
+						var parent_post_id = edit_link_arr[1];
+						var cancel_btn = respond_wrapper.find("#cancel-comment-reply-link");
+						respond_wrapper.find("#comment_parent").val(parent_post_id);
+						cancel_btn.show();
+						cancel_btn.on('click', function () {
+							cancel_btn.hide();
+							respond_wrapper.find("#comment_parent").val(0);
+							respond_wrapper.remove().insertAfter($('#' + '<?php echo $this->discussions_respond_id_location; ?>'));
+						});
+					})
 				});
             </script>
 			<?php
@@ -202,14 +215,34 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 */
-		public function tag_respond_form() {
-			$tag               = $this->discussions_respond_id;
+		public function create_respond_form_wrapper_start() {
 			$plugin            = Alg_DTWP_Core::get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return;
 			}
-			echo "<input type='hidden' name='{$tag}' value='1'>";
+
+			$tag      = $this->discussions_respond_id_wrapper;
+			$location = $this->discussions_respond_id_location;
+
+			echo "<div id='{$location}'></div>";
+			echo "<div id='{$tag}'>";
+		}
+
+		/**
+		 * Tags the respond form so it can have it's ID changed
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		public function create_respond_form_wrapper_end() {
+			$plugin            = Alg_DTWP_Core::get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if ( ! $is_discussion_tab ) {
+				return;
+			}
+
+			echo '</div>';
 		}
 
 		/**
@@ -221,15 +254,63 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @param $args
 		 */
 		public function change_reply_link_respond_id( $args ) {
-			$tag               = $this->discussions_respond_id;
+			$tag               = $this->discussions_respond_id_wrapper;
 			$plugin            = Alg_DTWP_Core::get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
-				return;
+				return $args;
+			}
+			$args['respond_id'] = $tag;
+			return $args;
+		}
+
+		/**
+		 * Fixes comments number
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $count
+		 * @param $post_id
+		 */
+		public function fix_comments_number( $count, $post_id ) {
+			$plugin            = Alg_DTWP_Core::get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if (
+				get_post_type() != 'product' ||
+				! $is_discussion_tab
+			) {
+				return $count;
 			}
 
-			$args['respond_id'] = $this->discussions_respond_id;
-			return $args;
+			$comments = get_comments( array(
+				'post_id' => $post_id,
+				'count'   => true,
+				'type'    => self::$comment_type_id
+			) );
+
+			return $comments;
+		}
+
+		/**
+		 * Fixes products reviews count
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $count
+		 * @param $product
+		 *
+		 * @return array|int
+		 */
+		public function fix_reviews_number( $count, $product ) {
+			$comments = get_comments( array(
+				'post_id'      => $product->get_id(),
+				'count'        => true,
+				'type__not_in' => self::$comment_type_id
+			) );
+
+			return $comments;
 		}
 
 	}
