@@ -20,27 +20,6 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		public $discussions_respond_id_location = 'alg_dtwp_respond_location';
 
 		/**
-		 * Filters comments
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $comments_flat
-		 * @param $post_id
-		 */
-		public function filter_discussions_comments( $comments_flat, $post_id ) {
-			$plugin            = Alg_DTWP_Core::get_instance();
-			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
-			if ( $is_discussion_tab ) {
-				return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ) );
-			} else {
-				return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ), 'NOT' );
-			}
-
-			//return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ) );
-		}
-
-		/**
 		 * Adds discussions comment type in comment form
 		 *
 		 * @version 1.0.0
@@ -123,26 +102,6 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
         }
 
 		/**
-		 * Adds dicussions comment type to wp_list_comments
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $args
-		 */
-		/*public function add_discussions_comment_type_to_wp_list_comments( $args ) {
-			$plugin            = Alg_DTWP_Core::get_instance();
-			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
-			if ( ! $is_discussion_tab ) {
-				return;
-			}
-
-			$args['type'] = self::$comment_type_id;
-			//error_log( print_r( $args, true ) );
-			return $args;
-		}*/
-
-		/**
 		 * Loads discussion comments
 		 *
 		 * @version 1.0.0
@@ -152,7 +111,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 *
 		 * @return mixed
 		 */
-		/*public function filter_discussions_comments_template_query_args( $args ) {
+		public function filter_discussions_comments_template_query_args( $args ) {
 			$plugin            = Alg_DTWP_Core::get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if (
@@ -163,7 +122,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 
 			$args['type'] = self::$comment_type_id;
 			return $args;
-		}*/
+		}
 
 		/**
 		 * Swaps woocommerce template (single-product-reviews.php) with default comments template
@@ -205,7 +164,6 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 							e.preventDefault();
 							return;
 						}
-
 						var edit_link = $(this).parent().find('.comment-edit-link').attr('href');
 						var edit_link_arr = edit_link.split("&c=");
 						var parent_post_id = edit_link_arr[1];
@@ -326,6 +284,47 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 
 			return $comments;
 		}
+
+		/**
+		 * Filters comments
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $comments_flat
+		 * @param $post_id
+		 */
+		/*public function filter_discussions_comments( $comments_flat, $post_id ) {
+			$plugin            = Alg_DTWP_Core::get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if ( $is_discussion_tab ) {
+				return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ) );
+			} else {
+				return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ), 'NOT' );
+			}
+
+			//return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ) );
+		}*/
+
+		/**
+		 * Adds dicussions comment type to wp_list_comments
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $args
+		 */
+		/*public function add_discussions_comment_type_to_wp_list_comments( $args ) {
+			$plugin            = Alg_DTWP_Core::get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if ( ! $is_discussion_tab ) {
+				return;
+			}
+
+			$args['type'] = self::$comment_type_id;
+			//error_log( print_r( $args, true ) );
+			return $args;
+		}*/
 
 	}
 }

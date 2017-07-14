@@ -243,7 +243,7 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		}
 
 		/**
-		 * Add discussions comment type in admin comment types dropdown
+		 * Adds discussions comment type in admin comment types dropdown
 		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
@@ -253,6 +253,15 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 */
 		public function discussions_admin_comment_types_dropdown($types){
 			return $this->registry->get_discussions()->add_discussions_in_admin_comment_types_dropdown($types);
+		}
+
+		/**
+		 * Adds a discussions metabox in product edit page
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		public function discussions_add_comments_cmb(){
+			$this->registry->get_discussions_comments_cmb()->add_comments_cmb();
 		}
 
 		/**
@@ -278,11 +287,6 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 */
 		/*public function discussions_wc_product_review_list_args( $args ) {
 			return $this->registry->get_discussions()->add_discussions_comment_type_to_wp_list_comments( $args );
-		}*/
-
-
-		/*public function discussions_add_comments_cmb(){
-			$this->registry->get_discussions_comments_cmb()->add_comments_cmb();
 		}*/
 
 	}

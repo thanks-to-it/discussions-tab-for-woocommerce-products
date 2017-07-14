@@ -30,7 +30,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 		 */
 		public function add_discussions_tab( $tabs ) {
 			$tabs[ self::$discussions_tab_id ] = array(
-				'title'    => __( 'Discussion', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Discussions', 'discussions-tab-for-woocommerce-products' ),
 				'priority' => 50,
 				'callback' => array( $this, 'add_discussions_tab_content' )
 			);
