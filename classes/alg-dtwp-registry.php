@@ -37,6 +37,57 @@ if ( ! class_exists( 'Alg_DTWP_Registry' ) ) {
 		private $discussions;
 
 		/**
+		 * @var Alg_DTWP_Admin_Section_General
+		 */
+		private $admin_section_general;
+
+		/**
+		 * @var Alg_DTWP_Admin_Section_Texts
+		 */
+		private $admin_section_texts;
+
+		/**
+		 * @var Alg_DTWP_Functions
+		 */
+		private $functions;
+
+		/**
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @return Alg_DTWP_Functions
+		 */
+		public function get_functions() {
+			if ( $this->functions == null ) {
+				$this->functions = new Alg_DTWP_Functions();
+			}
+			return $this->functions;
+		}
+
+		/**
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @return Alg_DTWP_Admin_Section_Texts
+		 */
+		public function get_admin_section_texts() {
+			if ( $this->admin_section_texts == null ) {
+				$this->admin_section_texts = new Alg_DTWP_Admin_Section_Texts();
+			}
+			return $this->admin_section_texts;
+		}
+
+		/**
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @return Alg_DTWP_Admin_Section_General
+		 */
+		public function get_admin_section_general() {
+			if ( $this->admin_section_general == null ) {
+				$this->admin_section_general = new Alg_DTWP_Admin_Section_General();
+			}
+			return $this->admin_section_general;
+		}
+
+		/**
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 * @return Alg_DTWP_Admin_Settings

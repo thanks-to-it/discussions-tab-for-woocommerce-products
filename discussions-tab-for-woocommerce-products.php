@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Discussions tab for WooCommerce Products
-Description: Creates a discussions tab for WooCommerce Products
+Description: Creates a discussions tab in WooCommerce Products
 Version: 1.0.0
 Author: Algoritmika Ltd
 Author URI: http://algoritmika.com
@@ -15,6 +15,7 @@ Domain Path: /languages
 
 add_action( 'plugins_loaded', 'alg_dtwp_start_plugin' );
 if ( ! function_exists( 'alg_dtwp_start_plugin' ) ) {
+
 	/**
 	 * Starts the plugin
 	 *
@@ -28,6 +29,7 @@ if ( ! function_exists( 'alg_dtwp_start_plugin' ) ) {
 		$plugin = Alg_DTWP_Core::get_instance();
 		$plugin->config(array(
 			'file' => __FILE__,
+			'text_domain' => 'discussions-tab-for-woocommerce-products'
 		));
 		$plugin->init();
 

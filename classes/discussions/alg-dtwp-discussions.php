@@ -88,18 +88,19 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		}
 
 		/**
-         * Add discussions comment type in admin comment types dropdown
-         *
+		 * Add discussions comment type in admin comment types dropdown
+		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
+		 *
 		 * @param $types
 		 *
 		 * @return mixed
 		 */
-		public function add_discussions_in_admin_comment_types_dropdown($types){
+		public function add_discussions_in_admin_comment_types_dropdown( $types ) {
 			$types[ self::$comment_type_id ] = __( 'Discussions', 'discussions-tab-for-woocommerce-products' );
 			return $types;
-        }
+		}
 
 		/**
 		 * Loads discussion comments
@@ -143,7 +144,26 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			if ( ! $is_discussion_tab ) {
 				return $template;
 			}
-			$template = '/comments.php';
+
+			$check_dirs = array(
+				trailingslashit( get_stylesheet_directory() ) . WC()->template_path(),
+				trailingslashit( get_template_directory() ) . WC()->template_path(),
+				trailingslashit( get_stylesheet_directory() ),
+				trailingslashit( get_template_directory() ),
+				trailingslashit( $plugin->get_plugin_dir() ) . 'templates/',
+			);
+
+			if ( WC_TEMPLATE_DEBUG_MODE ) {
+				$check_dirs = array( array_pop( $check_dirs ) );
+			}
+
+			foreach ( $check_dirs as $dir ) {
+				if ( file_exists( trailingslashit( $dir ) . 'dtwp-comments.php' ) ) {
+					return trailingslashit( $dir ) . 'dtwp-comments.php';
+				}
+			}
+
+
 			return $template;
 		}
 
@@ -164,7 +184,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 							e.preventDefault();
 							return;
 						}
-						var edit_link = $(this).parent().find('.comment-edit-link').attr('href');
+						var edit_link = $(this).parent().parent().find('.comment-edit-link').attr('href');
 						var edit_link_arr = edit_link.split("&c=");
 						var parent_post_id = edit_link_arr[1];
 						var cancel_btn = respond_wrapper.find("#cancel-comment-reply-link");

@@ -39,6 +39,16 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		}
 
 		/**
+		 * Create admin settings sections
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		public function admin_create_sections() {
+			$this->registry->get_admin_settings()->create_sections();
+		}
+
+		/**
 		 * Filters "plugin_action_link" for the admin_settings
 		 *
 		 * @version 1.0.0
@@ -65,20 +75,6 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		public function admin_wc_get_settings_pages( $settings ) {
 			$settings[] = new Alg_DTWP_Admin_Settings_Page();
 			return $settings;
-		}
-
-		/**
-		 * Creates settings sections
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $sections
-		 *
-		 * @return array
-		 */
-		public function admin_wc_get_sections( $sections ) {
-			return $this->registry->get_admin_settings()->get_sections( $sections );
 		}
 
 		/**
@@ -247,22 +243,54 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
+		 *
 		 * @param $types
 		 *
 		 * @return mixed
 		 */
-		public function discussions_admin_comment_types_dropdown($types){
-			return $this->registry->get_discussions()->add_discussions_in_admin_comment_types_dropdown($types);
+		public function discussions_admin_comment_types_dropdown( $types ) {
+			return $this->registry->get_discussions()->add_discussions_in_admin_comment_types_dropdown( $types );
 		}
 
 		/**
 		 * Adds a discussions metabox in product edit page
+		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 */
-		public function discussions_add_comments_cmb(){
+		public function discussions_add_comments_cmb() {
 			$this->registry->get_discussions_comments_cmb()->add_comments_cmb();
 		}
+
+		/**
+		 * Override woocommerce locate template
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $template
+		 * @param $template_name
+		 * @param $template_path
+		 *
+		 * @return string
+		 */
+		public function functions_woocommerce_locate_template( $template, $template_name, $template_path ) {
+			return $this->registry->get_functions()->woocommerce_locate_template( $template, $template_name, $template_path );
+		}
+
+		/**
+		 * Creates settings sections
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $sections
+		 *
+		 * @return array
+		 */
+		/*public function admin_wc_get_sections( $sections ) {
+			return $this->registry->get_admin_settings()->get_sections( $sections );
+		}*/
 
 		/**
 		 * Filters comments

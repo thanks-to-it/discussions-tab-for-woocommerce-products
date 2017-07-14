@@ -43,8 +43,32 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			// Handle admin settings
 			$this->handle_admin_settings();
 
-			// Handle discussions
-			$this->handle_discussions();
+			// Handle general functions
+			$this->handle_general_functions();
+
+			// Load the plugin if it's enabled
+			if ( filter_var( get_option( $this->registry->get_admin_section_general()->option_enable ), FILTER_VALIDATE_BOOLEAN ) ) {
+
+				// Handle discussions
+				$this->handle_discussions();
+			}
+		}
+
+		/**
+		 * Handles general plugin functions
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		private function handle_general_functions() {
+			$callbacks = $this->callbacks;
+
+			// Handles localization
+			add_action( 'init', array( $this, 'handle_localization' ) );
+
+			// Handle template
+			add_filter( 'woocommerce_locate_template', array( $callbacks, 'functions_woocommerce_locate_template' ), 10, 3 );
+			add_filter( 'woocommerce_locate_core_template', array( $callbacks, 'functions_woocommerce_locate_template' ), 10, 3 );
 		}
 
 		/**
@@ -54,6 +78,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 		 * @since   1.0.0
 		 */
 		private function handle_discussions() {
+
 			$callbacks = $this->callbacks;
 
 			// Adds discussion tab in product page
@@ -87,25 +112,23 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			add_filter( 'woocommerce_product_review_count', array( $callbacks, 'discussions_fix_reviews_number' ), 10, 2 );
 
 			// Adds discussions comment type in admin comment types dropdown
-			add_filter('admin_comment_types_dropdown',array($callbacks,'discussions_admin_comment_types_dropdown'));
+			add_filter( 'admin_comment_types_dropdown', array( $callbacks, 'discussions_admin_comment_types_dropdown' ) );
 
 			// Add discussion comments meta box
-			add_action( 'add_meta_boxes', array($callbacks, 'discussions_add_comments_cmb' ));
+			add_action( 'add_meta_boxes', array( $callbacks, 'discussions_add_comments_cmb' ) );
 
 			//add_filter( 'woocommerce_product_review_list_args', array( $callbacks, 'discussions_wc_product_review_list_args' ) );
 			//add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );
 		}
 
 		/**
-		 * Creates admin settings placeholder
+		 * Creates admin settings
 		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
 		 */
 		private function handle_admin_settings() {
-			$callbacks      = $this->callbacks;
-			$admin_settings = $this->registry->get_admin_settings();
-			$admin_id       = Alg_DTWP_Admin_Settings::$admin_tab_id;
+			$callbacks = $this->callbacks;
 
 			// Plugin settings link
 			add_filter( 'plugin_action_links_' . $this->get_plugin_basename(), array( $callbacks, 'admin_plugin_action_links' ) );
@@ -113,11 +136,8 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			// Creates settings pages
 			add_filter( 'woocommerce_get_settings_pages', array( $callbacks, 'admin_wc_get_settings_pages' ) );
 
-			// Creates settings sections
-			add_filter( "woocommerce_get_sections_{$admin_id}", array( $callbacks, 'admin_wc_get_sections' ) );
-
-			// Creates the initial general settings
-			add_filter( "woocommerce_get_settings_{$admin_id}_" . $admin_settings->section_general, array( $callbacks, 'admin_wc_get_settings_general' ), PHP_INT_MAX );
+			// Creates admin sections
+			add_action( 'admin_init', array( $callbacks, 'admin_create_sections' ) );
 		}
 	}
 }

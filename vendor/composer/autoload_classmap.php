@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Alg_DTWP_Admin_Section' => $baseDir . '/classes/admin_settings/alg-dtwp-admin-section.php',
+    'Alg_DTWP_Admin_Section_General' => $baseDir . '/classes/admin_settings/sections/alg-dtwp-admin-section-general.php',
+    'Alg_DTWP_Admin_Section_Texts' => $baseDir . '/classes/admin_settings/sections/alg-dtwp-admin-section-texts.php',
     'Alg_DTWP_Admin_Settings' => $baseDir . '/classes/admin_settings/alg-dtwp-admin-settings.php',
     'Alg_DTWP_Admin_Settings_Page' => $baseDir . '/classes/admin_settings/alg-dtwp-admin-settings-page.php',
     'Alg_DTWP_Callbacks' => $baseDir . '/classes/alg-dtwp-callbacks.php',
@@ -13,6 +16,7 @@ return array(
     'Alg_DTWP_Discussions' => $baseDir . '/classes/discussions/alg-dtwp-discussions.php',
     'Alg_DTWP_Discussions_Comments_CMB' => $baseDir . '/classes/discussions/alg-dtwp-discussions-comments-cmb.php',
     'Alg_DTWP_Discussions_Tab' => $baseDir . '/classes/discussions/alg-dtwp-discussions-tab.php',
+    'Alg_DTWP_Functions' => $baseDir . '/classes/alg-dtwp-functions.php',
     'Alg_DTWP_Registry' => $baseDir . '/classes/alg-dtwp-registry.php',
     'Alg_DTWP_Singleton' => $baseDir . '/classes/design_patterns/alg-dtwp-singleton.php',
     'Alg_DTWP_WP_Plugin' => $baseDir . '/classes/alg-dtwp-wp-plugin.php',

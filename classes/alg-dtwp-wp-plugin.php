@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Alg_DTWP_WP_Plugin' ) ) {
 	class Alg_DTWP_WP_Plugin extends Alg_DTWP_Singleton {
 
-		public $basename='';
+		public $basename = '';
 		public $dir_url;
 		public $dir;
 		public $config_args = array();
@@ -33,6 +33,20 @@ if ( ! class_exists( 'Alg_DTWP_WP_Plugin' ) ) {
 			}
 
 			return $this->dir;
+		}
+
+		/**
+		 * Handles plugin localization
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		public function handle_localization() {
+			$args        = $this->config_args;
+			$text_domain = sanitize_text_field( $args['text_domain'] );
+			$locale      = apply_filters( 'plugin_locale', get_locale(), $text_domain );
+			load_textdomain( $text_domain,WP_LANG_DIR . DIRECTORY_SEPARATOR. dirname( $this->get_plugin_basename() ) .DIRECTORY_SEPARATOR. $text_domain . '-' . $locale . '.mo');
+			load_plugin_textdomain( $text_domain, false, dirname( $this->get_plugin_basename() ) . DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR );
 		}
 
 		/**
