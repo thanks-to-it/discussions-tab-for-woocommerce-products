@@ -86,6 +86,9 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			add_filter( 'get_comments_number', array( $callbacks, 'discussions_fix_comments_number' ), 10, 2 );
 			add_filter( 'woocommerce_product_review_count', array( $callbacks, 'discussions_fix_reviews_number' ), 10, 2 );
 
+			// Adds discussions comment type in admin comment types dropdown
+			add_filter('admin_comment_types_dropdown',array($callbacks,'discussions_admin_comment_types_dropdown'));
+
 			// Add discussion comments meta box
 			//add_action( 'add_meta_boxes', array($callbacks, 'discussions_add_comments_cmb' ));
 

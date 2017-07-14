@@ -110,19 +110,6 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		}
 
 		/**
-		 * Filters comments
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $comments_flat
-		 * @param $post_id
-		 */
-		/*public function discussions_comments_array( $comments_flat, $post_id ) {
-			return $this->registry->get_discussions()->filter_discussions_comments( $comments_flat, $post_id );
-		}*/
-
-		/**
 		 * Adds discussions comment type in comment form
 		 *
 		 * @version 1.0.0
@@ -156,17 +143,6 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 			$this->registry->get_discussions()->hide_discussion_comments_on_default_callings( $query );
 		}
 
-		/**
-		 * Adds dicussions comment type to wp_list_comments
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $query
-		 */
-		/*public function discussions_wc_product_review_list_args( $args ) {
-			return $this->registry->get_discussions()->add_discussions_comment_type_to_wp_list_comments( $args );
-		}*/
 
 		/**
 		 * Loads discussion comments
@@ -265,6 +241,45 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		public function discussions_fix_reviews_number( $count, $product ) {
 			return $this->registry->get_discussions()->fix_reviews_number( $count, $product );
 		}
+
+		/**
+		 * Add discussions comment type in admin comment types dropdown
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @param $types
+		 *
+		 * @return mixed
+		 */
+		public function discussions_admin_comment_types_dropdown($types){
+			return $this->registry->get_discussions()->add_discussions_in_admin_comment_types_dropdown($types);
+		}
+
+		/**
+		 * Filters comments
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $comments_flat
+		 * @param $post_id
+		 */
+		/*public function discussions_comments_array( $comments_flat, $post_id ) {
+			return $this->registry->get_discussions()->filter_discussions_comments( $comments_flat, $post_id );
+		}*/
+
+		/**
+		 * Adds dicussions comment type to wp_list_comments
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $query
+		 */
+		/*public function discussions_wc_product_review_list_args( $args ) {
+			return $this->registry->get_discussions()->add_discussions_comment_type_to_wp_list_comments( $args );
+		}*/
+
 
 		/*public function discussions_add_comments_cmb(){
 			$this->registry->get_discussions_comments_cmb()->add_comments_cmb();

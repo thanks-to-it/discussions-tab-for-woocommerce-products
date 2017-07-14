@@ -109,6 +109,20 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		}
 
 		/**
+         * Add discussions comment type in admin comment types dropdown
+         *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @param $types
+		 *
+		 * @return mixed
+		 */
+		public function add_discussions_in_admin_comment_types_dropdown($types){
+			$types[ self::$comment_type_id ] = __( 'Discussions', 'discussions-tab-for-woocommerce-products' );
+			return $types;
+        }
+
+		/**
 		 * Adds dicussions comment type to wp_list_comments
 		 *
 		 * @version 1.0.0
