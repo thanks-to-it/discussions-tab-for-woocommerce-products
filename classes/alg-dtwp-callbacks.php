@@ -118,9 +118,9 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 * @param $comments_flat
 		 * @param $post_id
 		 */
-		public function discussions_comments_array( $comments_flat, $post_id ) {
+		/*public function discussions_comments_array( $comments_flat, $post_id ) {
 			return $this->registry->get_discussions()->filter_discussions_comments( $comments_flat, $post_id );
-		}
+		}*/
 
 		/**
 		 * Adds discussions comment type in comment form
@@ -164,9 +164,9 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 *
 		 * @param $query
 		 */
-		public function discussions_wc_product_review_list_args( $args ) {
+		/*public function discussions_wc_product_review_list_args( $args ) {
 			return $this->registry->get_discussions()->add_discussions_comment_type_to_wp_list_comments( $args );
-		}
+		}*/
 
 		/**
 		 * Loads discussion comments
@@ -266,9 +266,9 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 			return $this->registry->get_discussions()->fix_reviews_number( $count, $product );
 		}
 
-		public function discussions_add_comments_cmb(){
+		/*public function discussions_add_comments_cmb(){
 			$this->registry->get_discussions_comments_cmb()->add_comments_cmb();
-		}
+		}*/
 
 	}
 }

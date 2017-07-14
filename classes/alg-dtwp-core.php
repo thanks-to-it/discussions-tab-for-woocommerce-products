@@ -87,7 +87,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			add_filter( 'woocommerce_product_review_count', array( $callbacks, 'discussions_fix_reviews_number' ), 10, 2 );
 
 			// Add discussion comments meta box
-			add_action( 'add_meta_boxes', array($callbacks, 'discussions_add_comments_cmb' ));
+			//add_action( 'add_meta_boxes', array($callbacks, 'discussions_add_comments_cmb' ));
 
 			//add_filter( 'woocommerce_product_review_list_args', array( $callbacks, 'discussions_wc_product_review_list_args' ) );
 			//add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );

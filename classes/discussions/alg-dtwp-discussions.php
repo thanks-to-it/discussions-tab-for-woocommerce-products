@@ -116,7 +116,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 *
 		 * @param $args
 		 */
-		public function add_discussions_comment_type_to_wp_list_comments( $args ) {
+		/*public function add_discussions_comment_type_to_wp_list_comments( $args ) {
 			$plugin            = Alg_DTWP_Core::get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
@@ -126,7 +126,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			$args['type'] = self::$comment_type_id;
 			//error_log( print_r( $args, true ) );
 			return $args;
-		}
+		}*/
 
 		/**
 		 * Loads discussion comments
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function filter_discussions_comments_template_query_args( $args ) {
+		/*public function filter_discussions_comments_template_query_args( $args ) {
 			$plugin            = Alg_DTWP_Core::get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if (
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 
 			$args['type'] = self::$comment_type_id;
 			return $args;
-		}
+		}*/
 
 		/**
 		 * Swaps woocommerce template (single-product-reviews.php) with default comments template
