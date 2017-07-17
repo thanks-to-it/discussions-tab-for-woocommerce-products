@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Discussions tab for WooCommerce Products
-Description: Creates a discussions tab in WooCommerce Products
+Plugin Name: Discussions Tab for WooCommerce Products
+Description: Creates a discussions tab for WooCommerce Products
 Version: 1.0.0
 Author: Algoritmika Ltd
 Author URI: http://algoritmika.com

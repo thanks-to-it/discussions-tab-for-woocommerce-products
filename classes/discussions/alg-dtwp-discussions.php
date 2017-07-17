@@ -115,9 +115,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		public function filter_discussions_comments_template_query_args( $args ) {
 			$plugin            = Alg_DTWP_Core::get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
-			if (
-			! $is_discussion_tab
-			) {
+			if ( ! $is_discussion_tab ) {
 				return $args;
 			}
 
@@ -175,6 +173,11 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 */
 		public function js_fix_comment_parent_id_and_cancel_btn() {
 			$respond_id = $this->discussions_respond_id_wrapper;
+			$plugin            = Alg_DTWP_Core::get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if ( ! $is_discussion_tab ) {
+				return;
+			}
 			?>
             <script>
 				jQuery(document).ready(function ($) {
@@ -265,7 +268,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @param $count
 		 * @param $post_id
 		 */
-		public function fix_comments_number( $count, $post_id ) {
+		public function fix_discussions_comments_number( $count, $post_id ) {
 			$plugin            = Alg_DTWP_Core::get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if (

@@ -220,7 +220,7 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 * @param $post_id
 		 */
 		public function discussions_fix_comments_number( $count, $post_id ) {
-			return $this->registry->get_discussions()->fix_comments_number( $count, $post_id );
+			return $this->registry->get_discussions()->fix_discussions_comments_number( $count, $post_id );
 		}
 
 		/**

@@ -47,7 +47,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			$this->handle_general_functions();
 
 			// Load the plugin if it's enabled
-			if ( filter_var( get_option( $this->registry->get_admin_section_general()->option_enable ), FILTER_VALIDATE_BOOLEAN ) ) {
+			if ( filter_var( get_option( $this->registry->get_admin_section_general()->option_enable, true ), FILTER_VALIDATE_BOOLEAN ) ) {
 
 				// Handle discussions
 				$this->handle_discussions();
@@ -109,7 +109,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 
 			// Fixes comments count
 			add_filter( 'get_comments_number', array( $callbacks, 'discussions_fix_comments_number' ), 10, 2 );
-			add_filter( 'woocommerce_product_review_count', array( $callbacks, 'discussions_fix_reviews_number' ), 10, 2 );
+			add_filter( 'woocommerce_product_get_review_count', array( $callbacks, 'discussions_fix_reviews_number' ), 10, 2 );
 
 			// Adds discussions comment type in admin comment types dropdown
 			add_filter( 'admin_comment_types_dropdown', array( $callbacks, 'discussions_admin_comment_types_dropdown' ) );
