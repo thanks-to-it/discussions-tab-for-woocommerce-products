@@ -15,7 +15,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 
 	class Alg_DTWP_Discussions_Tab {
 
-		public static $discussions_tab_id = 'alg_dtwp_product_tab';
+		public static $discussions_tab_id = 'alg_dtwp';
 		private $is_discussion_tab = false;
 
 		/**
@@ -29,8 +29,11 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 		 * @return mixed
 		 */
 		public function add_discussions_tab( $tabs ) {
+			$plugin = Alg_DTWP_Core::get_instance();
+
+			$discussions_label                 = get_option( $plugin->registry->get_admin_section_texts()->option_discussions_label, __( 'Discussions', 'discussions-tab-for-woocommerce-products' ) );
 			$tabs[ self::$discussions_tab_id ] = array(
-				'title'    => __( 'Discussions', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => sanitize_text_field( $discussions_label ),
 				'priority' => 50,
 				'callback' => array( $this, 'add_discussions_tab_content' )
 			);

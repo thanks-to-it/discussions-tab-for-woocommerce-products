@@ -11,6 +11,15 @@
 <?php $plugin = Alg_DTWP_Core::get_instance(); ?>
 
 <?php
+// Get texts from admin settings
+$discussions_title_label_singular = sanitize_text_field( get_option( $plugin->registry->get_admin_section_texts()->option_discussions_title_single, __( 'One thought on', 'discussions-tab-for-woocommerce-products' ) ) );
+$discussions_title_label_plural   = sanitize_text_field( get_option( $plugin->registry->get_admin_section_texts()->option_discussions_title_plural, __( 'thoughts on', 'discussions-tab-for-woocommerce-products' ) ) );
+$discussions_respond_title        = sanitize_text_field( get_option( $plugin->registry->get_admin_section_texts()->option_discussions_respond_title, __( 'Leave a reply', 'discussions-tab-for-woocommerce-products' ) ) );
+$discussions_comment_btn_label    = sanitize_text_field( get_option( $plugin->registry->get_admin_section_texts()->option_discussions_post_comment_label, __( 'Post Comment', 'discussions-tab-for-woocommerce-products' ) ) );
+
+?>
+
+<?php
 /*
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will
@@ -20,16 +29,18 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<section id="comments" class="comments-area" aria-label="Post Comments">
+<section id="comments" class="comments-area" aria-label="Post Comments" style="padding:0">
 
 	<?php
 	if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
 			printf( // WPCS: XSS OK.
-				esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'discussions-tab-for-woocommerce-products' ) ),
+				esc_html( _nx( '%3$s &ldquo;%2$s&rdquo;', '%1$s %4$s &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'discussions-tab-for-woocommerce-products' ) ),
 				number_format_i18n( get_comments_number() ),
-				'<span>' . get_the_title() . '</span>'
+				'<span>' . get_the_title() . '</span>',
+				$discussions_title_label_singular,
+				$discussions_title_label_plural
 			);
 			?>
 		</h2>
@@ -65,7 +76,10 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'discussions-tab-for-woocommerce-products' ); ?></p>
 	<?php endif;
 
-	comment_form();
+	comment_form( array(
+		'title_reply'  => $discussions_respond_title,
+		'label_submit' => $discussions_comment_btn_label
+	) );
 	?>
 
 </section><!-- #comments -->

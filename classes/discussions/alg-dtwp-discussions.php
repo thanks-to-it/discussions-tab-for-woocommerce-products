@@ -161,7 +161,6 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 				}
 			}
 
-
 			return $template;
 		}
 
