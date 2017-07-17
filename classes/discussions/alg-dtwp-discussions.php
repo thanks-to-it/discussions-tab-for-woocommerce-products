@@ -186,9 +186,10 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 							e.preventDefault();
 							return;
 						}
-						var edit_link = $(this).parent().parent().find('.comment-edit-link').attr('href');
-						var edit_link_arr = edit_link.split("&c=");
-						var parent_post_id = edit_link_arr[1];
+						var comment_id = $(this).parent().parent().attr('id');
+						var comment_id_arr = comment_id.split("-");
+						var parent_post_id = comment_id_arr[comment_id_arr.length-1];
+
 						var cancel_btn = respond_wrapper.find("#cancel-comment-reply-link");
 						respond_wrapper.find("#comment_parent").val(parent_post_id);
 						cancel_btn.show();
@@ -305,6 +306,66 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			) );
 
 			return $comments;
+		}
+
+		/**
+		 * Get avatar
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $avatar
+		 * @param $id_or_email
+		 * @param $args
+		 *
+		 * @return bool|string
+		 */
+		public function get_avatar( $avatar, $id_or_email, $args ) {
+			if (
+				! isset( $id_or_email->comment_type ) ||
+				$id_or_email->comment_type != 'alg_dtwp_comment'
+			) {
+				return $avatar;
+			}
+
+			$id_or_email = $id_or_email->comment_author_email;
+
+			$url2x = get_avatar_url( $id_or_email, array_merge( $args, array( 'size' => $args['size'] * 2 ) ) );
+
+			$args = get_avatar_data( $id_or_email, $args );
+
+			$url = $args['url'];
+
+			if ( ! $url || is_wp_error( $url ) ) {
+				return false;
+			}
+
+			$class = array( 'avatar', 'avatar-' . (int) $args['size'], 'photo' );
+
+			if ( ! $args['found_avatar'] || $args['force_default'] ) {
+				$class[] = 'avatar-default';
+			}
+
+			if ( $args['class'] ) {
+				if ( is_array( $args['class'] ) ) {
+					$class = array_merge( $class, $args['class'] );
+				} else {
+					$class[] = $args['class'];
+				}
+			}
+
+			$avatar = sprintf(
+				"<img alt='%s' src='%s' srcset='%s' class='%s' height='%d' width='%d' %s/>",
+				esc_attr( $args['alt'] ),
+				esc_url( $url ),
+				esc_attr( "$url2x 2x" ),
+				esc_attr( join( ' ', $class ) ),
+				(int) $args['height'],
+				(int) $args['width'],
+				$args['extra_attr']
+			);
+
+			return $avatar;
 		}
 
 		/**

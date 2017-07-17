@@ -279,6 +279,22 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		}
 
 		/**
+		 * Get avatar
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $avatar
+		 * @param $id_or_email
+		 * @param $args
+		 *
+		 * @return bool|string
+		 */
+		public function discussions_get_avatar($avatar, $id_or_email, $args){
+			return $this->registry->get_discussions()->get_avatar($avatar, $id_or_email, $args);
+		}
+
+		/**
 		 * Creates settings sections
 		 *
 		 * @version 1.0.0

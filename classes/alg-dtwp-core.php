@@ -117,6 +117,9 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			// Add discussion comments meta box
 			add_action( 'add_meta_boxes', array( $callbacks, 'discussions_add_comments_cmb' ) );
 
+			// Get avatar
+			add_filter( 'pre_get_avatar', array( $callbacks, 'discussions_get_avatar' ), 10, 3 );
+
 			//add_filter( 'woocommerce_product_review_list_args', array( $callbacks, 'discussions_wc_product_review_list_args' ) );
 			//add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );
 		}
