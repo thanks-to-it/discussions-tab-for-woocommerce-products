@@ -26,7 +26,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_CMB' ) ) {
 		}
 
 		public function cmb_callback( $post ) {
-			$plugin = Alg_DTWP_Core::get_instance();
+			$plugin = alg_dtwp_get_instance();
 
 
 			$discussions_link = add_query_arg( array(

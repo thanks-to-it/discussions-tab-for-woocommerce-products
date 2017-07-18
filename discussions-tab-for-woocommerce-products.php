@@ -12,7 +12,6 @@ Text Domain: discussions-tab-for-woocommerce-products
 Domain Path: /languages
 */
 
-
 add_action( 'plugins_loaded', 'alg_dtwp_start_plugin' );
 if ( ! function_exists( 'alg_dtwp_start_plugin' ) ) {
 
@@ -23,24 +22,27 @@ if ( ! function_exists( 'alg_dtwp_start_plugin' ) ) {
 	 * @since   1.0.0
 	 */
 	function alg_dtwp_start_plugin() {
-
-		// Includes composer dependencies and autoloads classes
 		require __DIR__ . '/vendor/autoload.php';
-		$plugin = Alg_DTWP_Core::get_instance();
-		$plugin->config(array(
-			'file' => __FILE__,
+		$plugin = alg_dtwp_get_instance();
+		$plugin->config( array(
+			'file'        => __FILE__,
 			'text_domain' => 'discussions-tab-for-woocommerce-products'
-		));
-		$plugin->init();
-
-		//error_log('a');
-
-		// Initializes the plugin
-		/*$plugin = new Alg_GOTWC_Core();
-		$plugin->set_args( array(
-			'file' => __FILE__,
 		) );
-		$plugin->init();*/
+		$plugin->init();
+	}
+}
 
+if ( ! function_exists( 'alg_dtwp_get_instance' ) ) {
+
+	/**
+	 * Gets the plugin's instance
+	 *
+	 * @version 1.0.0
+	 * @since   1.0.0
+	 * @return Alg_DTWP_Core
+	 */
+	function alg_dtwp_get_instance() {
+		$plugin = Alg_DTWP_Core::get_instance();
+		return $plugin;
 	}
 }

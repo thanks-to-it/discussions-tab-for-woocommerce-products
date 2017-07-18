@@ -295,6 +295,16 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		}
 
 		/**
+		 * Enqueues main scripts
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 */
+		public function functions_load_main_scripts() {
+			return $this->registry->get_functions()->load_main_scripts();
+		}
+
+		/**
 		 * Creates settings sections
 		 *
 		 * @version 1.0.0

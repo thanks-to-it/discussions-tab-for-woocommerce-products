@@ -37,7 +37,7 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Settings' ) ) {
 		 * @since   1.0.0
 		 */
 		public function create_sections() {
-			$plugin = Alg_DTWP_Core::get_instance();
+			$plugin = alg_dtwp_get_instance();
 
 			$section = $plugin->registry->get_admin_section_general();
 			$section->init( array('tab_id' => self::$admin_tab_id) );

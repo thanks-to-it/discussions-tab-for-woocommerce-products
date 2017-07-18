@@ -26,7 +26,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @since   1.0.0
 		 */
 		public function add_discussions_comment_type_in_form() {
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return;
@@ -113,7 +113,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @return mixed
 		 */
 		public function filter_discussions_comments_template_query_args( $args ) {
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return $args;
@@ -137,7 +137,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			if ( get_post_type() !== 'product' ) {
 				return $template;
 			}
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return $template;
@@ -172,7 +172,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 */
 		public function js_fix_comment_parent_id_and_cancel_btn() {
 			$respond_id = $this->discussions_respond_id_wrapper;
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return;
@@ -211,7 +211,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @since   1.0.0
 		 */
 		public function create_respond_form_wrapper_start() {
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return;
@@ -231,7 +231,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @since   1.0.0
 		 */
 		public function create_respond_form_wrapper_end() {
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return;
@@ -250,7 +250,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 */
 		public function change_reply_link_respond_id( $args ) {
 			$tag               = $this->discussions_respond_id_wrapper;
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return $args;
@@ -269,7 +269,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @param $post_id
 		 */
 		public function fix_discussions_comments_number( $count, $post_id ) {
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if (
 				get_post_type() != 'product' ||
@@ -378,7 +378,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @param $post_id
 		 */
 		/*public function filter_discussions_comments( $comments_flat, $post_id ) {
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( $is_discussion_tab ) {
 				return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ) );
@@ -398,7 +398,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @param $args
 		 */
 		/*public function add_discussions_comment_type_to_wp_list_comments( $args ) {
-			$plugin            = Alg_DTWP_Core::get_instance();
+			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
 				return;

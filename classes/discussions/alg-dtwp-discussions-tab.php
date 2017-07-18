@@ -29,11 +29,18 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 		 * @return mixed
 		 */
 		public function add_discussions_tab( $tabs ) {
-			$plugin = Alg_DTWP_Core::get_instance();
+			$plugin = alg_dtwp_get_instance();
+			global $post;
+
+			$comments = get_comments( array(
+				'post_id' => $post->ID,
+				'count'   => true,
+				'type'    => Alg_DTWP_Discussions::$comment_type_id
+			) );
 
 			$discussions_label                 = get_option( $plugin->registry->get_admin_section_texts()->option_discussions_label, __( 'Discussions', 'discussions-tab-for-woocommerce-products' ) );
 			$tabs[ self::$discussions_tab_id ] = array(
-				'title'    => sanitize_text_field( $discussions_label ),
+				'title'    => sanitize_text_field( $discussions_label )." ({$comments})",
 				'priority' => 50,
 				'callback' => array( $this, 'add_discussions_tab_content' )
 			);

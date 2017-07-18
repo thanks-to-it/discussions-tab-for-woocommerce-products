@@ -43,11 +43,14 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			// Handle admin settings
 			$this->handle_admin_settings();
 
-			// Handle general functions
-			$this->handle_general_functions();
+			// Handles localization
+			add_action( 'init', array( $this, 'handle_localization' ) );
 
 			// Load the plugin if it's enabled
 			if ( filter_var( get_option( $this->registry->get_admin_section_general()->option_enable, true ), FILTER_VALIDATE_BOOLEAN ) ) {
+
+				// Handle general functions
+				$this->handle_general_functions();
 
 				// Handle discussions
 				$this->handle_discussions();
@@ -63,12 +66,11 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 		private function handle_general_functions() {
 			$callbacks = $this->callbacks;
 
-			// Handles localization
-			add_action( 'init', array( $this, 'handle_localization' ) );
-
 			// Handle template
 			add_filter( 'woocommerce_locate_template', array( $callbacks, 'functions_woocommerce_locate_template' ), 10, 3 );
 			add_filter( 'woocommerce_locate_core_template', array( $callbacks, 'functions_woocommerce_locate_template' ), 10, 3 );
+
+			add_filter( 'wp_enqueue_scripts',array($callbacks,'functions_load_main_scripts'));
 		}
 
 		/**

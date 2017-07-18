@@ -39,16 +39,11 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_Texts' ) ) {
 		 * @since   1.0.0
 		 */
 		public function get_discussions_title_example( $count = 1, $title = 'Product Title' ) {
-			$plugin                           = Alg_DTWP_Core::get_instance();
-			$discussions_title_label_singular = get_option( $plugin->registry->get_admin_section_texts()->option_discussions_title_single, __( 'One thought on', 'discussions-tab-for-woocommerce-products' ) );
-			$discussions_title_label_plural   = get_option( $plugin->registry->get_admin_section_texts()->option_discussions_title_plural, __( 'thoughts on', 'discussions-tab-for-woocommerce-products' ) );
-			return sprintf(
-				esc_html( _nx( '%3$s &ldquo;%2$s&rdquo;', '%1$s %4$s &ldquo;%2$s&rdquo;', $count, 'comments title', 'discussions-tab-for-woocommerce-products' ) ),
-				number_format_i18n( $count ),
-				'<span>' . $title . '</span>',
-				$discussions_title_label_singular,
-				$discussions_title_label_plural
-			);
+			$plugin                           = alg_dtwp_get_instance();
+			$discussions_title_label_singular = get_option( $plugin->registry->get_admin_section_texts()->option_discussions_title_single, __( 'One thought on "%1$s"', 'discussions-tab-for-woocommerce-products' ) );
+			$discussions_title_label_plural   = get_option( $plugin->registry->get_admin_section_texts()->option_discussions_title_plural, __( '%2$d thoughts on "%1$s"', 'discussions-tab-for-woocommerce-products' ) );
+			$text = $count == 1 ? $discussions_title_label_singular : $discussions_title_label_plural;
+			return sprintf( $text, '<span>' . $title . '</span>', $count );
 		}
 
 		/**
@@ -78,17 +73,19 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_Texts' ) ) {
 				),
 				array(
 					'title'   => __( 'Title - singular', 'discussions-tab-for-woocommerce-products' ),
-					'desc'    => __( 'The discussions title for tab content in front-end (singular)', 'discussions-tab-for-woocommerce-products' ) . '<br />' . '<strong>' . __( 'Example: ', 'discussions-tab-for-woocommerce-products' ) . '</strong>' . $this->get_discussions_title_example( 1 ),
+					'desc'    => __( 'The discussions title for tab content in front-end (singular)', 'discussions-tab-for-woocommerce-products' ) . '<br />' . '<strong>' . __( 'Example: ', 'discussions-tab-for-woocommerce-products' ) . '</strong>' . $this->get_discussions_title_example(1),
+					'desc_tip'=> __( '%1$s is the Product title. %2$d stands for the Comments count.', 'discussions-tab-for-woocommerce-products' ),
 					'id'      => $this->option_discussions_title_single,
-					'default' => __( 'One thought on', 'discussions-tab-for-woocommerce-products' ),
+					'default' => __( 'One thought on "%1$s"', 'discussions-tab-for-woocommerce-products' ),
 					'type'    => 'text',
 					'class'   => 'regular-input',
 				),
 				array(
 					'title'   => __( 'Title - plural', 'discussions-tab-for-woocommerce-products' ),
-					'desc'    => __( 'The discussions title for tab content in front-end (plural)', 'discussions-tab-for-woocommerce-products' ) . '<br />' . '<strong>' . __( 'Example: ', 'discussions-tab-for-woocommerce-products' ) . '</strong>' . $this->get_discussions_title_example( 5 ),
+					'desc'    => __( 'The discussions title for tab content in front-end (plural)', 'discussions-tab-for-woocommerce-products' ) . '<br />' . '<strong>' . __( 'Example: ', 'discussions-tab-for-woocommerce-products' ) . '</strong>' . $this->get_discussions_title_example(5),
+					'desc_tip'=> __( '%1$s is the Product title. %2$d stands for the Comments count.', 'discussions-tab-for-woocommerce-products' ),
 					'id'      => $this->option_discussions_title_plural,
-					'default' => __( 'thoughts on', 'discussions-tab-for-woocommerce-products' ),
+					'default' => __( '%2$d thoughts on "%1$s"', 'discussions-tab-for-woocommerce-products' ),
 					'type'    => 'text',
 					'class'   => 'regular-input',
 				),
