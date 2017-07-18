@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Alg - Discussions tab for WooCommerce Products\n"
-"POT-Creation-Date: 2017-07-14 16:51-0300\n"
+"POT-Creation-Date: 2017-07-18 19:28-0300\n"
 "PO-Revision-Date: 2017-01-17 13:05-0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,8 +20,9 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: vendor\n"
 
 #: classes/admin_settings/alg-dtwp-admin-settings-page.php:26
-#: classes/discussions/alg-dtwp-discussions-tab.php:33
-#: classes/discussions/alg-dtwp-discussions.php:100
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:70
+#: classes/discussions/alg-dtwp-discussions-tab.php:41
+#: classes/discussions/alg-dtwp-discussions.php:101
 msgid "Discussions"
 msgstr ""
 
@@ -38,21 +39,93 @@ msgid "General options"
 msgstr ""
 
 #: classes/admin_settings/sections/alg-dtwp-admin-section-general.php:49
-#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:49
 msgid "Enable plugin"
 msgstr ""
 
 #: classes/admin_settings/sections/alg-dtwp-admin-section-general.php:50
-#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:50
 msgid "Enables plugin \"Discussions tab for WooCommerce Products\"."
 msgstr ""
 
-#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:28
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:32
 msgid "Texts"
 msgstr ""
 
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:43
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:79
+#: templates/dtwp-comments.php:15
+#, php-format
+msgid "One thought on \"%1$s\""
+msgstr ""
+
 #: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:44
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:88
+#: templates/dtwp-comments.php:16
+#, php-format
+msgid "%2$d thoughts on \"%1$s\""
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:62
 msgid "Text options"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:67
+msgid "Discussions label"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:68
+msgid "How discussions will be labeled in front-end"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:75
+msgid "Title - singular"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:76
+msgid "The discussions title for tab content in front-end (singular)"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:76
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:85
+msgid "Example: "
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:77
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:86
+#, php-format
+msgid "%1$s is the Product title. %2$d stands for the Comments count."
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:84
+msgid "Title - plural"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:85
+msgid "The discussions title for tab content in front-end (plural)"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:93
+msgid "Respond label"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:94
+msgid "Title displayed on respond form"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:96
+msgid "Leave a Reply"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:101
+msgid "Comment button"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:102
+msgid "Label for post comment button"
+msgstr ""
+
+#: classes/admin_settings/sections/alg-dtwp-admin-section-texts.php:104
+#: templates/dtwp-comments.php:18
+msgid "Post Comment"
 msgstr ""
 
 #: classes/discussions/alg-dtwp-discussions-comments-cmb.php:43
@@ -60,18 +133,14 @@ msgstr ""
 msgid "See discussions (%s)"
 msgstr ""
 
-#: templates/dtwp-comments.php:28
-#, php-format
-msgctxt "comments title"
-msgid "One thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
+#: templates/dtwp-comments.php:17
+msgid "Leave a reply"
+msgstr ""
 
-#: templates/dtwp-comments.php:38 templates/dtwp-comments.php:55
+#: templates/dtwp-comments.php:46 templates/dtwp-comments.php:68
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: templates/dtwp-comments.php:39 templates/dtwp-comments.php:56
+#: templates/dtwp-comments.php:47 templates/dtwp-comments.php:69
 msgid "Newer Comments &rarr;"
 msgstr ""

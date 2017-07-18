@@ -11,7 +11,12 @@ Creates a discussions tab for WooCommerce Products
 
 == Description ==
 
-**Discussions Tab for WooCommerce Products** creates a discussions tab for WooCommerce Products
+Allow customers to ask questions about your WooCommerce products.
+Make them more satisfied replying their comments and answering their questions.
+That will make your brand more credible and your customers more confident.
+As a result, you'll have more chances to increase your sales.
+
+**Discussions Tab for WooCommerce Products** creates a discussions tab for WooCommerce Products.
 
 == Frequently Asked Questions ==
 
@@ -32,11 +37,11 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Screenshots ==
 
-1.
+1. Display a Discussions Tab in your product page
 
 == Changelog ==
 
-= 1.0.0 - 17/07/2017 =
+= 1.0.0 - 18/07/2017 =
 
 == Upgrade Notice ==
 
