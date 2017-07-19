@@ -84,7 +84,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			$callbacks = $this->callbacks;
 
 			// Adds discussion tab in product page
-			add_filter( 'woocommerce_product_tabs', array( $callbacks, 'discussions_wc_product_tabs' ) );
+			add_filter( 'woocommerce_product_tabs', array( $callbacks, 'discussions_add_discussions_tab' ) );
 
 			// Inserts comments as discussion comment type in database
 			add_action( 'comment_form_top', array( $callbacks, 'discussions_comment_form' ) );
@@ -121,6 +121,16 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 
 			// Get avatar
 			add_filter( 'pre_get_avatar', array( $callbacks, 'discussions_get_avatar' ), 10, 3 );
+
+			// Filters params passed to wp_list_comments function
+			add_filter( 'wp_list_comments_args', array( $callbacks, 'discussions_filter_wp_list_comments_args' ) );
+
+			// Filters the class of wp_list_comments wrapper
+			add_filter( 'alg_dtwp_wp_list_comments_wrapper_class', array( $callbacks, 'discussions_filter_wp_list_comments_wrapper_class' ) );
+
+			// Filters the comment class
+			add_filter( 'comment_class', array( $callbacks, 'discussions_filter_comment_class' ) );
+
 
 			//add_filter( 'woocommerce_product_review_list_args', array( $callbacks, 'discussions_wc_product_review_list_args' ) );
 			//add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );

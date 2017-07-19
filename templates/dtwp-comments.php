@@ -28,7 +28,7 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<section id="comments" class="comments-area" aria-label="Post Comments">
+<div id="comments" class="comments-area <?php echo wp_get_theme()->get('Name')?>" aria-label="Post Comments">
 
 	<?php
 	if ( have_comments() ) : ?>
@@ -48,19 +48,9 @@ if ( post_password_required() ) {
 			</nav><!-- #comment-nav-above -->
 		<?php endif; // Check for comment navigation. ?>
 
-		<ol class="comment-list">
-			<?php
-			$list_comments_args = array();
-			if ( class_exists( 'Storefront' ) ) {
-				$list_comments_args = array(
-					'style'      => 'ol',
-					'short_ping' => true,
-					'callback'   => 'storefront_comment',
-				);
-			}
-			wp_list_comments( $list_comments_args );
-			?>
-		</ol><!-- .comment-list -->
+        <ol class="<?php echo implode( ' ', apply_filters( 'alg_dtwp_wp_list_comments_wrapper_class', array_map( 'sanitize_text_field', array( 'comment-list' ) ) ) ); ?>">
+			<?php wp_list_comments(); ?>
+        </ol><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through. ?>
 			<nav id="comment-nav-below" class="comment-navigation" role="navigation" aria-label="Comment Navigation Below">
@@ -82,4 +72,4 @@ if ( post_password_required() ) {
 	) );
 	?>
 
-</section><!-- #comments -->
+</div><!-- #comments -->

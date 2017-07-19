@@ -1,10 +1,21 @@
 .woocommerce-Tabs-panel--alg_dtwp.panel.entry-content,
 #comments .woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comment-list {
+	#respond {
+		float: none;
+		display: inline-block;
+		width: 100%;
+
+		#comment {
+			width: 98%;
+		}
+	}
 
 	// Only for the HUB Theme
 	.comments-area.Hub {
-		.comment-text {
-			background: #f6f6f6 !important;
+		#respond {
+			#comment {
+				border: 1px solid #ccc;
+			}
 		}
 	}
 }

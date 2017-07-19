@@ -101,7 +101,7 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function discussions_wc_product_tabs( $tabs ) {
+		public function discussions_add_discussions_tab( $tabs ) {
 			return $this->registry->get_discussions_tab()->add_discussions_tab( $tabs );
 		}
 
@@ -138,7 +138,6 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		public function discussions_pre_get_comments( \WP_Comment_Query $query ) {
 			$this->registry->get_discussions()->hide_discussion_comments_on_default_callings( $query );
 		}
-
 
 		/**
 		 * Loads discussion comments
@@ -302,6 +301,45 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 */
 		public function functions_load_main_scripts() {
 			return $this->registry->get_functions()->load_main_scripts();
+		}
+
+		/**
+		 * Filters params passed to wp_list_comments function
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $args
+		 *
+		 * @return mixed
+		 */
+		public function discussions_filter_wp_list_comments_args( $args ) {
+			return $this->registry->get_discussions()->filter_wp_list_comments_args( $args );
+		}
+
+		/**
+		 * Filters the class of wp_list_comments wrapper
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $class
+		 */
+		public function discussions_filter_wp_list_comments_wrapper_class( $class ) {
+			return $this->registry->get_discussions()->filter_wp_list_comments_wrapper_class( $class );
+		}
+
+		/**
+		 * Filters the comment class
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 * @param $class
+		 *
+		 * @return mixed
+		 */
+		public function discussions_filter_comment_class( $class ) {
+			return $this->registry->get_discussions()->filter_comment_class( $class );
 		}
 
 		/**

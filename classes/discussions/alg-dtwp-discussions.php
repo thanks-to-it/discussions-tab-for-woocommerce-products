@@ -171,7 +171,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		 * @since   1.0.0
 		 */
 		public function js_fix_comment_parent_id_and_cancel_btn() {
-			$respond_id = $this->discussions_respond_id_wrapper;
+			$respond_id        = $this->discussions_respond_id_wrapper;
 			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
 			if ( ! $is_discussion_tab ) {
@@ -188,7 +188,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 						}
 						var comment_id = $(this).parent().parent().attr('id');
 						var comment_id_arr = comment_id.split("-");
-						var parent_post_id = comment_id_arr[comment_id_arr.length-1];
+						var parent_post_id = comment_id_arr[comment_id_arr.length - 1];
 
 						var cancel_btn = respond_wrapper.find("#cancel-comment-reply-link");
 						respond_wrapper.find("#comment_parent").val(parent_post_id);
@@ -366,6 +366,76 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			);
 
 			return $avatar;
+		}
+
+		/**
+		 * Filters params passed to wp_list_comments function
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $args
+		 *
+		 * @return mixed
+		 */
+		public function filter_wp_list_comments_args( $args ) {
+			$plugin            = alg_dtwp_get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if ( ! $is_discussion_tab ) {
+				return $args;
+			}
+
+			if ( class_exists( 'Storefront' ) ) {
+				$args['style']      = 'ol';
+				$args['short_ping'] = true;
+				$args['callback']   = 'storefront_comment';
+			} else if ( function_exists( 'wf_get_version' ) ) {
+				$args['avatar_size'] = 50;
+				$args['callback']    = 'custom_comment';
+			}
+			return $args;
+		}
+
+		/**
+		 * Filters the class of wp_list_comments wrapper
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $class
+		 */
+		public function filter_wp_list_comments_wrapper_class( $class ) {
+			$plugin            = alg_dtwp_get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if ( ! $is_discussion_tab ) {
+				return $class;
+			}
+
+			if ( function_exists( 'wf_get_version' ) ) {
+				$class[] = 'commentlist';
+			}
+			return $class;
+		}
+
+		/**
+		 * Filters the comment class
+		 *
+		 * @version 1.0.0
+		 * @since   1.0.0
+		 *
+		 * @param $class
+		 *
+		 * @return mixed
+		 */
+		public function filter_comment_class( $class ) {
+			$plugin            = alg_dtwp_get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if ( ! $is_discussion_tab ) {
+				return $class;
+			}
+
+			$class[] = 'comment';
+			return $class;
 		}
 
 		/**
