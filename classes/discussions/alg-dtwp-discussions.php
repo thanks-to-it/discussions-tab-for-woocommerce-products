@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -439,45 +439,29 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		}
 
 		/**
-		 * Filters comments
+		 * Fixes Hub theme get_comment_type()
 		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
+		 * @version 1.0.1
+		 * @since   1.0.1
 		 *
-		 * @param $comments_flat
-		 * @param $post_id
+		 * @param $type
+		 *
+		 * @return string
 		 */
-		/*public function filter_discussions_comments( $comments_flat, $post_id ) {
+		public function fix_hub_get_comment_type( $type ) {
+			$theme_name        = wp_get_theme()->get( 'Name' );
 			$plugin            = alg_dtwp_get_instance();
 			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
-			if ( $is_discussion_tab ) {
-				return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ) );
-			} else {
-				return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ), 'NOT' );
+			if (
+				$theme_name != 'Hub' ||
+				! $is_discussion_tab
+			) {
+				return $type;
 			}
 
-			//return wp_filter_object_list( $comments_flat, array( 'comment_type' => self::$comment_type_id ) );
-		}*/
-
-		/**
-		 * Adds dicussions comment type to wp_list_comments
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $args
-		 */
-		/*public function add_discussions_comment_type_to_wp_list_comments( $args ) {
-			$plugin            = alg_dtwp_get_instance();
-			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
-			if ( ! $is_discussion_tab ) {
-				return;
-			}
-
-			$args['type'] = self::$comment_type_id;
-			//error_log( print_r( $args, true ) );
-			return $args;
-		}*/
+			$type = 'comment';
+			return $type;
+		}
 
 	}
 }

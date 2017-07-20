@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Callbacks
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -343,43 +343,18 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		}
 
 		/**
-		 * Creates settings sections
+		 * Fixes Hub theme get_comment_type()
 		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
+		 * @version 1.0.1
+		 * @since   1.0.1
 		 *
-		 * @param $sections
+		 * @param $type
 		 *
-		 * @return array
+		 * @return string
 		 */
-		/*public function admin_wc_get_sections( $sections ) {
-			return $this->registry->get_admin_settings()->get_sections( $sections );
-		}*/
-
-		/**
-		 * Filters comments
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $comments_flat
-		 * @param $post_id
-		 */
-		/*public function discussions_comments_array( $comments_flat, $post_id ) {
-			return $this->registry->get_discussions()->filter_discussions_comments( $comments_flat, $post_id );
-		}*/
-
-		/**
-		 * Adds dicussions comment type to wp_list_comments
-		 *
-		 * @version 1.0.0
-		 * @since   1.0.0
-		 *
-		 * @param $query
-		 */
-		/*public function discussions_wc_product_review_list_args( $args ) {
-			return $this->registry->get_discussions()->add_discussions_comment_type_to_wp_list_comments( $args );
-		}*/
+		public function discussions_fix_hub_get_comment_type( $type ) {
+			return $this->registry->get_discussions()->fix_hub_get_comment_type( $type );
+		}
 
 	}
 }

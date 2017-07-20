@@ -70,13 +70,13 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			add_filter( 'woocommerce_locate_template', array( $callbacks, 'functions_woocommerce_locate_template' ), 10, 3 );
 			add_filter( 'woocommerce_locate_core_template', array( $callbacks, 'functions_woocommerce_locate_template' ), 10, 3 );
 
-			add_filter( 'wp_enqueue_scripts',array($callbacks,'functions_load_main_scripts'));
+			add_filter( 'wp_enqueue_scripts', array( $callbacks, 'functions_load_main_scripts' ) );
 		}
 
 		/**
 		 * Handles discussions
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.1
 		 * @since   1.0.0
 		 */
 		private function handle_discussions() {
@@ -131,9 +131,8 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			// Filters the comment class
 			add_filter( 'comment_class', array( $callbacks, 'discussions_filter_comment_class' ) );
 
-
-			//add_filter( 'woocommerce_product_review_list_args', array( $callbacks, 'discussions_wc_product_review_list_args' ) );
-			//add_filter( 'comments_array', array( $callbacks, 'discussions_comments_array' ), 10, 2 );
+			// Fixes Hub theme get_comment_type()
+			add_filter('get_comment_type', array($callbacks, 'discussions_fix_hub_get_comment_type') );
 		}
 
 		/**
