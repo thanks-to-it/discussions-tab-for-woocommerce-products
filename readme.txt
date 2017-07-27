@@ -30,6 +30,15 @@ You can do it through [tranlslate.wordpress](https://translate.wordpress.org/pro
 = Is there a Pro version? =
 Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-woocommerce-products/ "Discussions Tab for WooCommerce Products Pro")
 
+= What can I do in the Pro version? =
+
+**Take a look on some of its features:**
+
+* Use Social Networks like Facebook at your favor. Let your customers auto fill their names, e-mail and even get their Facebook profile picture with just one click
+* Convert your native WooCommerce reviews to discussions if you want, and vice-versa
+* Filter your discussions comments if you wantUpgrade to Pro version now
+* Support - We will be ready to help you in case of any issues or questions you may have.
+
 == Installation ==
 
 1. Upload the entire 'discussions-tab-for-woocommerce-products' folder to the '/wp-content/plugins/' directory.
@@ -42,12 +51,14 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
-= 1.0.1 - 20/07/2017 =
+= 1.0.1 - 27/07/2017 =
 Fix Hub theme comment type
+Include info and images about the pro version
 
 = 1.0.0 - 18/07/2017 =
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-* Release initial version
+= 1.0.1 =
+* Fix Hub theme comment type
+* Include info and images about the pro version
