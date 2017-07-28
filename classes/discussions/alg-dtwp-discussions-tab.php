@@ -34,6 +34,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 
 			$comments = get_comments( array(
 				'post_id' => $post->ID,
+				'status'  => 'approve',
 				'count'   => true,
 				'type'    => Alg_DTWP_Discussions::$comment_type_id
 			) );

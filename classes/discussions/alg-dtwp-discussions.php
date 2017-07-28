@@ -280,6 +280,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 
 			$comments = get_comments( array(
 				'post_id' => $post_id,
+				'status'  => 'approve',
 				'count'   => true,
 				'type'    => self::$comment_type_id
 			) );
@@ -302,7 +303,9 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			$comments = get_comments( array(
 				'post_id'      => $product->get_id(),
 				'count'        => true,
-				'type__not_in' => self::$comment_type_id
+				'status'       => 'approve',
+				'parent'       => 0,
+				'type__not_in' => self::$comment_type_id,
 			) );
 
 			return $comments;
