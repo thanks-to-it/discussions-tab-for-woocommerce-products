@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions Custom Meta Box
  *
- * @version 1.0.0
+ * @version 1.0.2
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -25,6 +25,14 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_CMB' ) ) {
 			add_meta_box( 'alg-dtwp-comments-cmb', 'Discussions', array( $this, 'cmb_callback' ), 'product', 'normal', 'default' );
 		}
 
+		/**
+		 * Function to display the custom meta box
+		 *
+		 * @version 1.0.2
+		 * @since   1.0.0
+		 *
+		 * @param $post
+		 */
 		public function cmb_callback( $post ) {
 			$plugin = alg_dtwp_get_instance();
 
@@ -41,12 +49,6 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_CMB' ) ) {
 			) );
 
 			echo '<p><a href="' . $discussions_link . '">' . sprintf( __( 'See discussions (%s)', 'discussions-tab-for-woocommerce-products' ), $comments_count ) . '</a></p>';
-
-			//$total = get_comments( array( 'post_id' => $post->ID, 'number' => 1, 'count' => true ) );
-			//$wp_list_table = _get_list_table('WP_Post_Comments_List_Table');
-			//$wp_list_table->display( true );
-
-
 		}
 	}
 }

@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions
  *
- * @version 1.0.1
+ * @version 1.0.2
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -262,7 +262,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		/**
 		 * Fixes comments number
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.2
 		 * @since   1.0.0
 		 *
 		 * @param $count
@@ -291,7 +291,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		/**
 		 * Fixes products reviews count
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.2
 		 * @since   1.0.0
 		 *
 		 * @param $count

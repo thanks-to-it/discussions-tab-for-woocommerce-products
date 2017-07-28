@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions tab
  *
- * @version 1.0.0
+ * @version 1.0.2
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -21,7 +21,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 		/**
 		 * Adds discussions tab
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.2
 		 * @since   1.0.0
 		 *
 		 * @param $tabs
