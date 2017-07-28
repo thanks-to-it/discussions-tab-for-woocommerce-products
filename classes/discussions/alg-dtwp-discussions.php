@@ -289,7 +289,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		}
 
 		/**
-		 * Fixes products reviews count
+		 * Fixes products reviews counting
 		 *
 		 * @version 1.0.2
 		 * @since   1.0.0
