@@ -49,7 +49,7 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_General' ) ) {
 				),
 				array(
 					'title'          => 'Pro version',
-					'enabled'         => !function_exists('alg_multiorder_for_wc_pro'),
+					'enabled'        => !function_exists('alg_dtwp_pro_start_plugin'),
 					'type'           => 'wccso_metabox',
 					'show_in_pro'    => false,
 					'accordion' => array(
