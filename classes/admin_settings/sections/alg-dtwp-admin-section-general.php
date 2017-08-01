@@ -15,7 +15,7 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_General' ) ) {
 
 	class Alg_DTWP_Admin_Section_General extends Alg_DTWP_Admin_Section {
 
-		public $option_metabox_pro = 'alg_wc_wl_cmb_pro';
+		public $option_metabox_pro = 'alg_dtwp_cmb_pro';
 		public $option_enable = 'alg_dtwp_opt_enable';
 		protected $pro_version_url = 'https://wpcodefactory.com/item/discussions-tab-for-woocommerce-products/';
 
