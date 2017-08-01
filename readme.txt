@@ -51,7 +51,7 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
-= 1.0.2 - 31/08/2017 =
+= 1.0.2 - 01/08/2017 =
 * Fix discussions and reviews counting
 * Fix discussions tab opening
 
