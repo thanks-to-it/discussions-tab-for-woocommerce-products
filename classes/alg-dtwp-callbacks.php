@@ -168,7 +168,7 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		}
 
 		/**
-		 * Changes respond form id
+		 * Fixes comment_parent input and cancel button
 		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
@@ -354,6 +354,32 @@ if ( ! class_exists( 'Alg_DTWP_Callbacks' ) ) {
 		 */
 		public function discussions_fix_hub_get_comment_type( $type ) {
 			return $this->registry->get_discussions()->fix_hub_get_comment_type( $type );
+		}
+
+		/**
+		 * Changes comment link to "#discussion-"
+		 *
+		 * @version 1.0.2
+		 * @since   1.0.2
+		 * @param            $link
+		 * @param WP_Comment $comment
+		 * @param            $args
+		 * @param            $cpage
+		 *
+		 * @return mixed
+		 */
+		public function discussions_change_comment_link($link, $comment, $args, $cpage){
+			return $this->registry->get_discussions()->change_comment_link($link, $comment, $args, $cpage);
+		}
+
+		/**
+		 * Opens discussions tab in frontend after a discussion comment is posted
+		 *
+		 * @version 1.0.2
+		 * @since   1.0.2
+		 */
+		public function discussions_js_open_discussions_tab() {
+			$this->registry->get_discussions()->js_open_discussions_tab();
 		}
 
 	}

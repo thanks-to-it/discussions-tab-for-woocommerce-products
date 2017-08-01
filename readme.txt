@@ -51,17 +51,18 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
-= 1.0.2 - 28/07/2017 =
-Fix discussions and reviews counting
+= 1.0.2 - 31/08/2017 =
+* Fix discussions and reviews counting
+* Fix discussions tab opening
 
 = 1.0.1 - 27/07/2017 =
-Fix Hub theme comment type
-Include info and images about the pro version
+* Fix Hub theme comment type
+* Include info and images about the pro version
 
 = 1.0.0 - 18/07/2017 =
 
 == Upgrade Notice ==
 
-= 1.0.1 =
-* Fix Hub theme comment type
-* Include info and images about the pro version
+= 1.0.2 - 28/07/2017 =
+* Fix discussions and reviews counting
+* Fix discussions tab opening

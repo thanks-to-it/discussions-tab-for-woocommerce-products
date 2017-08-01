@@ -102,6 +102,9 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			// Fixes comment parent_id and cancel btn
 			add_action( 'alg_dtwp_after_comments_template', array( $callbacks, 'discussions_js_fix_comment_parent_id_and_cancel_btn' ) );
 
+			// Opens discussions tab after a discussion comment is posted
+			add_action( 'alg_dtwp_after_comments_template', array( $callbacks, 'discussions_js_open_discussions_tab' ) );
+
 			// Tags the respond form so it can have it's ID changed
 			add_action( 'comment_form_before', array( $callbacks, 'discussions_create_respond_form_wrapper_start' ) );
 			add_action( 'comment_form_after', array( $callbacks, 'discussions_create_respond_form_wrapper_end' ) );
@@ -133,6 +136,9 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 
 			// Fixes Hub theme get_comment_type()
 			add_filter('get_comment_type', array($callbacks, 'discussions_fix_hub_get_comment_type') );
+
+			// Changes comment link to "#discussion-"
+			add_filter( 'get_comment_link', array( $callbacks, 'discussions_change_comment_link' ), 10, 4 );
 		}
 
 		/**

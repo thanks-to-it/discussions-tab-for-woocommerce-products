@@ -165,7 +165,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		}
 
 		/**
-		 * Changes respond form id
+		 * Fixes comment_parent input and cancel button
 		 *
 		 * @version 1.0.0
 		 * @since   1.0.0
@@ -464,6 +464,67 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 
 			$type = 'comment';
 			return $type;
+		}
+
+		/**
+		 * Changes comment link to "#discussion-"
+		 *
+		 * @version 1.0.2
+		 * @since   1.0.2
+		 *
+		 * @param            $link
+		 * @param WP_Comment $comment
+		 * @param            $args
+		 * @param            $cpage
+		 *
+		 * @return mixed
+		 */
+		public function change_comment_link( $link, WP_Comment $comment, $args, $cpage ) {
+			if ( $comment->comment_type != self::$comment_type_id ) {
+				return $link;
+			}
+
+			$link = str_replace( "#comment-", "#discussion-", $link );
+			return $link;
+		}
+
+		/**
+		 * Opens discussions tab in frontend after a discussion comment is posted
+		 *
+		 * @version 1.0.2
+		 * @since   1.0.2
+		 */
+		public function js_open_discussions_tab() {
+			$plugin            = alg_dtwp_get_instance();
+			$is_discussion_tab = $plugin->registry->get_discussions_tab()->is_discussion_tab();
+			if ( ! $is_discussion_tab ) {
+				return;
+			}
+			?>
+            <script>
+				jQuery(function ($) {
+
+					$(document).ready(function () {
+						window.onhashchange = function () {
+							go_to_discussion_tab();
+						}
+						function go_to_discussion_tab() {
+							var hash = window.location.hash;
+							if (hash.toLowerCase().indexOf('discussion-') >= 0 || hash === '#alg_dtwp' || hash === '#tab-alg_dtwp') {
+								var hash_split = hash.split('#discussion-');
+								var comment_id = hash_split[1];
+								$('#tab-title-alg_dtwp a').trigger('click');
+								if ($('#comment-' + comment_id)[0]) {
+									$('#comment-' + comment_id)[0].scrollIntoView(true);
+								}
+							}
+						}
+
+						go_to_discussion_tab();
+					});
+				});
+            </script>
+			<?php
 		}
 
 	}
