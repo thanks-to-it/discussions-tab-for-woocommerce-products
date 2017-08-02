@@ -51,9 +51,10 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
-= 1.0.2 - 01/08/2017 =
+= 1.0.2 - 02/08/2017 =
 * Fix discussions and reviews counting
 * Fix discussions tab opening
+* Add option to count replies or not
 
 = 1.0.1 - 27/07/2017 =
 * Fix Hub theme comment type
@@ -66,3 +67,4 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 = 1.0.2 - 28/07/2017 =
 * Fix discussions and reviews counting
 * Fix discussions tab opening
+* Add option to count replies or not
