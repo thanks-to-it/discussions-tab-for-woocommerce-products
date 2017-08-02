@@ -17,6 +17,7 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_General' ) ) {
 
 		public $option_metabox_pro = 'alg_dtwp_cmb_pro';
 		public $option_enable = 'alg_dtwp_opt_enable';
+		public $option_count_replies = 'alg_dtwp_opt_count_replies';
 		protected $pro_version_url = 'https://wpcodefactory.com/item/discussions-tab-for-woocommerce-products/';
 
 		/**
@@ -83,8 +84,15 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_General' ) ) {
 				),
 				array(
 					'title'   => __( 'Enable plugin', 'discussions-tab-for-woocommerce-products' ),
-					'desc'    => __( 'Enables plugin "Discussions tab for WooCommerce Products".', 'discussions-tab-for-woocommerce-products' ),
+					'desc'    => __( 'Enables plugin "Discussions tab for WooCommerce Products"', 'discussions-tab-for-woocommerce-products' ),
 					'id'      => $this->option_enable,
+					'default' => 'yes',
+					'type'    => 'checkbox',
+				),
+				array(
+					'title'   => __( 'Count replies', 'discussions-tab-for-woocommerce-products' ),
+					'desc'    => __( 'When counting discussions comments, takes replies into consideration', 'discussions-tab-for-woocommerce-products' ),
+					'id'      => $this->option_count_replies,
 					'default' => 'yes',
 					'type'    => 'checkbox',
 				),

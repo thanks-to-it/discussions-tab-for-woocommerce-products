@@ -278,8 +278,12 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 				return $count;
 			}
 
+			$count_replies_opt = filter_var( get_option( $plugin->registry->get_admin_section_general()->option_count_replies, true ), FILTER_VALIDATE_BOOLEAN );
+			$parent_opt = $count_replies_opt ? '' : false;
+
 			$comments = get_comments( array(
 				'post_id' => $post_id,
+				'parent'  => $parent_opt,
 				'status'  => 'approve',
 				'count'   => true,
 				'type'    => self::$comment_type_id
