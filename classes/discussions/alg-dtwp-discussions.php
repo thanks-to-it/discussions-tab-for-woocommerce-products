@@ -56,8 +56,8 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			// If parent comment isn't discussion comment type, do nothing
 			if (
 				! isset( $request[ self::$comment_type_id ] ) &&
-				isset( $comment_data['comment_parent'] ) &&
-				get_comment_type( $comment_data['comment_parent'] ) != self::$comment_type_id
+				( isset( $comment_data['comment_parent'] ) && $comment_data['comment_parent'] != 0 && get_comment_type( $comment_data['comment_parent'] ) != self::$comment_type_id ) ||
+				( isset( $comment_data['comment_parent'] ) && $comment_data['comment_parent'] == 0 )
 			) {
 				return $comment_data;
 			}
