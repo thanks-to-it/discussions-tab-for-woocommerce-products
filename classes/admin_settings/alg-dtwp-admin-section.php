@@ -17,6 +17,7 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section' ) ) {
 		public $section_id = '';
 		public $section_label = 'New Section';
 		public $tab_id = '';
+		public $section_priority = 10;
 
 		/**
 		 * Initializes
@@ -27,16 +28,18 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section' ) ) {
 		 * @param array $args
 		 */
 		public function init( $args = array() ) {
-			$args                = wp_parse_args( $args, array(
-				'tab_id'        => $this->tab_id,
-				'section_label' => $this->section_label,
-				'section_id'    => $this->section_id,
+			$args = wp_parse_args( $args, array(
+				'tab_id'           => $this->tab_id,
+				'section_label'    => $this->section_label,
+				'section_id'       => $this->section_id,
+				'section_priority' => $this->section_priority,
 			) );
-			$this->tab_id        = $args['tab_id'];
+			$this->tab_id = $args['tab_id'];
 			$this->section_label = $args['section_label'];
-			$this->section_id    = $args['section_id'];
+			$this->section_id = $args['section_id'];
+			$this->section_priority = $args['section_priority'];
 
-			add_filter( "woocommerce_get_sections_{$this->tab_id}", array( $this, 'create_section' ) );
+			add_filter( "woocommerce_get_sections_{$this->tab_id}", array( $this, 'create_section' ), $this->section_priority );
 			add_filter( "woocommerce_get_settings_{$this->tab_id}_" . "{$this->section_id}", array( $this, 'get_settings' ), PHP_INT_MAX );
 		}
 

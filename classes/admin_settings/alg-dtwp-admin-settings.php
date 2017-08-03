@@ -46,7 +46,10 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Settings' ) ) {
 			$section->init( array('tab_id' => self::$admin_tab_id) );
 
 			$section = $plugin->registry->get_admin_section_advanced();
-			$section->init( array('tab_id' => self::$admin_tab_id) );
+			$section->init( array(
+				'tab_id'           => self::$admin_tab_id,
+				'section_priority' => 90
+			) );
 		}
 
 	}
