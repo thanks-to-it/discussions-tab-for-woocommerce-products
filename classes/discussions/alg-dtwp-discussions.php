@@ -37,31 +37,35 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		/**
 		 * Adds discussions comment type in comment data
 		 *
-		 * @version 1.0.3
+		 * @version 1.0.4
 		 * @since   1.0.0
 		 *
 		 * @param $comment_data
 		 */
 		public function add_discussions_comment_type_in_comment_data( $comment_data ) {
 			$request = $_REQUEST;
+			$is_discussion=false;
 
-			// If discussion comment type isn't in request, do nothing
-			if (
+			if(
 				isset( $request[ self::$comment_type_id ] ) &&
-				! filter_var( $request[ self::$comment_type_id ], FILTER_VALIDATE_BOOLEAN )
-			) {
-				return $comment_data;
-			}
+				filter_var( $request[ self::$comment_type_id ], FILTER_VALIDATE_BOOLEAN )
+            ){
+				$is_discussion=true;
+            }
 
-			// If parent comment isn't discussion comment type, do nothing
 			if (
-				! isset( $request[ self::$comment_type_id ] ) &&
-				( isset( $comment_data['comment_parent'] ) && $comment_data['comment_parent'] != 0 && get_comment_type( $comment_data['comment_parent'] ) != self::$comment_type_id )
+			    ! isset( $request[ self::$comment_type_id ] ) &&
+                isset( $comment_data['comment_parent'] ) &&
+                $comment_data['comment_parent'] != 0 &&
+                get_comment_type( $comment_data['comment_parent'] ) == self::$comment_type_id
 			) {
-				return $comment_data;
+				$is_discussion=true;
 			}
 
-			$comment_data['comment_type'] = self::$comment_type_id;
+			if($is_discussion){
+				$comment_data['comment_type'] = self::$comment_type_id;
+            }
+
 			return $comment_data;
 		}
 
