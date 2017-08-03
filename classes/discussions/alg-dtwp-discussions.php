@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions
  *
- * @version 1.0.3
+ * @version 1.0.4
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -377,7 +377,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		/**
 		 * Filters params passed to wp_list_comments function
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.4
 		 * @since   1.0.0
 		 *
 		 * @param $args
@@ -399,6 +399,8 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 				$args['avatar_size'] = 50;
 				$args['callback']    = 'custom_comment';
 			}
+
+			$args = apply_filters('alg_dtwp_wp_list_comments_args',$args, wp_get_theme()->get( 'Name' ));
 			return $args;
 		}
 

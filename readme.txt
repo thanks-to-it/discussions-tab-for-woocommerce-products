@@ -53,6 +53,7 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 = 1.0.4 - 03/08/2017 =
 * Remove comments counting test on template for closed comments
+* Create a new filter alg_dtwp_wp_list_comments_args to filter arguments passed to wp_list_comments
 
 = 1.0.3 - 03/08/2017 =
 * Add a new string when there are no discussions yet
@@ -73,3 +74,4 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 = 1.0.4 =
 * Remove comments counting test on template for closed comments
+* Create a new filter alg_dtwp_wp_list_comments_args to filter arguments passed to wp_list_comments
