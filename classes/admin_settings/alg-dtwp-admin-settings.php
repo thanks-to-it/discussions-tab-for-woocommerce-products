@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Admin settings
  *
- * @version 1.0.0
+ * @version 1.0.5
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -33,7 +33,7 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Settings' ) ) {
 		/**
 		 * Create sections
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.5
 		 * @since   1.0.0
 		 */
 		public function create_sections() {
@@ -43,6 +43,9 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Settings' ) ) {
 			$section->init( array('tab_id' => self::$admin_tab_id) );
 
 			$section = $plugin->registry->get_admin_section_texts();
+			$section->init( array('tab_id' => self::$admin_tab_id) );
+
+			$section = $plugin->registry->get_admin_section_advanced();
 			$section->init( array('tab_id' => self::$admin_tab_id) );
 		}
 

@@ -22,6 +22,7 @@ class ComposerStaticInit8e91146bf4b8f27ca5886d21aad89c69
 
     public static $classMap = array (
         'Alg_DTWP_Admin_Section' => __DIR__ . '/../..' . '/classes/admin_settings/alg-dtwp-admin-section.php',
+        'Alg_DTWP_Admin_Section_Advanced' => __DIR__ . '/../..' . '/classes/admin_settings/sections/alg-dtwp-admin-advanced.php',
         'Alg_DTWP_Admin_Section_General' => __DIR__ . '/../..' . '/classes/admin_settings/sections/alg-dtwp-admin-section-general.php',
         'Alg_DTWP_Admin_Section_Texts' => __DIR__ . '/../..' . '/classes/admin_settings/sections/alg-dtwp-admin-section-texts.php',
         'Alg_DTWP_Admin_Settings' => __DIR__ . '/../..' . '/classes/admin_settings/alg-dtwp-admin-settings.php',

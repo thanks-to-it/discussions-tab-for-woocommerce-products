@@ -381,7 +381,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		/**
 		 * Filters params passed to wp_list_comments function
 		 *
-		 * @version 1.0.4
+		 * @version 1.0.5
 		 * @since   1.0.0
 		 *
 		 * @param $args
@@ -395,6 +395,8 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 				return $args;
 			}
 
+			$theme_name = wp_get_theme()->get( 'Name' );
+
 			if ( class_exists( 'Storefront' ) ) {
 				$args['style']      = 'ol';
 				$args['short_ping'] = true;
@@ -404,9 +406,22 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 				$args['callback']    = 'custom_comment';
 			}
 
-			$args = apply_filters('alg_dtwp_wp_list_comments_args',$args, wp_get_theme()->get( 'Name' ));
+			switch($theme_name){
+                case 'Enfold':
+	                $args['callback']='avia_inc_custom_comments';
+                break;
+                case 'Themify Corporate':
+	                $args['callback']='themify_theme_comment';
+                break;
+            }
+
+			$args              = apply_filters( 'alg_dtwp_wp_list_comments_args', $args, $theme_name );
+			$callback_function = sanitize_text_field( get_option( $plugin->registry->get_admin_section_advanced()->option_wp_list_comments_callback, '' ) );
+			if ( ! empty( $callback_function ) ) {
+				$args['callback'] = $callback_function;
+			}
 			return $args;
-		}
+		}		
 
 		/**
 		 * Filters the class of wp_list_comments wrapper

@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Registry
  *
- * @version 1.0.0
+ * @version 1.0.5
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -47,6 +47,11 @@ if ( ! class_exists( 'Alg_DTWP_Registry' ) ) {
 		private $admin_section_texts;
 
 		/**
+		 * @var Alg_DTWP_Admin_Section_Advanced
+		 */
+		private $admin_section_advanced;
+
+		/**
 		 * @var Alg_DTWP_Functions
 		 */
 		private $functions;
@@ -61,6 +66,18 @@ if ( ! class_exists( 'Alg_DTWP_Registry' ) ) {
 				$this->functions = new Alg_DTWP_Functions();
 			}
 			return $this->functions;
+		}
+
+		/**
+		 * @version 1.0.5
+		 * @since   1.0.5
+		 * @return Alg_DTWP_Admin_Section_Advanced
+		 */
+		public function get_admin_section_advanced() {
+			if ( $this->admin_section_advanced == null ) {
+				$this->admin_section_advanced = new Alg_DTWP_Admin_Section_Advanced();
+			}
+			return $this->admin_section_advanced;
 		}
 
 		/**

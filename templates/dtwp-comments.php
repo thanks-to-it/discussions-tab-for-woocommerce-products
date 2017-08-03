@@ -50,7 +50,7 @@ if ( post_password_required() ) {
             </nav><!-- #comment-nav-above -->
 		<?php endif; // Check for comment navigation. ?>
 
-        <ol class="<?php echo implode( ' ', apply_filters( 'alg_dtwp_wp_list_comments_wrapper_class', array_map( 'sanitize_text_field', array( 'comment-list','commentlist' ) ) ) ); ?>">
+        <ol class="<?php echo implode( ' ', apply_filters( 'alg_dtwp_wp_list_comments_wrapper_class', array_map( 'sanitize_text_field', array( 'comment-list','commentlist' ) ), wp_get_theme()->get( 'Name' ) ) ); ?>">
 			<?php wp_list_comments(); ?>
         </ol><!-- .comment-list -->
 
