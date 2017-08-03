@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions
  *
- * @version 1.0.2
+ * @version 1.0.3
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -37,7 +37,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		/**
 		 * Adds discussions comment type in comment data
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.3
 		 * @since   1.0.0
 		 *
 		 * @param $comment_data
@@ -56,8 +56,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			// If parent comment isn't discussion comment type, do nothing
 			if (
 				! isset( $request[ self::$comment_type_id ] ) &&
-				( isset( $comment_data['comment_parent'] ) && $comment_data['comment_parent'] != 0 && get_comment_type( $comment_data['comment_parent'] ) != self::$comment_type_id ) ||
-				( isset( $comment_data['comment_parent'] ) && $comment_data['comment_parent'] == 0 )
+				( isset( $comment_data['comment_parent'] ) && $comment_data['comment_parent'] != 0 && get_comment_type( $comment_data['comment_parent'] ) != self::$comment_type_id )
 			) {
 				return $comment_data;
 			}

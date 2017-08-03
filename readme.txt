@@ -53,6 +53,7 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 = 1.0.3 - 03/08/2017 =
 * Add a new string when there are no discussions yet
+* Fix bug when posting new discussions
 
 = 1.0.2 - 02/08/2017 =
 * Fix discussions and reviews counting
@@ -69,3 +70,4 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 = 1.0.3 =
 * Add a new string when there are no discussions yet
+* Fix bug when posting new discussions
