@@ -3,7 +3,7 @@ Contributors: algoritmika,karzin,anbinder
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments
 Requires at least: 4.4
 Tested up to: 4.8
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -51,6 +51,9 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
+= 1.0.3 - 03/08/2017 =
+* Add a new string when there are no discussions yet
+
 = 1.0.2 - 02/08/2017 =
 * Fix discussions and reviews counting
 * Fix discussions tab opening
@@ -64,7 +67,5 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Upgrade Notice ==
 
-= 1.0.2 - 28/07/2017 =
-* Fix discussions and reviews counting
-* Fix discussions tab opening
-* Add option to count replies or not
+= 1.0.3 =
+* Add a new string when there are no discussions yet

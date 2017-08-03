@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Admin Section - Texts
  *
- * @version 1.0.0
+ * @version 1.0.3
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -20,6 +20,7 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_Texts' ) ) {
 		public $option_discussions_title_plural = 'alg_dtwp_discussions_title_plural';
 		public $option_discussions_respond_title = 'alg_dtwp_discussions_respond_title';
 		public $option_discussions_post_comment_label = 'alg_dtwp_discussions_post_comment_label';
+		public $option_discussions_none = 'alg_dtwp_discussions_none';
 
 		/**
 		 * Constructor
@@ -49,7 +50,7 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_Texts' ) ) {
 		/**
 		 * Get settings
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.3
 		 * @since   1.0.0
 		 *
 		 * @param $settings
@@ -68,6 +69,14 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_Texts' ) ) {
 					'desc'    => __( 'How discussions will be labeled in front-end', 'discussions-tab-for-woocommerce-products' ),
 					'id'      => $this->option_discussions_label,
 					'default' => __( 'Discussions', 'discussions-tab-for-woocommerce-products' ),
+					'type'    => 'text',
+					'class'   => 'regular-input',
+				),
+				array(
+					'title'   => __( 'No discussions', 'discussions-tab-for-woocommerce-products' ),
+					'desc'    => __( 'When there is still no comments', 'discussions-tab-for-woocommerce-products' ),
+					'id'      => $this->option_discussions_none,
+					'default' => __( 'There are no discussions yet.', 'discussions-tab-for-woocommerce-products' ),
 					'type'    => 'text',
 					'class'   => 'regular-input',
 				),
