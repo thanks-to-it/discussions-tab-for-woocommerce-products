@@ -53,6 +53,7 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 = 1.0.5 - 03/08/2017 =
 * Add one more default class ('commentlist') to comments lists 
+* Make Comment list classes unique
 
 = 1.0.4 - 03/08/2017 =
 * Remove comments counting test on template for closed comments
@@ -78,3 +79,4 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 = 1.0.5 =
 * Add one more default class ('commentlist') to comments lists 
+* Make Comment list classes unique

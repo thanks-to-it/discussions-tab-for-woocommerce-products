@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions
  *
- * @version 1.0.4
+ * @version 1.0.5
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -411,7 +411,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		/**
 		 * Filters the class of wp_list_comments wrapper
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.5
 		 * @since   1.0.0
 		 *
 		 * @param $class
@@ -422,10 +422,9 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			if ( ! $is_discussion_tab ) {
 				return $class;
 			}
-
-			if ( function_exists( 'wf_get_version' ) ) {
-				$class[] = 'commentlist';
-			}
+			
+			$class = array_unique($class);
+			$class = array_map('esc_attr', $class);
 			return $class;
 		}
 
