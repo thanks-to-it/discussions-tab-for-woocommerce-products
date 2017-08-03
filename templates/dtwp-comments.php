@@ -3,7 +3,7 @@
  * Discussions tab for WooCommerce Products - Comments template
  *
  * @author  Algoritmika Ltd.
- * @version 1.0.4
+ * @version 1.0.5
  * @since   1.0.0
  */
 ?>
@@ -50,7 +50,7 @@ if ( post_password_required() ) {
             </nav><!-- #comment-nav-above -->
 		<?php endif; // Check for comment navigation. ?>
 
-        <ol class="<?php echo implode( ' ', apply_filters( 'alg_dtwp_wp_list_comments_wrapper_class', array_map( 'sanitize_text_field', array( 'comment-list' ) ) ) ); ?>">
+        <ol class="<?php echo implode( ' ', apply_filters( 'alg_dtwp_wp_list_comments_wrapper_class', array_map( 'sanitize_text_field', array( 'comment-list','commentlist' ) ) ) ); ?>">
 			<?php wp_list_comments(); ?>
         </ol><!-- .comment-list -->
 
