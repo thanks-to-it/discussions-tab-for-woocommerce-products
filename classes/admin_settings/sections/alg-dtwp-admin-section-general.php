@@ -62,6 +62,15 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_General' ) ) {
 								'img_src'     => plugins_url( '../../../assets/images/autofill-frontend.png', __FILE__ ),
 							),
 							array(
+								'trigger'     => __( 'Use shortcodes inside discussion comments', 'discussions-tab-for-woocommerce-products' ),
+								'description' => __( 'Shortcodes can improve the way you communicate with your audience. Use videos, galleries, anything a shortcode can provide', 'discussions-tab-for-woocommerce-products' ),
+								'img_src'     => plugins_url( '../../../assets/images/shortcode-video.png', __FILE__ ),
+							),
+							array(
+								'trigger'     => __( 'Decide if comments should be posted by anyone or only the ones who bought', 'discussions-tab-for-woocommerce-products' ),
+								'description' => __( 'You can also choose to simply add a label on comments made by customers', 'discussions-tab-for-woocommerce-products' ),
+							),
+							array(
 								'trigger'     => __( 'Convert your native WooCommerce reviews to discussions if you want, and vice-versa', 'discussions-tab-for-woocommerce-products' ),
 								'img_src'     => plugins_url( '../../../assets/images/convert-comments.png', __FILE__ ),
 							),

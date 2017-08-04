@@ -35,6 +35,8 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 **Take a look on some of its features:**
 
 * Use Social Networks like Facebook at your favor. Let your customers auto fill their names, e-mail and even get their Facebook profile picture with just one click
+* Use shortcodes inside discussion comments
+* Decide if comments should be posted by anyone or only the ones who bought
 * Convert your native WooCommerce reviews to discussions if you want, and vice-versa
 * Filter your discussions comments if you wantUpgrade to Pro version now
 * Support - We will be ready to help you in case of any issues or questions you may have.
@@ -51,7 +53,7 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
-= 1.0.5 - 03/08/2017 =
+= 1.0.5 - 04/08/2017 =
 * Add one more default class ('commentlist') to comments lists 
 * Make Comment list classes unique
 * Add more callback functions to different themes
