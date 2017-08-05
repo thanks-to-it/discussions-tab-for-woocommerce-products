@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions
  *
- * @version 1.0.5
+ * @version 1.0.6
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -492,7 +492,7 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 		/**
 		 * Changes comment link to "#discussion-"
 		 *
-		 * @version 1.0.2
+		 * @version 1.0.6
 		 * @since   1.0.2
 		 *
 		 * @param            $link
@@ -506,15 +506,17 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			if ( $comment->comment_type != self::$comment_type_id ) {
 				return $link;
 			}
-
-			$link = str_replace( "#comment-", "#discussion-", $link );
+			$link_pattern = apply_filters( 'alg_dtwp_filter_comment_link', "discussion" );
+			$link_pattern = sanitize_text_field($link_pattern);
+			$link_pattern = sanitize_title($link_pattern);
+			$link = str_replace( "#comment-", "#".$link_pattern."-", $link );
 			return $link;
 		}
 
 		/**
 		 * Opens discussions tab in frontend after a discussion comment is posted
 		 *
-		 * @version 1.0.2
+		 * @version 1.0.6
 		 * @since   1.0.2
 		 */
 		public function js_open_discussions_tab() {
@@ -523,20 +525,29 @@ if ( ! class_exists( 'Alg_DTWP_Discussions' ) ) {
 			if ( ! $is_discussion_tab ) {
 				return;
 			}
+
+			$link_pattern = apply_filters( 'alg_dtwp_filter_comment_link', "discussion" );
+			$link_pattern = sanitize_text_field( $link_pattern );
+			$link_pattern = sanitize_title( $link_pattern );
+			Alg_DTWP_Discussions_Tab::$discussions_tab_id = apply_filters( 'alg_dtwp_filter_tab_id', 'discussions' );
+			Alg_DTWP_Discussions_Tab::$discussions_tab_id = sanitize_text_field( Alg_DTWP_Discussions_Tab::$discussions_tab_id );
+			Alg_DTWP_Discussions_Tab::$discussions_tab_id = sanitize_title( Alg_DTWP_Discussions_Tab::$discussions_tab_id );
 			?>
             <script>
 				jQuery(function ($) {
 
 					$(document).ready(function () {
+						var alg_dtwp_tab = '<?php echo Alg_DTWP_Discussions_Tab::$discussions_tab_id; ?>';
+						var alg_dtwp_comment_link = '<?php echo $link_pattern; ?>';
 						window.onhashchange = function () {
 							go_to_discussion_tab();
 						}
 						function go_to_discussion_tab() {
 							var hash = window.location.hash;
-							if (hash.toLowerCase().indexOf('discussion-') >= 0 || hash === '#alg_dtwp' || hash === '#tab-alg_dtwp') {
-								var hash_split = hash.split('#discussion-');
+							if (hash.toLowerCase().indexOf(alg_dtwp_comment_link+'-') >= 0 || hash === '#'+alg_dtwp_tab || hash === '#tab-'+alg_dtwp_tab) {
+								var hash_split = hash.split('#'+alg_dtwp_comment_link+'-');
 								var comment_id = hash_split[1];
-								$('#tab-title-alg_dtwp a').trigger('click');
+								$('#tab-title-'+alg_dtwp_tab+' a').trigger('click');
 								if ($('#comment-' + comment_id)[0]) {
 									$('#comment-' + comment_id)[0].scrollIntoView(true);
 								}

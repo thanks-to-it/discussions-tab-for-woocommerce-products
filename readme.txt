@@ -3,7 +3,7 @@ Contributors: algoritmika,karzin,anbinder
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments
 Requires at least: 4.4
 Tested up to: 4.8
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -53,6 +53,10 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
+= 1.0.6 - 05/08/2017 =
+* Create filter "alg_dtwp_filter_tab_id" to change tab slug
+* Create filter "alg_dtwp_filter_comment_link" to change comment link
+
 = 1.0.5 - 04/08/2017 =
 * Add one more default class ('commentlist') to comments lists 
 * Make Comment list classes unique
@@ -82,9 +86,6 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Upgrade Notice ==
 
-= 1.0.5 =
-* Add one more default class ('commentlist') to comments lists 
-* Make Comment list classes unique
-* Add more callback functions to different themes
-* Create new section on admin (advanced)
-* Create new option to get the "wp_list_comments" "callback" argument
+= 1.0.6 =
+* Create filter "alg_dtwp_filter_tab_id" to change tab slug
+* Create filter "alg_dtwp_filter_comment_link" to change comment link

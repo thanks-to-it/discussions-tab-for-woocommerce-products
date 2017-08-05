@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Discussions tab
  *
- * @version 1.0.2
+ * @version 1.0.6
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -15,13 +15,13 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 
 	class Alg_DTWP_Discussions_Tab {
 
-		public static $discussions_tab_id = 'alg_dtwp';
+		public static $discussions_tab_id = 'discussions';
 		private $is_discussion_tab = false;
 
 		/**
 		 * Adds discussions tab
 		 *
-		 * @version 1.0.2
+		 * @version 1.0.6
 		 * @since   1.0.0
 		 *
 		 * @param $tabs
@@ -29,6 +29,10 @@ if ( ! class_exists( 'Alg_DTWP_Discussions_Tab' ) ) {
 		 * @return mixed
 		 */
 		public function add_discussions_tab( $tabs ) {
+			self::$discussions_tab_id = apply_filters( 'alg_dtwp_filter_tab_id', 'discussions' );
+			self::$discussions_tab_id = sanitize_text_field( self::$discussions_tab_id );
+			self::$discussions_tab_id = sanitize_title( self::$discussions_tab_id );
+
 			$plugin = alg_dtwp_get_instance();
 			global $post;
 

@@ -54,6 +54,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 
 				// Handle discussions
 				$this->handle_discussions();
+
 			}
 		}
 
