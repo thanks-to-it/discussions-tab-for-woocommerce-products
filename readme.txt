@@ -56,6 +56,7 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 = 1.0.6 - 05/08/2017 =
 * Create filter "alg_dtwp_filter_tab_id" to change tab slug
 * Create filter "alg_dtwp_filter_comment_link" to change comment link
+* Fix tab css
 
 = 1.0.5 - 04/08/2017 =
 * Add one more default class ('commentlist') to comments lists 
@@ -89,3 +90,4 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 = 1.0.6 =
 * Create filter "alg_dtwp_filter_tab_id" to change tab slug
 * Create filter "alg_dtwp_filter_comment_link" to change comment link
+* Fix tab css
