@@ -1,5 +1,5 @@
-.woocommerce-Tabs-panel--alg_dtwp.panel.entry-content,
-#comments .woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comment-list {
+.alg-dtwp-wrapper,
+.alg-dtwp-wrapper .comment-list {
 	#respond {
 		float: none;
 		display: inline-block;
@@ -13,8 +13,15 @@
 	// Only for the HUB Theme
 	.comments-area.Hub {
 		#respond {
+			width:97%;
 			#comment {
 				border: 1px solid #ccc;
+			}
+
+			#commentform{
+				input[type="text"],input[type="email"]{
+					background:#eee;
+				}
 			}
 		}
 	}

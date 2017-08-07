@@ -1,41 +1,52 @@
 /*!
  * Main style of Discussions Tab for WooCommerce Products
  *
- * @version 1.0.0
+ * @version 1.0.6
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
-.woocommerce-Tabs-panel--alg_dtwp.panel.entry-content #comments {
+.alg-dtwp-wrapper #comments {
   float: none;
   padding: 0;
   margin: 0;
 }
 
-.woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comments-area {
+.alg-dtwp-wrapper .comments-area {
   -webkit-box-shadow: none;
   box-shadow: none;
   padding-top: 0;
 }
 
-.woocommerce-Tabs-panel--alg_dtwp.panel.entry-content #respond,
-#comments .woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comment-list #respond {
+.alg-dtwp-wrapper #respond,
+.alg-dtwp-wrapper .comment-list #respond {
   float: none;
   display: inline-block;
   width: 100%;
 }
 
-.woocommerce-Tabs-panel--alg_dtwp.panel.entry-content #respond #comment,
-#comments .woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comment-list #respond #comment {
+.alg-dtwp-wrapper #respond #comment,
+.alg-dtwp-wrapper .comment-list #respond #comment {
   width: 98%;
 }
 
-.woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comments-area.Hub #respond #comment,
-#comments .woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comment-list .comments-area.Hub #respond #comment {
+.alg-dtwp-wrapper .comments-area.Hub #respond,
+.alg-dtwp-wrapper .comment-list .comments-area.Hub #respond {
+  width: 97%;
+}
+
+.alg-dtwp-wrapper .comments-area.Hub #respond #comment,
+.alg-dtwp-wrapper .comment-list .comments-area.Hub #respond #comment {
   border: 1px solid #ccc;
 }
 
-.woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comments-area.Hub .comment-text,
-#comments .woocommerce-Tabs-panel--alg_dtwp.panel.entry-content .comment-list .comments-area.Hub .comment-text {
+.alg-dtwp-wrapper .comments-area.Hub #respond #commentform input[type="text"], .alg-dtwp-wrapper .comments-area.Hub #respond #commentform input[type="email"],
+.alg-dtwp-wrapper .comment-list .comments-area.Hub #respond #commentform input[type="text"],
+.alg-dtwp-wrapper .comment-list .comments-area.Hub #respond #commentform input[type="email"] {
+  background: #eee;
+}
+
+.alg-dtwp-wrapper .comments-area.Hub .comment-text,
+.alg-dtwp-wrapper .comment-list .comments-area.Hub .comment-text {
   background: #f6f6f6 !important;
 }
 
