@@ -53,7 +53,7 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
-= 1.0.6 - 05/08/2017 =
+= 1.0.6 - 07/08/2017 =
 * Create filter "alg_dtwp_filter_tab_id" to change tab slug
 * Create filter "alg_dtwp_filter_comment_link" to change comment link
 * Fix tab css
