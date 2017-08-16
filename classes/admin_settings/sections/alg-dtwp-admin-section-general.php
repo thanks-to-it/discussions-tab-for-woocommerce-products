@@ -72,6 +72,10 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_General' ) ) {
 								'description' => __( 'You can also choose to simply add a label on comments made by customers', 'discussions-tab-for-woocommerce-products' ),
 							),
 							array(
+								'trigger'     => __( 'Show if comments are being replied by product authors', 'discussions-tab-for-woocommerce-products' ),
+								'description' => __( 'Display labels on comments/reviews that were written by product authors', 'discussions-tab-for-woocommerce-products' ),
+							),							
+							array(
 								'trigger'     => __( 'Convert your native WooCommerce reviews to discussions if you want, and vice-versa', 'discussions-tab-for-woocommerce-products' ),
 								'img_src'     => plugins_url( '../../../assets/images/convert-comments.png', __FILE__ ),
 							),
