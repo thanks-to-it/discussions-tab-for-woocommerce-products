@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Core Class
  *
- * @version 1.0.0
+ * @version 1.0.7
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -145,10 +145,17 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 		/**
 		 * Creates admin settings
 		 *
-		 * @version 1.0.0
+		 * @version 1.0.7
 		 * @since   1.0.0
 		 */
 		private function handle_admin_settings() {
+			if( !is_admin() ){
+				return;				
+			}
+
+			// Load metabox library that tells about the pro version
+			WCCSO_Metabox::get_instance();			
+
 			$callbacks = $this->callbacks;
 
 			// Plugin settings link

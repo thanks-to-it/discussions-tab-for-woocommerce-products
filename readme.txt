@@ -53,6 +53,9 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Changelog ==
 
+= 1.0.7 - 16/08/2017 =
+* Fix metabox about pro version
+
 = 1.0.6 - 07/08/2017 =
 * Create filter "alg_dtwp_filter_tab_id" to change tab slug
 * Create filter "alg_dtwp_filter_comment_link" to change comment link
@@ -87,7 +90,5 @@ Yes, it's located [here](https://wpcodefactory.com/item/discussions-tab-for-wooc
 
 == Upgrade Notice ==
 
-= 1.0.6 =
-* Create filter "alg_dtwp_filter_tab_id" to change tab slug
-* Create filter "alg_dtwp_filter_comment_link" to change comment link
-* Fix tab css
+= 1.0.7 =
+* Fix metabox about pro version

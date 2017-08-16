@@ -50,7 +50,8 @@ if ( ! class_exists( 'Alg_DTWP_Admin_Section_General' ) ) {
 				),
 				array(
 					'title'          => 'Pro version',
-					'enabled'        => !function_exists('alg_dtwp_pro_start_plugin'),
+					//'enabled'        => !function_exists('alg_dtwp_pro_start_plugin'),
+					'enabled'        => true,
 					'type'           => 'wccso_metabox',
 					'show_in_pro'    => false,
 					'accordion' => array(
