@@ -2,7 +2,7 @@
 /**
  * Discussions tab for WooCommerce Products - Core Class
  *
- * @version 1.0.7
+ * @version 1.0.8
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -77,7 +77,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 		/**
 		 * Handles discussions
 		 *
-		 * @version 1.0.1
+		 * @version 1.0.8
 		 * @since   1.0.0
 		 */
 		private function handle_discussions() {
@@ -98,7 +98,7 @@ if ( ! class_exists( 'Alg_DTWP_Core' ) ) {
 			add_filter( 'comments_template_query_args', array( $callbacks, 'discussions_filter_comments_template_query_args' ) );
 
 			// Swaps woocommerce template (single-product-reviews.php) with default comments template
-			add_filter( 'comments_template', array( $callbacks, 'discussions_comments_template_loader' ) );
+			add_filter( 'comments_template', array( $callbacks, 'discussions_comments_template_loader' ), 20 );
 
 			// Fixes comment parent_id and cancel btn
 			add_action( 'alg_dtwp_after_comments_template', array( $callbacks, 'discussions_js_fix_comment_parent_id_and_cancel_btn' ) );
