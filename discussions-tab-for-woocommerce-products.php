@@ -10,6 +10,8 @@ License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: discussions-tab-for-woocommerce-products
 Domain Path: /languages
+WC requires at least: 3.0.0
+WC tested up to: 3.3.1
 */
 
 add_action( 'plugins_loaded', 'alg_dtwp_start_plugin' );
