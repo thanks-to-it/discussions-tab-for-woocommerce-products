@@ -27,6 +27,11 @@ $discussions_textarea_placeholder = sanitize_text_field( get_option( 'alg_dtwp_d
 ?>
 
 <?php
+//global $_wp_post_type_features;
+//error_log(print_r($_wp_post_type_features,true));
+//$_wp_post_type_features['product']['comments']=true;
+//return ( isset( $_wp_post_type_features[ $post_type ][ $feature ] ) );
+
 /*
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will

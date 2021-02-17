@@ -1,7 +1,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Style
  *
- * @version 1.0.6
+ * @version 1.2.3
  * @since   1.0.0
  * @author  Algoritmika Ltd
  */
@@ -49,4 +49,36 @@
 .alg-dtwp-wrapper .comments-area.Hub .comment-text,
 .alg-dtwp-wrapper .comment-list .comments-area.Hub .comment-text {
 	background: #f6f6f6 !important;
+}
+
+.alg-dtwp-loading-tab:after{
+	opacity:0 !important;
+}
+.alg-dtwp-loading-tab.alg-dtwp-loaded:after{
+	opacity:1 !important;
+}
+.alg-dtwp-loading-tab.alg-dtwp-loaded a:after{
+	opacity:0 !important;
+	right:-1em;
+}
+.alg-dtwp-loading-tab a:after{
+	content:" "!important;
+	position:absolute;
+	top:50%;
+	right:1em;
+	display:block;
+	border: 3px solid #ddd;
+	border-radius: 50%;
+	border-top: 3px solid #000;
+	width: 15px;
+	height: 15px;
+	margin-top:-11px;
+	-webkit-animation: alg-dtwp-spin 1.3s linear infinite; /* Safari */
+	animation: alg-dtwp-spin 1.3s linear infinite;
+	transition: opacity ease .3s, right ease .3s;
+	opacity:1;
+}
+@keyframes alg-dtwp-spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
 }

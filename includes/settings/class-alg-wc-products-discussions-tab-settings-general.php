@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings
  *
- * @version 1.2.0
+ * @version 1.2.3
  * @since   1.1.0
  * @author  Algoritmika Ltd
  */
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.2.0
+	 * @version 1.2.3
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
@@ -61,15 +61,14 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			),
 			array(
 				'title'    => __( 'Count replies', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'When counting discussions comments, takes replies into consideration.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Consider replies when counting the discussions comments total amount.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_count_replies',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
 			),
 			array(
 				'title'    => __( 'Tab link', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => '<br />' . __( 'Link that will automatically open your discussions tab.', 'discussions-tab-for-woocommerce-products' ) . '<br>' .
+				'desc'     => __( 'Link that will automatically open your discussions tab.', 'discussions-tab-for-woocommerce-products' ) . '<br>' .
 					sprintf( __( 'E.g.: %s', 'discussions-tab-for-woocommerce-products' ), '<code>' . $this->get_example_link( 'tab' ) . '</code>' ),
 				'id'       => 'alg_dtwp_opt_tab_id',
 				'default'  => 'discussions',
@@ -78,7 +77,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			),
 			array(
 				'title'    => __( 'Comment link', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => '<br />' . __( 'Link that will automatically open your discussions tab on a specific comment.', 'discussions-tab-for-woocommerce-products' ) . '<br>' .
+				'desc'     => __( 'Link that will automatically open your discussions tab on a specific comment.', 'discussions-tab-for-woocommerce-products' ) . '<br>' .
 					sprintf( __( 'E.g.: %s', 'discussions-tab-for-woocommerce-products' ), '<code>' . $this->get_example_link( 'comment' ) . '</code>' ),
 				'desc_tip' => __( 'This link will be displayed after a comment is posted on frontend.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_comment_link',
@@ -101,20 +100,19 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			),
 			array(
 				'title'    => __( 'Shortcodes', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable in discussions', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Allows shortcodes in discussion comments.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable shortcodes in discussion comments', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_sc_discussions',
 				'default'  => 'no',
 				'type'     => 'checkbox',
+				'checkboxgroup' => 'start',
 			),
 			array(
-				'desc'     => __( 'Enable in admin', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => sprintf( __( 'Allows shortcodes to be viewed in <a href="%s" target="_blank">edit comments page</a> on admin.', 'discussions-tab-for-woocommerce-products' ),
-						admin_url( 'edit-comments.php' ) ) . ' ' .
-					sprintf( __( '"%s" option must be enabled.', 'discussions-tab-for-woocommerce-products' ), __( 'Enable in discussions', 'discussions-tab-for-woocommerce-products' ) ),
+				'desc'     => sprintf( __( 'Enable shortcodes to be viewed in <a href="%s" target="_blank">edit comments page</a> on admin.', 'discussions-tab-for-woocommerce-products' ), admin_url( 'edit-comments.php' ) ),
+				'desc_tip' => sprintf( __( '"%s" option must be enabled.', 'discussions-tab-for-woocommerce-products' ), __( 'Enable shortcodes in discussion comments', 'discussions-tab-for-woocommerce-products' ) ),
 				'id'       => 'alg_dtwp_opt_sc_admin',
 				'default'  => 'no',
 				'type'     => 'checkbox',
+				'checkboxgroup' => 'end',
 			),
 			array(
 				'type'     => 'sectionend',
@@ -130,9 +128,25 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 				'id'       => 'alg_dtwp_opt_extra',
 			),
 			array(
+				'title'    => __( 'Open comments', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Open comments for product post type', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Enable if you can\'t see the comment form on the discussion tab or if you\'re getting the "Comments are closed" message. ', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_open_comments',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'AJAX tab', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Load discussions tab content via AJAX', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Enable if you have a lot of comments. ', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_ajax_tab',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
 				'title'    => __( 'Restrict discussions', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Discussions comments can only be left by "verified owners".', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Discussions comments can only be left by "verified owners".', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_v_owner_restrict',
 				'default'  => 'no',
 				'type'     => 'checkbox',
@@ -140,9 +154,8 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			),
 			array(
 				'title'    => __( 'Notify authors', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Notifies comment authors via email when they receive replies.', 'discussions-tab-for-woocommerce-products' ) . ' ' .
-					__( 'They can unsubscribe clicking on the "Unsubscribe" link on the notification email.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Notify comment authors via email when they receive replies', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'They can unsubscribe clicking on the "Unsubscribe" link on the notification email.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_notify_comment_authors',
 				'default'  => 'no',
 				'type'     => 'checkbox',

@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class
  *
- * @version 1.2.2
+ * @version 1.2.3
  * @since   1.1.0
  * @author  Algoritmika Ltd
  */
@@ -33,7 +33,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.2.2
+	 * @version 1.2.3
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -65,10 +65,10 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			add_filter( 'comments_template',                       array( $this, 'load_discussions_comments_template' ), 20 );
 
 			// Fixes comment parent_id and cancel btn
-			add_action( 'alg_dtwp_after_comments_template',        array( $this, 'js_fix_comment_parent_id_and_cancel_btn' ) );
+			add_action( 'wp_footer',                               array( $this, 'js_fix_comment_parent_id_and_cancel_btn' ) );
 
 			// Opens discussions tab after a discussion comment is posted
-			add_action( 'alg_dtwp_after_comments_template',        array( $this, 'js_open_discussions_tab' ) );
+			add_action( 'wp_footer',                               array( $this, 'js_open_discussions_tab' ) );
 
 			// Tags the respond form so it can have it's ID changed
 			add_action( 'comment_form_before',                     array( $this, 'create_respond_form_wrapper_start' ) );
@@ -99,12 +99,34 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			// Handle shortcodes
 			add_filter( 'comment_text',                            array( $this, 'handle_shortcodes' ), 10, 2 );
 
+			// Open comments for product post type
+			add_filter( 'comments_open',                           array( $this, 'comments_open' ), 20, 2 );
+
 			// Compatibility
 			require_once( 'class-alg-wc-products-discussions-tab-compatibility.php' );
 
 		}
-		// Core loaded
+		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * comments_open.
+	 *
+	 * @version 1.2.3
+	 * @since   1.2.3
+	 *
+	 * @param $open
+	 * @param $post_id
+	 *
+	 * @return boolean
+	 */
+	function comments_open( $open, $post_id ) {
+		//if ( 'product' === get_post_type( $post_id ) && alg_wc_pdt_is_discussion_tab() ) {
+		if ( 'product' === get_post_type( $post_id ) ) {
+			$open = apply_filters( 'alg_dtwp_comments_open', filter_var( get_option( 'alg_dtwp_opt_open_comments', 'no' ), FILTER_VALIDATE_BOOLEAN ), $post_id );
+		}
+		return $open;
 	}
 
 	/**
@@ -137,7 +159,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 */
 	function add_discussions_tab( $tabs ) {
 		$discussions_label     = get_option( 'alg_dtwp_discussions_label', __( 'Discussions', 'discussions-tab-for-woocommerce-products' ) );
-		$discussions_tab_title = get_option( 'alg_dtwp_discussions_tab_title', '%label% (%number_of_comments%)' );
+		$discussions_tab_title = get_option( 'alg_dtwp_discussions_tab_title', '%label% (%number_of_comments%)' );		
 		if ( false !== strpos( $discussions_tab_title, '%number_of_comments%' ) ) {
 			global $post;
 			$count_replies_opt = filter_var( get_option( 'alg_dtwp_opt_count_replies', 'yes' ), FILTER_VALIDATE_BOOLEAN );
@@ -164,15 +186,38 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Adds discussions comments.
 	 *
-	 * @version 1.0.0
+	 * @version 1.2.3
 	 * @since   1.0.0
-	 *
 	 */
 	function add_discussions_tab_content() {
+		do_action( 'alg_dtwp_tab_content' );
+		if ( apply_filters( 'alg_dtwp_comments_template_output_validation', true ) ) {
+			$this->comments_template();
+		}
+	}
+
+	/**
+	 * get_comments_template.
+	 *
+	 * @version 1.2.3
+	 * @since   1.2.3
+	 *
+	 * @param bool $echo
+	 *
+	 * @return false|string
+	 */
+	function comments_template( $echo = true ) {
 		$this->is_discussion_tab = true;
+		ob_start();
 		comments_template();
+		$result = ob_get_contents();
+		ob_end_clean();
+		if ( $echo ) {
+			echo $result;
+		}
 		do_action( 'alg_dtwp_after_comments_template' );
 		$this->is_discussion_tab = false;
+		return $result;
 	}
 
 	/**
@@ -344,35 +389,35 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Fixes comment_parent input and cancel button.
 	 *
-	 * @version 1.1.0
+	 * @version 1.2.3
 	 * @since   1.0.0
 	 */
 	function js_fix_comment_parent_id_and_cancel_btn() {
-		$respond_id = $this->discussions_respond_id_wrapper;
-		if ( ! alg_wc_pdt_is_discussion_tab() ) {
+		if(!is_product()){
 			return;
 		}
+		$respond_id = $this->discussions_respond_id_wrapper;
 		?>
 		<script>
 			jQuery( document ).ready( function( $ ) {
-				$( '.comment-reply-link' ).on( 'click', function( e ) {
-					var respond_wrapper = $( '#' + '<?php echo $respond_id;?>' );
-					if ( ! respond_wrapper.length ) {
+				$(document).on('click', '.comment-reply-link', function (e) {
+					var respond_wrapper = $('#' + '<?php echo $respond_id;?>');
+					if (!respond_wrapper.length) {
 						e.preventDefault();
 						return;
 					}
-					var comment_id     = $( this ).parent().parent().attr( 'id' );
-					var comment_id_arr = comment_id.split( "-" );
-					var parent_post_id = comment_id_arr[ comment_id_arr.length - 1 ];
-					var cancel_btn     = respond_wrapper.find( "#cancel-comment-reply-link" );
-					respond_wrapper.find( "#comment_parent" ).val( parent_post_id );
+					var comment_id = $(this).parent().parent().attr('id');
+					var comment_id_arr = comment_id.split("-");
+					var parent_post_id = comment_id_arr[comment_id_arr.length - 1];
+					var cancel_btn = respond_wrapper.find("#cancel-comment-reply-link");
+					respond_wrapper.find("#comment_parent").val(parent_post_id);
 					cancel_btn.show();
-					cancel_btn.on( 'click', function() {
+					cancel_btn.on('click', function () {
 						cancel_btn.hide();
-						respond_wrapper.find( "#comment_parent" ).val( 0 );
-						respond_wrapper.remove().insertAfter( $( '#' + '<?php echo $this->discussions_respond_id_location; ?>' ) );
-					} );
-				} )
+						respond_wrapper.find("#comment_parent").val(0);
+						respond_wrapper.remove().insertAfter($('#' + '<?php echo $this->discussions_respond_id_location; ?>'));
+					});
+				})
 			} );
 		</script>
 		<?php
@@ -585,7 +630,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 * @since   1.0.2
 	 */
 	function js_open_discussions_tab() {
-		if ( ! alg_wc_pdt_is_discussion_tab() ) {
+		if(!is_product()){
 			return;
 		}
 		?>
