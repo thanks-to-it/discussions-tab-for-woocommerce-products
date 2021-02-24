@@ -1,7 +1,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Admin JS
  *
- * @author  Algoritmika Ltd
+ * @author  Thanks to IT
  */
 
 jQuery( function( $ ) {

@@ -2,9 +2,9 @@
 /**
  * Discussions Tab for WooCommerce Products - Comments Template
  *
- * @version 1.2.0
+ * @version 1.2.4
  * @since   1.0.0
- * @author  Algoritmika Ltd
+ * @author  Thanks to IT
  */
 ?>
 
@@ -14,24 +14,13 @@ $discussions_title_label_singular = sanitize_text_field( get_option( 'alg_dtwp_d
 	__( 'One thought on "%1$s"', 'discussions-tab-for-woocommerce-products' ) ) );
 $discussions_title_label_plural   = sanitize_text_field( get_option( 'alg_dtwp_discussions_title_plural',
 	__( '%2$d thoughts on "%1$s"', 'discussions-tab-for-woocommerce-products' ) ) );
-$discussions_respond_title        = sanitize_text_field( get_option( 'alg_dtwp_discussions_respond_title',
-	__( 'Leave a reply', 'discussions-tab-for-woocommerce-products' ) ) );
-$discussions_comment_btn_label    = sanitize_text_field( get_option( 'alg_dtwp_discussions_post_comment_label',
-	__( 'Post Comment', 'discussions-tab-for-woocommerce-products' ) ) );
 $discussions_none_label           = sanitize_text_field( get_option( 'alg_dtwp_discussions_none',
 	__( 'There are no discussions yet.', 'discussions-tab-for-woocommerce-products' ) ) );
 $discussions_label                = sanitize_text_field( get_option( 'alg_dtwp_discussions_label',
 	__( 'Discussions', 'discussions-tab-for-woocommerce-products' ) ) );
-$discussions_textarea_placeholder = sanitize_text_field( get_option( 'alg_dtwp_discussions_textarea_placeholder',
-	'' ) );
 ?>
 
 <?php
-//global $_wp_post_type_features;
-//error_log(print_r($_wp_post_type_features,true));
-//$_wp_post_type_features['product']['comments']=true;
-//return ( isset( $_wp_post_type_features[ $post_type ][ $feature ] ) );
-
 /*
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will
@@ -44,7 +33,9 @@ if ( post_password_required() ) {
 <div class="alg-dtwp-wrapper">
 	<div id="comments" class="comments-area <?php echo wp_get_theme()->get('Name'); ?>" aria-label="Post Comments">
 
+
 		<?php
+
 		if ( have_comments() ) : ?>
 			<h2 class="comments-title">
 				<?php
@@ -53,6 +44,8 @@ if ( post_password_required() ) {
 				echo sprintf( $text, '<span>' . get_the_title() . '</span>', (int) get_comments_number());
 				?>
 			</h2>
+
+			<?php do_action('alg_dtwp_comments_start'); ?>
 
 			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through. ?>
 				<nav id="comment-nav-above" class="comment-navigation" role="navigation" aria-label="Comment Navigation Above">
@@ -78,6 +71,7 @@ if ( post_password_required() ) {
 
 			<h2 class="comments-title"><?php echo $discussions_label; ?></h2>
 			<p class="woocommerce-noreviews"><?php echo $discussions_none_label; ?></p>
+			<?php do_action( 'alg_dtwp_comments_start' ); ?>
 
 		<?php endif;
 
@@ -85,20 +79,9 @@ if ( post_password_required() ) {
 			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'discussions-tab-for-woocommerce-products' ); ?></p>
 		<?php endif;
 
-		comment_form( array(
-			'title_reply'          => $discussions_respond_title,
-			'label_submit'         => $discussions_comment_btn_label,
-			'id_form'              => 'discussionform',
-			'id_submit'            => 'submit_discussion',
-			'comment_field'        => sprintf(
-				'<p class="comment-form-comment">%s %s</p>',
-				sprintf(
-					'<label for="discussion">%s</label>',
-					_x( 'Comment', 'noun' )
-				),
-				'<textarea id="discussion" name="comment" cols="45" rows="8" maxlength="65525" required="required" placeholder="' . $discussions_textarea_placeholder . '"></textarea>'
-			),
-		) );
+
+		do_action('alg_dtwp_comments_end');
+
 		?>
 
 	</div><!-- #comments -->

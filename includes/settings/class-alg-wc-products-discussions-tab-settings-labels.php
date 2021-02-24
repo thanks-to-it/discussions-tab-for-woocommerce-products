@@ -4,7 +4,7 @@
  *
  * @version 1.1.1
  * @since   1.1.0
- * @author  Algoritmika Ltd
+ * @author  Thanks to IT
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -152,6 +152,62 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_dtwp_opt_author',
+			),
+
+			// Support Reps
+			array(
+				'title'    => __( 'Support Reps', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'title',
+				'desc'     => __( 'Users who will be marked as support representatives.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support',
+			),
+			array(
+				'title'    => __( 'Show label', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => '<strong>' . __( 'Enable', 'discussions-tab-for-woocommerce-products' ) . '</strong>',
+				'desc_tip' => __( 'Displays a "support" label on discussions comments.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_label',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Support metabox', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'checkbox',
+				'desc'     => __( 'Add a metabox on product pages to setup the support reps.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_product_metabox',
+			),
+			array(
+				'title'    => __( 'Label icon', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Requires "Load Font Awesome" option to be enabled.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_label_icon',
+				'default'  => 'fas fa-life-ring',
+				'class'    => 'alg-dtwp-icon-picker',
+				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'Label color', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'support label color', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_label_color',
+				'default'  => '#0085a2',
+				'type'     => 'color',
+			),
+			array(
+				'title'    => __( 'Tip', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Enables a tip that will be displayed when mouse is over the label.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_label_tip',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Tip text', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text that will be displayed in the tip.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_label_txt',
+				'default'  => __( 'Support', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'text',
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_dtwp_opt_support',
 			),
 
 			// Tips style

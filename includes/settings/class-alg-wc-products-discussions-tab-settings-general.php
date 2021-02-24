@@ -2,9 +2,9 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings
  *
- * @version 1.2.3
+ * @version 1.2.4
  * @since   1.1.0
- * @author  Algoritmika Ltd
+ * @author  Thanks to IT
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.2.3
+	 * @version 1.2.4
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
@@ -113,6 +113,19 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 				'default'  => 'no',
 				'type'     => 'checkbox',
 				'checkboxgroup' => 'end',
+			),
+			array(
+				'title'             => __( 'Comment form position', 'discussions-tab-for-woocommerce-products' ),
+				'desc'              => __( 'The place where the "Leave a reply" form will be displayed.', 'discussions-tab-for-woocommerce-products' ),
+				'id'                => 'alg_dtwp_opt_comment_form_position',
+				'default'           => 'alg_dtwp_comments_end',
+				'options'           => array(
+					'alg_dtwp_comments_start' => __( 'Top', 'discussions-tab-for-woocommerce-products' ),
+					'alg_dtwp_comments_end'   => __( 'Bottom', 'discussions-tab-for-woocommerce-products' ),
+				),
+				'type'              => 'select',
+				'class'             => 'chosen_select',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
 				'type'     => 'sectionend',

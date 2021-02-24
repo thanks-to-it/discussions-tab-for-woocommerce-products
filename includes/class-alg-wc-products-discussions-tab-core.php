@@ -2,9 +2,9 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class
  *
- * @version 1.2.3
+ * @version 1.2.4
  * @since   1.1.0
- * @author  Algoritmika Ltd
+ * @author  Thanks to IT
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -33,7 +33,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.2.3
+	 * @version 1.2.4
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -102,12 +102,59 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			// Open comments for product post type
 			add_filter( 'comments_open',                           array( $this, 'comments_open' ), 20, 2 );
 
+			// Display comments form
+			add_action( 'alg_dtwp_comments_end',                   array( $this, 'setup_comments_form_position' ) );
+			add_action( 'alg_dtwp_comments_start',                 array( $this, 'setup_comments_form_position' ) );
+
 			// Compatibility
 			require_once( 'class-alg-wc-products-discussions-tab-compatibility.php' );
 
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * setup_comments_form_position.
+	 *
+	 * @version 1.2.4
+	 * @since   1.2.4
+	 */
+	function setup_comments_form_position() {
+		$comment_form_position = apply_filters( 'alg_dtwp_opt_comment_form_position', 'alg_dtwp_comments_end' );
+		if ( $comment_form_position == current_filter() ) {
+			$this->display_comments_form();
+		}
+		if ( 'alg_dtwp_comments_start' == $comment_form_position ) {
+			echo '<div style="margin-bottom:50px"></div>';
+		}
+	}
+
+	/**
+	 * display_comments_form.
+	 *
+	 * @version 1.2.4
+	 * @since   1.2.4
+	 */
+	function display_comments_form() {
+		$discussions_respond_title        = sanitize_text_field( get_option( 'alg_dtwp_discussions_respond_title', __( 'Leave a reply', 'discussions-tab-for-woocommerce-products' ) ) );
+		$discussions_comment_btn_label    = sanitize_text_field( get_option( 'alg_dtwp_discussions_post_comment_label', __( 'Post Comment', 'discussions-tab-for-woocommerce-products' ) ) );
+		$discussions_textarea_placeholder = sanitize_text_field( get_option( 'alg_dtwp_discussions_textarea_placeholder', '' ) );
+		comment_form( array(
+			'title_reply'     => $discussions_respond_title,
+			'label_submit'    => $discussions_comment_btn_label,
+			'class_container' => 'alg-dtwp-comment-respond',
+			'id_form'         => 'discussionform',
+			'id_submit'       => 'submit_discussion',
+			'comment_field'   => sprintf(
+				'<p class="comment-form-comment">%s %s</p>',
+				sprintf(
+					'<label for="discussion">%s</label>',
+					_x( 'Comment', 'noun' )
+				),
+				'<textarea id="discussion" name="comment" cols="45" rows="8" maxlength="65525" required="required" placeholder="' . $discussions_textarea_placeholder . '"></textarea>'
+			),
+		) );
 	}
 
 	/**
