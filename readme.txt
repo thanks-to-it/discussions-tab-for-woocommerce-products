@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 5.6
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -62,10 +62,13 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 
 == Changelog ==
 
+= 1.2.5 - 26/02/2021 =
+* Fix - Possible timeout problem with a high amount of comments.
+
 = 1.2.4 - 24/02/2021 =
+* Fix - General - Ajax tab - Labels can't get displayed.
 * Dev - Labels - Add "Support Reps" option.
 * Dev - General - Add "Comment form position" option.
-* Fix - General - Ajax tab - Labels can't get displayed.
 
 = 1.2.3 - 17/02/2021 =
 * Dev - General - Add option to force open comments for product post type.

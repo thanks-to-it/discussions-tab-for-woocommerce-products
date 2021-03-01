@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class
  *
- * @version 1.2.4
+ * @version 1.2.5
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -33,7 +33,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.2.4
+	 * @version 1.2.5
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -81,8 +81,8 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			add_filter( 'get_comments_number',                     array( $this, 'fix_discussions_comments_number' ), 10, 2 );
 			add_filter( 'woocommerce_product_get_review_count',    array( $this, 'fix_reviews_number' ), 10, 2 );
 
-			// Get avatar
-			add_filter( 'pre_get_avatar',                          array( $this, 'get_avatar' ), 10, 3 );
+			// Get avatar data
+			add_filter( 'get_avatar_comment_types',                array( $this, 'add_discussions_to_avatar_comment_types' ) );
 
 			// Filters params passed to `wp_list_comments` function
 			add_filter( 'wp_list_comments_args',                   array( $this, 'filter_wp_list_comments_args' ) );
@@ -112,6 +112,23 @@ class Alg_WC_Products_Discussions_Tab_Core {
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * Add discussions comment type to avatar comment types.
+	 *
+	 * This will fix the problem of empty url from avatars.
+	 *
+	 * @version 1.2.5
+	 * @since   1.2.5
+	 *
+	 * @param $comment_types
+	 *
+	 * @return array
+	 */
+	function add_discussions_to_avatar_comment_types( $comment_types ) {
+		$comment_types[] = alg_wc_pdt_get_comment_type_id();
+		return $comment_types;
 	}
 
 	/**
@@ -556,50 +573,6 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			'parent'       => 0,
 			'type__not_in' => alg_wc_pdt_get_comment_type_id(),
 		) );
-	}
-
-	/**
-	 * Get avatar.
-	 *
-	 * @version 1.0.0
-	 * @since   1.0.0
-	 * @param   $avatar
-	 * @param   $id_or_email
-	 * @param   $args
-	 * @return  bool|string
-	 */
-	function get_avatar( $avatar, $id_or_email, $args ) {
-		if ( ! isset( $id_or_email->comment_type ) || 'alg_dtwp_comment' != $id_or_email->comment_type ) {
-			return $avatar;
-		}
-		$id_or_email = $id_or_email->comment_author_email;
-		$url2x       = get_avatar_url( $id_or_email, array_merge( $args, array( 'size' => $args['size'] * 2 ) ) );
-		$args        = get_avatar_data( $id_or_email, $args );
-		$url         = $args['url'];
-		if ( ! $url || is_wp_error( $url ) ) {
-			return false;
-		}
-		$class = array( 'avatar', 'avatar-' . ( int ) $args['size'], 'photo' );
-		if ( ! $args['found_avatar'] || $args['force_default'] ) {
-			$class[] = 'avatar-default';
-		}
-		if ( $args['class'] ) {
-			if ( is_array( $args['class'] ) ) {
-				$class = array_merge( $class, $args['class'] );
-			} else {
-				$class[] = $args['class'];
-			}
-		}
-		$avatar = sprintf( "<img alt='%s' src='%s' srcset='%s' class='%s' height='%d' width='%d' %s/>",
-			esc_attr( $args['alt'] ),
-			esc_url( $url ),
-			esc_attr( "$url2x 2x" ),
-			esc_attr( join( ' ', $class ) ),
-			(int) $args['height'],
-			(int) $args['width'],
-			$args['extra_attr']
-		);
-		return $avatar;
 	}
 
 	/**
