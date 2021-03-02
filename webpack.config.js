@@ -1,5 +1,6 @@
 var path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 // change these variables to fit your project
@@ -78,6 +79,9 @@ const prodConfig = {
 	],
 	module: {
 		rules: rules
+	},
+	optimization: {
+		chunkIds: 'named',
 	},
 
 };

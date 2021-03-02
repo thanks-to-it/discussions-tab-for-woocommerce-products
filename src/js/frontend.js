@@ -1,7 +1,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Frontend JS
  *
- * @version 1.2.6
+ * @version 1.2.7
  * @since   1.2.6
  * @author  Thanks to IT
  */
@@ -24,9 +24,13 @@ if (modules && modules.length) {
 const staticModules = [
 	'cancel-btn-fixer',
 	'parent-comment-id-fixer',
-	'labels-manager'
+	'scroller'
 ];
 staticModules.forEach(function (module_name) {
-	let module = require('./modules/' + module_name);
-	module.init();
+	import(
+		/* webpackMode: "lazy"*/
+		`./modules/${module_name}`)
+		.then(function (component) {
+			component.init();
+		});
 });

@@ -1,289 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/modules/ajax-tab.js":
-/*!************************************!*\
-  !*** ./src/js/modules/ajax-tab.js ***!
-  \************************************/
-/***/ ((module) => {
-
-var tabContentLoader = {
-  tabID: alg_dtwp.tabID,
-  tab: null,
-  contentCalled: false,
-  ajaxurl: alg_dtwp.ajaxurl,
-  postID: alg_dtwp.postID,
-  check: function check() {
-    var tab = jQuery('#tab-title-' + tabContentLoader.tabID);
-    tabContentLoader.tab = tab;
-
-    if (tab.length && jQuery('#tab-title-' + tabContentLoader.tabID).hasClass('active')) {
-      tab.addClass('alg-dtwp-loading-tab');
-      tabContentLoader.contentCalled = true;
-      tabContentLoader.loadTabContent();
-    }
-  },
-  loadTabContent: function loadTabContent() {
-    var data = {
-      action: 'alg_dtwp_get_tab_content',
-      post_id: tabContentLoader.postID
-    };
-    jQuery.post(tabContentLoader.ajaxurl, data, function (response) {
-      if (response.success) {
-        jQuery("#tab-" + tabContentLoader.tabID).html(response.data.content);
-      }
-
-      tabContentLoader.tab.addClass('alg-dtwp-loaded');
-      setTimeout(function () {
-        tabContentLoader.tab.removeClass('alg-dtwp-loaded');
-        tabContentLoader.tab.removeClass('alg-dtwp-loading-tab');
-        jQuery("body").trigger({
-          type: "alg_dtwp_comments_loaded"
-        });
-      }, 150);
-    });
-  }
-};
-var scroller = {
-  scrollByAnchor: function scrollByAnchor() {
-    var currentURL = window.location.href;
-    var target = jQuery('a[href*="' + currentURL + '"]');
-
-    if (window.location.hash.length && target.length) {
-      var element = target.closest('li')[0];
-      var offset = 130;
-      var topPos = element.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({
-        top: topPos,
-        behavior: 'smooth'
-      });
-    }
-  }
-};
-var ajaxTab = {
-  init: function init() {
-    jQuery('body').on('click', '.wc-tabs li a, ul.tabs li a', function (e) {
-      var time = null;
-
-      if (time) {
-        clearTimeout(time);
-      }
-
-      time = setTimeout(function () {
-        if (!tabContentLoader.contentCalled) {
-          tabContentLoader.check();
-        }
-      }, 150);
-    });
-    jQuery('body').on('alg_dtwp_comments_loaded', function () {
-      scroller.scrollByAnchor();
-    });
-  }
-};
-module.exports = ajaxTab;
-
-/***/ }),
-
-/***/ "./src/js/modules/cancel-btn-fixer.js":
-/*!********************************************!*\
-  !*** ./src/js/modules/cancel-btn-fixer.js ***!
-  \********************************************/
-/***/ ((module) => {
-
-var cancelBtnFixer = {
-  init: function init() {
-    jQuery(document).ready(function ($) {
-      var cancel_btn = null;
-      var respond_wrapper = null;
-      $(document).on('click', '.comment-reply-link', function (e) {
-        respond_wrapper = $('#' + alg_dtwp.respondID);
-        cancel_btn = respond_wrapper.find("#cancel-comment-reply-link");
-        cancel_btn.show();
-        $(document).off('click', '#cancel-comment-reply-link', hide);
-        $(document).on('click', '#cancel-comment-reply-link', hide);
-      });
-
-      function hide(e) {
-        e.preventDefault();
-        cancel_btn.hide();
-        respond_wrapper.find("#comment_parent").val(0);
-        respond_wrapper.remove().insertAfter($('#' + alg_dtwp.respondIDLocation));
-      }
-    });
-  }
-};
-module.exports = cancelBtnFixer;
-
-/***/ }),
-
-/***/ "./src/js/modules/iconpicker-manager.js":
-/*!**********************************************!*\
-  !*** ./src/js/modules/iconpicker-manager.js ***!
-  \**********************************************/
-/***/ (() => {
-
-/**
- * Discussions Tab for WooCommerce Products - Iconpicker manager
- *
- * @author  Thanks to IT
- */
-jQuery(function ($) {
-  var alg_dtwp_admin_iconpicker = {
-    init: function init() {
-      var icon_input = $('.alg-dtwp-icon-picker');
-      this.createIconNextToInput(icon_input);
-
-      if (icon_input.length) {
-        this.callIconPicker(icon_input);
-      }
-    },
-    createIconNextToInput: function createIconNextToInput(input) {
-      jQuery('<span style="margin:0px 7px 0 10px" class="input-group-addon"></span>').insertAfter(input);
-    },
-    callIconPicker: function callIconPicker(element) {
-      element.iconpicker({
-        selectedCustomClass: 'alg-dtwp-iconpicker-selected',
-        hideOnSelect: true,
-        placement: 'bottom'
-      });
-    }
-  };
-  alg_dtwp_admin_iconpicker.init();
-});
-
-/***/ }),
-
-/***/ "./src/js/modules/labels-manager.js":
-/*!******************************************!*\
-  !*** ./src/js/modules/labels-manager.js ***!
-  \******************************************/
-/***/ ((module) => {
-
-var alg_dtwp_labels = {
-  labels: alg_dtwp.possibleCommentTags,
-  tips: alg_dtwp.tips,
-  icons: alg_dtwp.icons,
-  possible_wrappers: ['.comment-text', '.comment-body'],
-  init: function init() {
-    this.add_label();
-  },
-  add_label: function add_label() {
-    alg_dtwp_labels.labels.forEach(function (label) {
-      alg_dtwp_labels.possible_wrappers.some(function (wrapper) {
-        var the_wrapper = jQuery('.' + label).find(wrapper + ":first");
-
-        if (the_wrapper.length) {
-          the_wrapper.each(function () {
-            var labels = jQuery(this).find('.alg-dtwp-labels');
-
-            if (!labels.length) {
-              jQuery(this).append('<div class="alg-dtwp-labels"></div>');
-              labels = jQuery(this).find('.alg-dtwp-labels');
-            }
-
-            labels.append('<div class="alg-dtwp-label ' + label + '-label"></div>');
-            var this_label = labels.find('.alg-dtwp-label.' + label + '-label');
-
-            if (alg_dtwp_labels.icons[label]) {
-              this_label.append('<i class="alg-dtwp-fa ' + alg_dtwp_labels.icons[label] + '" aria-hidden="true"></i>');
-            }
-
-            if (alg_dtwp_labels.tips[label]) {
-              this_label.addClass('has-tip');
-              this_label.append('<div class="alg-dtwp-tip">' + alg_dtwp_labels.tips[label] + '</div>');
-            }
-          });
-          return true;
-        }
-      });
-    });
-  }
-};
-var labelsManager = {
-  init: function init() {
-    jQuery(document).ready(function ($) {
-      alg_dtwp_labels.init();
-      $('body').on('alg_dtwp_comments_loaded', function () {
-        alg_dtwp_labels.init();
-      });
-    });
-  }
-};
-module.exports = labelsManager;
-
-/***/ }),
-
-/***/ "./src/js/modules/parent-comment-id-fixer.js":
-/*!***************************************************!*\
-  !*** ./src/js/modules/parent-comment-id-fixer.js ***!
-  \***************************************************/
-/***/ ((module) => {
-
-var parentCommentIDFixer = {
-  init: function init() {
-    jQuery(document).ready(function ($) {
-      var respond_wrapper = null;
-      $(document).on('click', '.comment-reply-link', function (e) {
-        respond_wrapper = $('#' + alg_dtwp.respondID);
-
-        if (!respond_wrapper.length) {
-          e.preventDefault();
-          return;
-        }
-
-        var comment_id = $(this).parent().parent().attr('id');
-        var comment_id_arr = comment_id.split("-");
-        var parent_post_id = comment_id_arr[comment_id_arr.length - 1];
-        respond_wrapper.find("#comment_parent").val(parent_post_id);
-      });
-    });
-  }
-};
-module.exports = parentCommentIDFixer;
-
-/***/ }),
-
-/***/ "./src/js/modules/wp-editor.js":
-/*!*************************************!*\
-  !*** ./src/js/modules/wp-editor.js ***!
-  \*************************************/
-/***/ ((module) => {
-
-var WPEditor = {
-  initTinyMCE: function initTinyMCE() {
-    wp.editor.remove('discussion');
-    wp.editor.initialize('discussion', {
-      tinymce: true,
-      teeny: true,
-      quicktags: true
-    });
-  },
-  init: function init() {
-    jQuery('body').on('click', '.wc-tabs li a, ul.tabs li a', function (e) {
-      setTimeout(WPEditor.initTinyMCE, 150);
-    });
-    jQuery(document).ready(function () {
-      setTimeout(WPEditor.initTinyMCE, 150);
-    });
-    jQuery('body').on('alg_dtwp_comments_loaded', WPEditor.initTinyMCE);
-    jQuery(document).on('click', '.comment-reply-link,#cancel-comment-reply-link', function (e) {
-      setTimeout(WPEditor.initTinyMCE, 150);
-    });
-    jQuery(document).on('tinymce-editor-setup', WPEditor.setupEditor);
-  },
-  setupEditor: function setupEditor(event, editor) {
-    if (editor.id !== 'discussion') return;
-    var toolbarArr = editor.settings.toolbar1.split(',');
-    toolbarArr = toolbarArr.filter(function (btn) {
-      return ['bullist', 'numlist'].indexOf(btn) === -1;
-    });
-    editor.settings.toolbar1 = toolbarArr.join();
-  }
-};
-module.exports = WPEditor;
-
-/***/ }),
-
 /***/ "./src/js/modules lazy recursive ^\\.\\/.*$":
 /*!********************************************************!*\
   !*** ./src/js/modules/ lazy ^\.\/.*$ namespace object ***!
@@ -291,78 +8,80 @@ module.exports = WPEditor;
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./ajax-tab": "./src/js/modules/ajax-tab.js",
-	"./ajax-tab.js": "./src/js/modules/ajax-tab.js",
-	"./cancel-btn-fixer": "./src/js/modules/cancel-btn-fixer.js",
-	"./cancel-btn-fixer.js": "./src/js/modules/cancel-btn-fixer.js",
-	"./iconpicker-manager": "./src/js/modules/iconpicker-manager.js",
-	"./iconpicker-manager.js": "./src/js/modules/iconpicker-manager.js",
-	"./labels-manager": "./src/js/modules/labels-manager.js",
-	"./labels-manager.js": "./src/js/modules/labels-manager.js",
-	"./parent-comment-id-fixer": "./src/js/modules/parent-comment-id-fixer.js",
-	"./parent-comment-id-fixer.js": "./src/js/modules/parent-comment-id-fixer.js",
-	"./wp-editor": "./src/js/modules/wp-editor.js",
-	"./wp-editor.js": "./src/js/modules/wp-editor.js"
+	"./ajax-tab": [
+		"./src/js/modules/ajax-tab.js",
+		"src_js_modules_ajax-tab_js"
+	],
+	"./ajax-tab.js": [
+		"./src/js/modules/ajax-tab.js",
+		"src_js_modules_ajax-tab_js"
+	],
+	"./cancel-btn-fixer": [
+		"./src/js/modules/cancel-btn-fixer.js",
+		"src_js_modules_cancel-btn-fixer_js"
+	],
+	"./cancel-btn-fixer.js": [
+		"./src/js/modules/cancel-btn-fixer.js",
+		"src_js_modules_cancel-btn-fixer_js"
+	],
+	"./iconpicker-manager": [
+		"./src/js/modules/iconpicker-manager.js",
+		"src_js_modules_iconpicker-manager_js"
+	],
+	"./iconpicker-manager.js": [
+		"./src/js/modules/iconpicker-manager.js",
+		"src_js_modules_iconpicker-manager_js"
+	],
+	"./labels-manager": [
+		"./src/js/modules/labels-manager.js",
+		"src_js_modules_labels-manager_js"
+	],
+	"./labels-manager.js": [
+		"./src/js/modules/labels-manager.js",
+		"src_js_modules_labels-manager_js"
+	],
+	"./parent-comment-id-fixer": [
+		"./src/js/modules/parent-comment-id-fixer.js",
+		"src_js_modules_parent-comment-id-fixer_js"
+	],
+	"./parent-comment-id-fixer.js": [
+		"./src/js/modules/parent-comment-id-fixer.js",
+		"src_js_modules_parent-comment-id-fixer_js"
+	],
+	"./scroller": [
+		"./src/js/modules/scroller.js",
+		"src_js_modules_scroller_js"
+	],
+	"./scroller.js": [
+		"./src/js/modules/scroller.js",
+		"src_js_modules_scroller_js"
+	],
+	"./wp-editor": [
+		"./src/js/modules/wp-editor.js",
+		"src_js_modules_wp-editor_js"
+	],
+	"./wp-editor.js": [
+		"./src/js/modules/wp-editor.js",
+		"src_js_modules_wp-editor_js"
+	]
 };
-
 function webpackAsyncContext(req) {
-	return Promise.resolve().then(() => {
-		if(!__webpack_require__.o(map, req)) {
+	if(!__webpack_require__.o(map, req)) {
+		return Promise.resolve().then(() => {
 			var e = new Error("Cannot find module '" + req + "'");
 			e.code = 'MODULE_NOT_FOUND';
 			throw e;
-		}
+		});
+	}
 
-		var id = map[req];
+	var ids = map[req], id = ids[0];
+	return __webpack_require__.e(ids[1]).then(() => {
 		return __webpack_require__.t(id, 7);
 	});
 }
 webpackAsyncContext.keys = () => (Object.keys(map));
 webpackAsyncContext.id = "./src/js/modules lazy recursive ^\\.\\/.*$";
 module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ "./src/js/modules sync recursive ^\\.\\/.*$":
-/*!***************************************!*\
-  !*** ./src/js/modules/ sync ^\.\/.*$ ***!
-  \***************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var map = {
-	"./ajax-tab": "./src/js/modules/ajax-tab.js",
-	"./ajax-tab.js": "./src/js/modules/ajax-tab.js",
-	"./cancel-btn-fixer": "./src/js/modules/cancel-btn-fixer.js",
-	"./cancel-btn-fixer.js": "./src/js/modules/cancel-btn-fixer.js",
-	"./iconpicker-manager": "./src/js/modules/iconpicker-manager.js",
-	"./iconpicker-manager.js": "./src/js/modules/iconpicker-manager.js",
-	"./labels-manager": "./src/js/modules/labels-manager.js",
-	"./labels-manager.js": "./src/js/modules/labels-manager.js",
-	"./parent-comment-id-fixer": "./src/js/modules/parent-comment-id-fixer.js",
-	"./parent-comment-id-fixer.js": "./src/js/modules/parent-comment-id-fixer.js",
-	"./wp-editor": "./src/js/modules/wp-editor.js",
-	"./wp-editor.js": "./src/js/modules/wp-editor.js"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "./src/js/modules sync recursive ^\\.\\/.*$";
 
 /***/ })
 
@@ -390,6 +109,9 @@ webpackContext.id = "./src/js/modules sync recursive ^\\.\\/.*$";
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/create fake namespace object */
@@ -436,10 +158,35 @@ webpackContext.id = "./src/js/modules sync recursive ^\\.\\/.*$";
 /******/ 	
 /******/ 	/* webpack/runtime/ensure chunk */
 /******/ 	(() => {
+/******/ 		__webpack_require__.f = {};
+/******/ 		// This file contains only the entry chunk.
 /******/ 		// The chunk loading function for additional chunks
-/******/ 		// Since all referenced chunks are already included
-/******/ 		// in this file, this function is empty here.
-/******/ 		__webpack_require__.e = () => (Promise.resolve());
+/******/ 		__webpack_require__.e = (chunkId) => {
+/******/ 			return Promise.all(Object.keys(__webpack_require__.f).reduce((promises, key) => {
+/******/ 				__webpack_require__.f[key](chunkId, promises);
+/******/ 				return promises;
+/******/ 			}, []));
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/get javascript chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference async chunks
+/******/ 		__webpack_require__.u = (chunkId) => {
+/******/ 			// return url for filenames based on template
+/******/ 			return "js/modules/dev/" + chunkId + ".js";
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/get mini-css chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference all chunks
+/******/ 		__webpack_require__.miniCssF = (chunkId) => {
+/******/ 			// return url for filenames not based on template
+/******/ 			if (chunkId === "frontend") return "css/" + chunkId + ".css";
+/******/ 			// return url for filenames based on template
+/******/ 			return "css/" + chunkId + ".css";
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -457,6 +204,52 @@ webpackContext.id = "./src/js/modules sync recursive ^\\.\\/.*$";
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/load script */
+/******/ 	(() => {
+/******/ 		var inProgress = {};
+/******/ 		// data-webpack is not used as build has no uniqueName
+/******/ 		// loadScript function to load a script via script tag
+/******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
+/******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
+/******/ 			var script, needAttach;
+/******/ 			if(key !== undefined) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				for(var i = 0; i < scripts.length; i++) {
+/******/ 					var s = scripts[i];
+/******/ 					if(s.getAttribute("src") == url) { script = s; break; }
+/******/ 				}
+/******/ 			}
+/******/ 			if(!script) {
+/******/ 				needAttach = true;
+/******/ 				script = document.createElement('script');
+/******/ 		
+/******/ 				script.charset = 'utf-8';
+/******/ 				script.timeout = 120;
+/******/ 				if (__webpack_require__.nc) {
+/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 				}
+/******/ 		
+/******/ 				script.src = url;
+/******/ 			}
+/******/ 			inProgress[url] = [done];
+/******/ 			var onScriptComplete = (prev, event) => {
+/******/ 				// avoid mem leaks in IE.
+/******/ 				script.onerror = script.onload = null;
+/******/ 				clearTimeout(timeout);
+/******/ 				var doneFns = inProgress[url];
+/******/ 				delete inProgress[url];
+/******/ 				script.parentNode && script.parentNode.removeChild(script);
+/******/ 				doneFns && doneFns.forEach((fn) => (fn(event)));
+/******/ 				if(prev) return prev(event);
+/******/ 			}
+/******/ 			;
+/******/ 			var timeout = setTimeout(onScriptComplete.bind(null, undefined, { type: 'timeout', target: script }), 120000);
+/******/ 			script.onerror = onScriptComplete.bind(null, script.onerror);
+/******/ 			script.onload = onScriptComplete.bind(null, script.onload);
+/******/ 			needAttach && document.head.appendChild(script);
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
@@ -490,6 +283,102 @@ webpackContext.id = "./src/js/modules sync recursive ^\\.\\/.*$";
 /******/ 		__webpack_require__.p = scriptUrl + "../";
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// Promise = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"frontend": 0
+/******/ 		};
+/******/ 		
+/******/ 		
+/******/ 		__webpack_require__.f.j = (chunkId, promises) => {
+/******/ 				// JSONP chunk loading for javascript
+/******/ 				var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
+/******/ 				if(installedChunkData !== 0) { // 0 means "already installed".
+/******/ 		
+/******/ 					// a Promise means "currently loading".
+/******/ 					if(installedChunkData) {
+/******/ 						promises.push(installedChunkData[2]);
+/******/ 					} else {
+/******/ 						if(true) { // all chunks have JS
+/******/ 							// setup Promise in chunk cache
+/******/ 							var promise = new Promise((resolve, reject) => {
+/******/ 								installedChunkData = installedChunks[chunkId] = [resolve, reject];
+/******/ 							});
+/******/ 							promises.push(installedChunkData[2] = promise);
+/******/ 		
+/******/ 							// start chunk loading
+/******/ 							var url = __webpack_require__.p + __webpack_require__.u(chunkId);
+/******/ 							// create error before stack unwound to get useful stacktrace later
+/******/ 							var error = new Error();
+/******/ 							var loadingEnded = (event) => {
+/******/ 								if(__webpack_require__.o(installedChunks, chunkId)) {
+/******/ 									installedChunkData = installedChunks[chunkId];
+/******/ 									if(installedChunkData !== 0) installedChunks[chunkId] = undefined;
+/******/ 									if(installedChunkData) {
+/******/ 										var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+/******/ 										var realSrc = event && event.target && event.target.src;
+/******/ 										error.message = 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+/******/ 										error.name = 'ChunkLoadError';
+/******/ 										error.type = errorType;
+/******/ 										error.request = realSrc;
+/******/ 										installedChunkData[1](error);
+/******/ 									}
+/******/ 								}
+/******/ 							};
+/******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
+/******/ 						} else installedChunks[chunkId] = 0;
+/******/ 					}
+/******/ 				}
+/******/ 		};
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no deferred startup
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0, resolves = [];
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					resolves.push(installedChunks[chunkId][0]);
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			for(moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) runtime(__webpack_require__);
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			while(resolves.length) {
+/******/ 				resolves.shift()();
+/******/ 			}
+/******/ 		
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 		
+/******/ 		// no deferred startup
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
@@ -500,11 +389,11 @@ var __webpack_exports__ = {};
 /**
  * Discussions Tab for WooCommerce Products - Frontend JS
  *
- * @version 1.2.6
+ * @version 1.2.7
  * @since   1.2.6
  * @author  Thanks to IT
  */
-// Dynamic modules (will be loaded through the
+// Dynamic modules
 __webpack_require__.p = alg_dtwp.plugin_url + "/assets/";
 var modules = alg_dtwp.modulesToLoad;
 
@@ -517,11 +406,11 @@ if (modules && modules.length) {
 } // Static modules
 
 
-var staticModules = ['cancel-btn-fixer', 'parent-comment-id-fixer', 'labels-manager'];
+var staticModules = ['cancel-btn-fixer', 'parent-comment-id-fixer', 'scroller'];
 staticModules.forEach(function (module_name) {
-  var module = __webpack_require__("./src/js/modules sync recursive ^\\.\\/.*$")("./" + module_name);
-
-  module.init();
+  __webpack_require__("./src/js/modules lazy recursive ^\\.\\/.*$")("./".concat(module_name)).then(function (component) {
+    component.init();
+  });
 });
 })();
 

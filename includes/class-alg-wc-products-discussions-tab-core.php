@@ -64,9 +64,6 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			// Swaps woocommerce template (single-product-reviews.php) with default comments template
 			add_filter( 'comments_template',                       array( $this, 'load_discussions_comments_template' ), 20 );
 
-			// Opens discussions tab after a discussion comment is posted
-			add_action( 'wp_footer',                               array( $this, 'js_open_discussions_tab' ) );
-
 			// Tags the respond form so it can have it's ID changed
 			add_action( 'comment_form_before',                     array( $this, 'create_respond_form_wrapper_start' ) );
 			add_action( 'comment_form_after',                      array( $this, 'create_respond_form_wrapper_end' ) );
@@ -105,6 +102,9 @@ class Alg_WC_Products_Discussions_Tab_Core {
 
 			// Compatibility
 			require_once( 'class-alg-wc-products-discussions-tab-compatibility.php' );
+
+			// My account tab
+			require_once( 'class-alg-wc-products-discussions-tab-my-account.php' );
 
 		}
 		// Core contentCalled
@@ -321,10 +321,10 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Enqueues main scripts.
 	 *
-	 * @version 1.2.6
+	 * @version 1.2.7
 	 * @since   1.0.0
 	 */
-	function load_scripts(){
+	function load_scripts() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		// Main css file
 		wp_enqueue_style( 'alg-dtwp',
@@ -335,10 +335,12 @@ class Alg_WC_Products_Discussions_Tab_Core {
 		if ( is_product() ) {
 			wp_enqueue_script( 'alg-dtwp', alg_wc_products_discussions_tab()->plugin_url() . '/assets/js/frontend' . $suffix . '.js', array(), 'false', true );
 			wp_localize_script( 'alg-dtwp', 'alg_dtwp', apply_filters( 'alg_dtwp_localize_script', array(
-				'respondID' => $this->discussions_respond_id_wrapper,
+				'tabID'             => alg_wc_products_discussions_tab()->core->get_discussions_tab_id(),
+				'commentLink'       => $this->get_comment_link(),
+				'respondID'         => $this->discussions_respond_id_wrapper,
 				'respondIDLocation' => $this->discussions_respond_id_location,
-				'plugin_url'    => alg_wc_products_discussions_tab()->plugin_url(),
-				'modulesToLoad' => apply_filters( 'alg_dtwp_js_modules_to_load', array() )
+				'plugin_url'        => alg_wc_products_discussions_tab()->plugin_url(),
+				'modulesToLoad'     => apply_filters( 'alg_dtwp_js_modules_to_load', array() )
 			) ) );
 			// Action
 		}
@@ -629,43 +631,6 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			return $link;
 		}
 		return str_replace( '#comment-', '#' . $this->get_comment_link() . '-', $link );
-	}
-
-	/**
-	 * Opens discussions tab in frontend after a discussion comment is posted.
-	 *
-	 * @version 1.1.0
-	 * @since   1.0.2
-	 */
-	function js_open_discussions_tab() {
-		if(!is_product()){
-			return;
-		}
-		?>
-		<script>
-			jQuery( function( $ ) {
-				$( document ).ready( function() {
-					var alg_dtwp_tab          = '<?php echo $this->get_discussions_tab_id(); ?>';
-					var alg_dtwp_comment_link = '<?php echo $this->get_comment_link(); ?>';
-					window.onhashchange       = function() {
-						go_to_discussion_tab();
-					}
-					function go_to_discussion_tab() {
-						var hash = window.location.hash;
-						if ( hash.toLowerCase().indexOf( alg_dtwp_comment_link + '-' ) >= 0 || hash === '#' + alg_dtwp_tab || hash === '#tab-' + alg_dtwp_tab ) {
-							var hash_split = hash.split( '#' + alg_dtwp_comment_link + '-' );
-							var comment_id = hash_split[1];
-							$( '#tab-title-' + alg_dtwp_tab + ' a' ).trigger( 'click' );
-							if ( $( '#comment-' + comment_id )[0] ) {
-								$( '#comment-' + comment_id )[0].scrollIntoView( true );
-							}
-						}
-					}
-					go_to_discussion_tab();
-				} );
-			} );
-		</script>
-		<?php
 	}
 
 }

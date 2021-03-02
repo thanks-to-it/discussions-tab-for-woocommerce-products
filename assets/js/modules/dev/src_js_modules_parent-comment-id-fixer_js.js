@@ -11,7 +11,7 @@ var parentCommentIDFixer = {
     jQuery(document).ready(function ($) {
       var respond_wrapper = null;
       $(document).on('click', '.comment-reply-link', function (e) {
-        respond_wrapper = $('#' + '<?php echo $respond_id;?>');
+        respond_wrapper = $('#' + alg_dtwp.respondID);
 
         if (!respond_wrapper.length) {
           e.preventDefault();

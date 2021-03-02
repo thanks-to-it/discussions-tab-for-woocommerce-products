@@ -62,8 +62,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 			),
 			array(
 				'title'    => __( 'Show label', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => '<strong>' . __( 'Enable', 'discussions-tab-for-woocommerce-products' ) . '</strong>',
-				'desc_tip' => __( 'Displays a "verified owner" label on discussions comments.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable "verified owner" label on discussions comments', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_v_owner_label',
 				'default'  => 'no',
 				'type'     => 'checkbox',
@@ -85,8 +84,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 			),
 			array(
 				'title'    => __( 'Tip', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Enables a tip that will be displayed when mouse is over the label.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable a tip that will be displayed when mouse is over the label', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_v_owner_label_tip',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
@@ -112,8 +110,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 			),
 			array(
 				'title'    => __( 'Show label', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => '<strong>' . __( 'Enable', 'discussions-tab-for-woocommerce-products' ) . '</strong>',
-				'desc_tip' => __( 'Displays an "author" label on discussions comments.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable "author" label on discussions comments', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_author_label',
 				'default'  => 'no',
 				'type'     => 'checkbox',
@@ -135,8 +132,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 			),
 			array(
 				'title'    => __( 'Tip', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Enables a tip that will be displayed when mouse is over the label.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable a tip that will be displayed when mouse is over the label', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_author_label_tip',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
@@ -162,17 +158,10 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 			),
 			array(
 				'title'    => __( 'Show label', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => '<strong>' . __( 'Enable', 'discussions-tab-for-woocommerce-products' ) . '</strong>',
-				'desc_tip' => __( 'Displays a "support" label on discussions comments.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable "Support reps" label on discussions comments', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_support_label',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-			),
-			array(
-				'title'    => __( 'Support metabox', 'discussions-tab-for-woocommerce-products' ),
-				'type'     => 'checkbox',
-				'desc'     => __( 'Add a metabox on product pages to setup the support reps.', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_support_product_metabox',
 			),
 			array(
 				'title'    => __( 'Label icon', 'discussions-tab-for-woocommerce-products' ),
@@ -191,8 +180,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 			),
 			array(
 				'title'    => __( 'Tip', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Enables a tip that will be displayed when mouse is over the label.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable tip that will be displayed when mouse is over the label', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_support_label_tip',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
@@ -203,6 +191,22 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 				'id'       => 'alg_dtwp_opt_support_label_txt',
 				'default'  => __( 'Support', 'discussions-tab-for-woocommerce-products' ),
 				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'My account tab', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'checkbox',
+				'default'  => 'yes',
+				'desc'     => sprintf( __( 'Add discussions tab on <a href="%s">My Account page</a> to setup the support reps', 'discussions-tab-for-woocommerce-products' ), wc_get_account_endpoint_url( 'dashboard' ) ),
+				'desc_tip' => sprintf( __( 'Only users with the %s capability will be able to see the tab.', 'discussions-tab-for-woocommerce-products' ), '<code>' . 'edit_products' . '</code>' ),
+				'id'       => 'alg_dtwp_opt_support_my_account_tab',
+			),
+			array(
+				'title'    => __( 'Support metabox', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'checkbox',
+				'default'  => 'no',
+				'desc'     => __( 'Add metabox on product pages to setup the support reps', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'If enabled and not empty will overwrite the my account tab setup.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_product_metabox',
 			),
 			array(
 				'type'     => 'sectionend',

@@ -43,22 +43,6 @@ var tabContentLoader = {
     });
   }
 };
-var scroller = {
-  scrollByAnchor: function scrollByAnchor() {
-    var currentURL = window.location.href;
-    var target = jQuery('a[href*="' + currentURL + '"]');
-
-    if (window.location.hash.length && target.length) {
-      var element = target.closest('li')[0];
-      var offset = 130;
-      var topPos = element.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({
-        top: topPos,
-        behavior: 'smooth'
-      });
-    }
-  }
-};
 var ajaxTab = {
   init: function init() {
     jQuery('body').on('click', '.wc-tabs li a, ul.tabs li a', function (e) {
@@ -73,9 +57,6 @@ var ajaxTab = {
           tabContentLoader.check();
         }
       }, 150);
-    });
-    jQuery('body').on('alg_dtwp_comments_loaded', function () {
-      scroller.scrollByAnchor();
     });
   }
 };
