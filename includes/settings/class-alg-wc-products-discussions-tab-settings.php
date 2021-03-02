@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Settings
  *
- * @version 1.2.0
+ * @version 1.2.6
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -16,7 +16,7 @@ class Alg_WC_Products_Discussions_Tab_Settings extends WC_Settings_Page {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.1.0
+	 * @version 1.2.6
 	 * @since   1.1.0
 	 */
 	function __construct() {
@@ -25,6 +25,31 @@ class Alg_WC_Products_Discussions_Tab_Settings extends WC_Settings_Page {
 		parent::__construct();
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'maybe_unsanitize_option' ), PHP_INT_MAX, 3 );
 		add_action( 'woocommerce_admin_field_' . 'alg_wc_pdtmb',  array( $this, 'add_alg_wc_pdtmb_meta_box' ), 10, 2 );
+		add_action( 'admin_notices', array( $this, 'add_plugins_page_notices' ), 999 );
+	}
+
+	/**
+	 * add_plugins_page_notices.
+	 *
+	 * @version 1.2.6
+	 * @since   1.2.6
+	 */
+	function add_plugins_page_notices() {
+		if (
+			! isset( $_GET['page'] )
+			|| 'wc-settings' !== $_GET['page']
+			|| ! isset( $_GET['tab'] )
+			|| 'alg_wc_products_discussions_tab' !== $_GET['tab']
+			|| 'discussions-tab-for-woocommerce-products-pro.php' === basename( alg_wc_products_discussions_tab()->get_filename_path() )
+		) {
+			return;
+		}
+		$class    = 'notice notice-info';
+		$title    = __( 'Pro version', 'discussions-tab-for-woocommerce-products' );
+		$pro_link = 'https://wpfactory.com/item/discussions-tab-for-woocommerce-products/';
+		$message  = sprintf( __( 'Disabled options can be unlocked using the <a href="%s">pro version</a>', 'discussions-tab-for-woocommerce-products' ), $pro_link ) .
+		            '<p><a style="margin-top:11px" target="_blank" class="button-primary alg-dtwp-call-to-action" href="' . $pro_link . '"><span style="vertical-align:middle;position:relative;top:2px;left:-2px;" class="dashicons-before dashicons-unlock"></span>' . __( 'Upgrade to Pro', 'discussions-tab-for-woocommerce-products' ) . '</a></p>';
+		printf( '<div class="%1$s"><h3 class="title">%2$s</h3><p>%3$s</p></div>', esc_attr( $class ), $title, $message );
 	}
 
 	/**

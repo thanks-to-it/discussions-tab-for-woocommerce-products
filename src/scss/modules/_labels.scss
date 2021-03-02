@@ -1,0 +1,53 @@
+.alg-dtwp-labels {
+	z-index: 9;
+	display: block;
+	content: '';
+	position: absolute;
+	right: -4px;
+	top: -4px;
+	text-align: center;
+	.alg-dtwp-label {
+		right: 15px;
+		top: 15px;
+		margin-left: 8px;
+	}
+}
+
+.alg-dtwp-label {
+	line-height: 11px;
+	vertical-align: top;
+	background-color: #ccc;
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	border-radius: 50px;
+	&.has-tip {
+		cursor: pointer;
+	}
+	.alg-dtwp-fa {
+		color: #fff;
+		font-size: 11px;
+	}
+	&:hover .alg-dtwp-tip {
+		opacity: 1;
+		top: -30px;
+		visibility: visible;
+	}
+}
+
+.alg-dtwp-tip {
+	font-weight: normal;
+	font-size: 13px;
+	visibility: hidden;
+	opacity: 0;
+	white-space: nowrap;
+	right: 0;
+	top: -20px;
+	position: absolute;
+	padding: 6px 10px;
+	-webkit-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+}

@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discussions Tab for WooCommerce Products 1.2.5\n"
+"Project-Id-Version: Discussions Tab for WooCommerce Products 1.2.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/discussions-tab-for-woocommerce-products\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-02-26T20:26:37+01:00\n"
+"POT-Creation-Date: 2021-03-01T21:34:37+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: discussions-tab-for-woocommerce-products\n"
@@ -92,44 +92,6 @@ msgstr ""
 msgid "Post Comment"
 msgstr ""
 
-#: includes/pro/class-alg-wc-products-discussions-tab-labels.php:76
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:99
-msgid "Verified owner"
-msgstr ""
-
-#: includes/pro/class-alg-wc-products-discussions-tab-labels.php:79
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:149
-msgid "Product author"
-msgstr ""
-
-#: includes/pro/class-alg-wc-products-discussions-tab-pro.php:261
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:180
-msgid "You have been successfully unsubscribed"
-msgstr ""
-
-#: includes/pro/class-alg-wc-products-discussions-tab-pro.php:278
-msgid "Unsubscribe"
-msgstr ""
-
-#: includes/pro/class-alg-wc-products-discussions-tab-social.php:193
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:80
-msgid "Fill with Facebook"
-msgstr ""
-
-#: includes/pro/class-alg-wc-products-discussions-tab-support.php:73
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:205
-msgid "Support"
-msgstr ""
-
-#: includes/pro/class-alg-wc-products-discussions-tab-support.php:158
-#: includes/pro/class-alg-wc-products-discussions-tab-support.php:180
-msgid "Support reps"
-msgstr ""
-
-#: includes/pro/class-alg-wc-products-discussions-tab-support.php:185
-msgid "%1$s (#%2$s &ndash; %3$s)"
-msgstr ""
-
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-advanced.php:24
 msgid "Advanced"
 msgstr ""
@@ -167,14 +129,14 @@ msgid "Conversions"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-advanced.php:66
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:66
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:89
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:116
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:139
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:166
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:195
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:61
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:70
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:65
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:88
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:115
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:138
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:165
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:194
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:60
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:69
 msgid "Enable"
 msgstr ""
 
@@ -215,7 +177,7 @@ msgid "Count replies"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:64
-msgid "Consider replies when counting the discussions comments total amount."
+msgid "Consider replies when counting the discussions comments total amount"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:70
@@ -265,7 +227,7 @@ msgid "Enable shortcodes in discussion comments"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:110
-msgid "Enable shortcodes to be viewed in <a href=\"%s\" target=\"_blank\">edit comments page</a> on admin."
+msgid "Enable shortcodes to be viewed in <a href=\"%s\" target=\"_blank\">edit comments page</a> on admin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:111
@@ -288,111 +250,124 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:138
-msgid "Extra Options"
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:131
+msgid "Rich text editor"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:144
-msgid "Open comments"
-msgstr ""
-
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:145
-msgid "Open comments for product post type"
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:132
+msgid "Enable TinyMCE on discussion comments"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:146
-msgid "Enable if you can't see the comment form on the discussion tab or if you're getting the \"Comments are closed\" message. "
+msgid "Extra Options"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:151
+msgid "Open comments"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:152
-msgid "AJAX tab"
+msgid "Open comments for product post type"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:153
+msgid "Enable if you can't see the comment form on the discussion tab or if you're getting the \"Comments are closed\" message. "
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:159
+msgid "AJAX tab"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:160
 msgid "Load discussions tab content via AJAX"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:154
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:161
 msgid "Enable if you have a lot of comments. "
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:161
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:168
 msgid "Restrict discussions"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:162
-msgid "Discussions comments can only be left by \"verified owners\"."
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:169
+msgid "Discussions comments can only be left by \"verified owners\""
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:169
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:176
 msgid "Notify authors"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:170
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:177
 msgid "Notify comment authors via email when they receive replies"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:171
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:178
 msgid "They can unsubscribe clicking on the \"Unsubscribe\" link on the notification email."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:178
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:185
 msgid "Confirmation message displayed when a user does not want to receive notifications any more."
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:187
+msgid "You have been successfully unsubscribed"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:194
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:48
 msgid "Pro version"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:192
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:199
 msgid "Take a look on some of its features:"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:195
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:202
 msgid "Use social networks like Facebook at your favor"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:196
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:203
 msgid "Let your customers auto fill their names, e-mail and even get their Facebook profile picture with just one click."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:200
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:207
 msgid "Decide if comments can be posted by anyone or only the ones who bought the product"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:201
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:208
 msgid "You can also choose to simply add a label on comments made by customers."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:204
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:211
 msgid "Notify comment authors via email"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:205
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:212
 msgid "Notify comment authors via email when they receive replies."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:208
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:215
 msgid "Show if comments are being replied by product authors"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:209
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:216
 msgid "Display labels on comments/reviews that were written by product authors."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:213
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:220
 msgid "We will be ready to help you in case of any issues or questions you may have."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:219
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:226
 msgid "Upgrade to Pro version now"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:221
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:228
 msgid "Do you like the free version of this plugin? Imagine what the Pro version can do for you!"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:222
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-general.php:229
 msgid "Check it out at <a target=\"_blank\" href=\"%1$s\">%1$s</a>"
 msgstr ""
 
@@ -410,135 +385,147 @@ msgstr ""
 msgid "Enable section"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:59
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:58
 msgid "Verified Owners"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:61
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:60
 msgid "Customers who bought products."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:65
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:115
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:165
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:64
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:114
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:164
 msgid "Show label"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:67
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:66
 msgid "Displays a \"verified owner\" label on discussions comments."
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:72
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:122
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:178
+msgid "Label icon"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:73
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:123
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:179
-msgid "Label icon"
-msgstr ""
-
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:74
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:124
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:180
 msgid "Requires \"Load Font Awesome\" option to be enabled."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:81
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:131
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:187
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:80
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:130
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:186
 msgid "Label color"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:82
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:81
 msgid "Verified owner label color."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:88
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:138
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:194
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:87
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:137
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:193
 msgid "Tip"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:90
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:140
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:196
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:89
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:139
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:195
 msgid "Enables a tip that will be displayed when mouse is over the label."
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:95
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:145
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:201
+msgid "Tip text"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:96
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:146
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:202
-msgid "Tip text"
-msgstr ""
-
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:97
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:147
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:203
 msgid "Text that will be displayed in the tip."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:109
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:98
+msgid "Verified owner"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:108
 msgid "Authors"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:111
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:110
 msgid "Users who own the products."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:117
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:116
 msgid "Displays an \"author\" label on discussions comments."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:132
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:131
 msgid "Author label color"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:159
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:148
+msgid "Product author"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:158
 msgid "Support Reps"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:161
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:160
 msgid "Users who will be marked as support representatives."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:167
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:166
 msgid "Displays a \"support\" label on discussions comments."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:173
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:172
 msgid "Support metabox"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:175
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:174
 msgid "Add a metabox on product pages to setup the support reps."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:188
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:187
 msgid "support label color"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:215
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:204
+msgid "Support"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:214
 msgid "Tips Style"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:217
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:216
 msgid "Style for tips."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:221
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:220
 msgid "Tip text color"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:227
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:226
 msgid "Tip background color"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:233
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:232
 msgid "Tip border color"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:245
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:244
 msgid "Advanced Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:252
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php:251
 msgid "Loads most recent version of Font Awesome."
 msgstr ""
 
@@ -551,40 +538,44 @@ msgstr ""
 msgid "Facebook Options"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:51
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:50
 msgid "Facebook App ID"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:52
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:51
 msgid "To get your App ID, you need to create a Facebook App <a href=\"%s\" target=\"_blank\">following these steps</a>."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:60
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:59
 msgid "Autofill"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:62
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:61
 msgid "Use Facebook to fill the discussions form with name and e-mail."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:63
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:62
 msgid "Facebook App ID is necessary."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:69
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:68
 msgid "Autofill avatar"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:71
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:70
 msgid "Use Facebook profile picture to replace the avatar."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:72
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:71
 msgid "Requires the autofill option enabled."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:78
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:77
 msgid "Autofill button label"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings-social.php:79
+msgid "Fill with Facebook"
 msgstr ""
 
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-texts.php:24
@@ -694,27 +685,35 @@ msgstr ""
 msgid "Textarea placeholder"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:125
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:50
+msgid "Disabled options can be unlocked using the <a href=\"%s\">pro version</a>"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:51
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:150
 msgid "Check it"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:254
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:279
 msgid "Reset Settings"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:259
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:284
 msgid "Reset section settings"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:260
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:285
 msgid "Reset"
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:261
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:286
 msgid "Check the box and save changes to reset."
 msgstr ""
 
-#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:300
+#: includes/settings/class-alg-wc-products-discussions-tab-settings.php:325
 msgid "Your settings have been reset."
 msgstr ""
 

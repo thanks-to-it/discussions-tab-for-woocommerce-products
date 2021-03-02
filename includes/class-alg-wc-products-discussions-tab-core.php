@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class
  *
- * @version 1.2.5
+ * @version 1.2.6
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -64,9 +64,6 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			// Swaps woocommerce template (single-product-reviews.php) with default comments template
 			add_filter( 'comments_template',                       array( $this, 'load_discussions_comments_template' ), 20 );
 
-			// Fixes comment parent_id and cancel btn
-			add_action( 'wp_footer',                               array( $this, 'js_fix_comment_parent_id_and_cancel_btn' ) );
-
 			// Opens discussions tab after a discussion comment is posted
 			add_action( 'wp_footer',                               array( $this, 'js_open_discussions_tab' ) );
 
@@ -112,6 +109,9 @@ class Alg_WC_Products_Discussions_Tab_Core {
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+
+		/* Add WYSISYG editor to comment form. */
+
 	}
 
 	/**
@@ -321,17 +321,27 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Enqueues main scripts.
 	 *
-	 * @version 1.1.1
+	 * @version 1.2.6
 	 * @since   1.0.0
 	 */
 	function load_scripts(){
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		// Main css file
 		wp_enqueue_style( 'alg-dtwp',
-			alg_wc_products_discussions_tab()->plugin_url() . '/assets/css/alg-dtwp' . ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min' ) . '.css',
+			alg_wc_products_discussions_tab()->plugin_url() . '/assets/css/frontend' . $suffix . '.css',
 			array(),
 			alg_wc_products_discussions_tab()->version
 		);
-		// Action
+		if ( is_product() ) {
+			wp_enqueue_script( 'alg-dtwp', alg_wc_products_discussions_tab()->plugin_url() . '/assets/js/frontend' . $suffix . '.js', array(), 'false', true );
+			wp_localize_script( 'alg-dtwp', 'alg_dtwp', apply_filters( 'alg_dtwp_localize_script', array(
+				'respondID' => $this->discussions_respond_id_wrapper,
+				'respondIDLocation' => $this->discussions_respond_id_location,
+				'plugin_url'    => alg_wc_products_discussions_tab()->plugin_url(),
+				'modulesToLoad' => apply_filters( 'alg_dtwp_js_modules_to_load', array() )
+			) ) );
+			// Action
+		}
 		do_action( 'alg_wc_pdt_load_scripts' );
 	}
 
@@ -340,8 +350,11 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 *
 	 * @version 1.2.2
 	 * @since   1.0.1
+	 *
 	 * @param   $comment_text
 	 * @param   $comment
+	 *
+	 * @return string
 	 */
 	function handle_shortcodes( $comment_text, $comment ) {
 		$allow_in_discussions = filter_var( get_option( 'alg_dtwp_opt_sc_discussions', false ), FILTER_VALIDATE_BOOLEAN );
@@ -373,7 +386,10 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 *
 	 * @version 1.1.0
 	 * @since   1.0.0
+	 *
 	 * @param   $comment_data
+	 *
+	 * @return mixed
 	 */
 	function add_discussions_comment_type_in_comment_data( $comment_data ) {
 		$comment_type_id = alg_wc_pdt_get_comment_type_id();
@@ -451,43 +467,6 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	}
 
 	/**
-	 * Fixes comment_parent input and cancel button.
-	 *
-	 * @version 1.2.3
-	 * @since   1.0.0
-	 */
-	function js_fix_comment_parent_id_and_cancel_btn() {
-		if(!is_product()){
-			return;
-		}
-		$respond_id = $this->discussions_respond_id_wrapper;
-		?>
-		<script>
-			jQuery( document ).ready( function( $ ) {
-				$(document).on('click', '.comment-reply-link', function (e) {
-					var respond_wrapper = $('#' + '<?php echo $respond_id;?>');
-					if (!respond_wrapper.length) {
-						e.preventDefault();
-						return;
-					}
-					var comment_id = $(this).parent().parent().attr('id');
-					var comment_id_arr = comment_id.split("-");
-					var parent_post_id = comment_id_arr[comment_id_arr.length - 1];
-					var cancel_btn = respond_wrapper.find("#cancel-comment-reply-link");
-					respond_wrapper.find("#comment_parent").val(parent_post_id);
-					cancel_btn.show();
-					cancel_btn.on('click', function () {
-						cancel_btn.hide();
-						respond_wrapper.find("#comment_parent").val(0);
-						respond_wrapper.remove().insertAfter($('#' + '<?php echo $this->discussions_respond_id_location; ?>'));
-					});
-				})
-			} );
-		</script>
-		<?php
-	}
-
-	/**
 	 * Tags the respond form so it can have it's ID changed.
 	 *
 	 * @version 1.1.0
@@ -521,7 +500,10 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 *
 	 * @version 1.1.0
 	 * @since   1.0.0
+	 *
 	 * @param   $args
+	 *
+	 * @return mixed
 	 */
 	function change_reply_link_respond_id( $args ) {
 		$tag = $this->discussions_respond_id_wrapper;
@@ -537,8 +519,11 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 *
 	 * @version 1.1.0
 	 * @since   1.0.0
+	 *
 	 * @param   $count
 	 * @param   $post_id
+	 *
+	 * @return array|int
 	 */
 	function fix_discussions_comments_number( $count, $post_id ) {
 		if ( 'product' != get_post_type() || ! alg_wc_pdt_is_discussion_tab() ) {
@@ -600,7 +585,10 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 *
 	 * @version 1.1.0
 	 * @since   1.0.0
+	 *
 	 * @param   $class
+	 *
+	 * @return array
 	 */
 	function filter_wp_list_comments_wrapper_class( $class ) {
 		if ( ! alg_wc_pdt_is_discussion_tab() ) {

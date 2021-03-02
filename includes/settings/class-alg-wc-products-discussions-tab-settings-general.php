@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings
  *
- * @version 1.2.4
+ * @version 1.2.6
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.2.4
+	 * @version 1.2.6
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
@@ -61,7 +61,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			),
 			array(
 				'title'    => __( 'Count replies', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Consider replies when counting the discussions comments total amount.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Consider replies when counting the discussions comments total amount', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_count_replies',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
@@ -107,7 +107,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 				'checkboxgroup' => 'start',
 			),
 			array(
-				'desc'     => sprintf( __( 'Enable shortcodes to be viewed in <a href="%s" target="_blank">edit comments page</a> on admin.', 'discussions-tab-for-woocommerce-products' ), admin_url( 'edit-comments.php' ) ),
+				'desc'     => sprintf( __( 'Enable shortcodes to be viewed in <a href="%s" target="_blank">edit comments page</a> on admin', 'discussions-tab-for-woocommerce-products' ), admin_url( 'edit-comments.php' ) ),
 				'desc_tip' => sprintf( __( '"%s" option must be enabled.', 'discussions-tab-for-woocommerce-products' ), __( 'Enable shortcodes in discussion comments', 'discussions-tab-for-woocommerce-products' ) ),
 				'id'       => 'alg_dtwp_opt_sc_admin',
 				'default'  => 'no',
@@ -128,6 +128,14 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
+				'title'             => __( 'Rich text editor', 'discussions-tab-for-woocommerce-products' ),
+				'desc'              => __( 'Enable TinyMCE on discussion comments', 'discussions-tab-for-woocommerce-products' ),
+				'id'                => 'alg_dtwp_opt_tinymce',
+				'default'           => 'no',
+				'type'              => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_dtwp_opt_general',
 			),
@@ -136,7 +144,6 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 		$extra_settings = array(
 			array(
 				'title'    => __( 'Extra Options', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => apply_filters( 'alg_wc_products_discussions_tab_settings', $this->get_pro_message() ),
 				'type'     => 'title',
 				'id'       => 'alg_dtwp_opt_extra',
 			),
@@ -159,7 +166,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			),
 			array(
 				'title'    => __( 'Restrict discussions', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Discussions comments can only be left by "verified owners".', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Discussions comments can only be left by "verified owners"', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_v_owner_restrict',
 				'default'  => 'no',
 				'type'     => 'checkbox',

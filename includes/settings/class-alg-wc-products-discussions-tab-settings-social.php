@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Social Section Settings
  *
- * @version 1.1.0
+ * @version 1.2.6
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Social extends Alg_WC_Products_Di
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.1.0
+	 * @version 1.2.6
 	 * @since   1.1.0
 	 */
 	function get_settings() {
@@ -41,7 +41,6 @@ class Alg_WC_Products_Discussions_Tab_Settings_Social extends Alg_WC_Products_Di
 			array(
 				'title'    => __( 'Social', 'discussions-tab-for-woocommerce-products' ),
 				'desc'     => '<strong>' . __( 'Enable section', 'discussions-tab-for-woocommerce-products' ) . '</strong>',
-				'desc_tip' => apply_filters( 'alg_wc_products_discussions_tab_settings', $this->get_pro_message() ),
 				'id'       => 'alg_dtwp_social_enable',
 				'default'  => 'no',
 				'type'     => 'checkbox',

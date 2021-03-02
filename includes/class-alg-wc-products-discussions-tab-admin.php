@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Admin Class
  *
- * @version 1.1.0
+ * @version 1.2.6
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -152,7 +152,7 @@ class Alg_WC_Products_Discussions_Tab_Admin {
 	/**
 	 * Enqueues admin main scripts.
 	 *
-	 * @version 1.1.0
+	 * @version 1.2.6
 	 * @since   1.0.5
 	 */
 	function load_admin_scripts() {
@@ -164,12 +164,12 @@ class Alg_WC_Products_Discussions_Tab_Admin {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 			// Font awesome iconpicker
 			wp_enqueue_style( 'alg-dtwp-fa-iconpicker',
-				alg_wc_products_discussions_tab()->plugin_url() . '/assets/fontawesome-iconpicker/css/fontawesome-iconpicker' . $suffix . '.css',
+				alg_wc_products_discussions_tab()->plugin_url() . '/assets/vendor/fontawesome-iconpicker/css/fontawesome-iconpicker' . $suffix . '.css',
 				array(),
 				alg_wc_products_discussions_tab()->version
 			);
 			wp_enqueue_script( 'alg-dtwp-fa-iconpicker',
-				alg_wc_products_discussions_tab()->plugin_url() . '/assets/fontawesome-iconpicker/js/fontawesome-iconpicker' . $suffix . '.js',
+				alg_wc_products_discussions_tab()->plugin_url() . '/assets/vendor/fontawesome-iconpicker/js/fontawesome-iconpicker' . $suffix . '.js',
 				array( 'jquery' ),
 				alg_wc_products_discussions_tab()->version,
 				true
@@ -180,14 +180,14 @@ class Alg_WC_Products_Discussions_Tab_Admin {
 			}
 			// JS
 			wp_enqueue_script( 'alg-dtwp-admin',
-				alg_wc_products_discussions_tab()->plugin_url() . '/assets/admin/js/alg-dtwp-admin' . $suffix . '.js',
+				alg_wc_products_discussions_tab()->plugin_url() . '/assets/js/admin' . $suffix . '.js',
 				array( 'jquery' ),
 				alg_wc_products_discussions_tab()->version,
 				true
 			);
 			// CSS
 			wp_enqueue_style( 'alg-dtwp-admin',
-				alg_wc_products_discussions_tab()->plugin_url() . '/assets/admin/css/alg-dtwp-admin' . $suffix . '.css',
+				alg_wc_products_discussions_tab()->plugin_url() . '/assets/css/admin' . $suffix . '.css',
 				array(),
 				alg_wc_products_discussions_tab()->version
 			);
