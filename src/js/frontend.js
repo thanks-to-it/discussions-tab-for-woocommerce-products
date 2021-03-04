@@ -1,11 +1,10 @@
 /**
  * Discussions Tab for WooCommerce Products - Frontend JS
  *
- * @version 1.2.7
+ * @version 1.2.8
  * @since   1.2.6
  * @author  Thanks to IT
  */
-
 // Dynamic modules
 __webpack_public_path__ = alg_dtwp.plugin_url + "/assets/";
 let modules = alg_dtwp.modulesToLoad;

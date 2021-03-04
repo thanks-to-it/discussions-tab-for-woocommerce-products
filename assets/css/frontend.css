@@ -1,7 +1,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Admin Style
  *
- * @version 1.2.6
+ * @version 1.2.8
  * @since   1.0.5
  * @author  Thanks to IT
  */
@@ -40,6 +40,20 @@
 .alg-dtwp-wrapper .comments-area.Hub .comment-text,
 .alg-dtwp-wrapper .comment-list .comments-area.Hub .comment-text {
   background: #f6f6f6 !important; }
+
+.alg-dtwp-anchor-source > .comment-body .comment-text {
+  -webkit-animation: alg-dtwp-blink 1s;
+          animation: alg-dtwp-blink 1s;
+  -webkit-animation-iteration-count: 3;
+          animation-iteration-count: 3; }
+
+@-webkit-keyframes alg-dtwp-blink {
+  50% {
+    background-color: #e6e6e6; } }
+
+@keyframes alg-dtwp-blink {
+  50% {
+    background-color: #e6e6e6; } }
 
 .alg-dtwp-labels {
   z-index: 9;

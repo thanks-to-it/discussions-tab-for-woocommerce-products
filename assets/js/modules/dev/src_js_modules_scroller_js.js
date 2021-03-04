@@ -9,9 +9,11 @@
 var scroller = {
   init: function init() {
     jQuery('body').on('alg_dtwp_comments_loaded', function () {
-      scroller.scrollByAnchor();
+      setTimeout(scroller.scrollByAnchor, 150);
     });
-    scroller.scrollByAnchor();
+    jQuery('document').ready(function () {
+      setTimeout(scroller.scrollByAnchor, 150);
+    });
 
     window.onhashchange = function () {
       scroller.scrollByAnchor();
@@ -36,13 +38,20 @@ var scroller = {
     var target = jQuery('a[href*="' + currentURL + '"]');
 
     if (window.location.hash.length && target.length) {
-      var element = target.closest('li')[0];
-      var offset = 130;
+      var element = target.closest('.comment')[0];
+      var offset = 145;
+      var comments = document.querySelectorAll('.comment.' + alg_dtwp.commentTypeID);
+      comments.forEach(function (item) {
+        item.classList.remove('alg-dtwp-anchor-source');
+      });
       var topPos = element.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({
         top: topPos,
         behavior: 'smooth'
       });
+      setTimeout(function () {
+        element.classList.add('alg-dtwp-anchor-source');
+      }, 500);
     }
   }
 };

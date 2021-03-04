@@ -37,3 +37,10 @@
 		background: #f6f6f6 !important;
 	}
 }
+.alg-dtwp-anchor-source{
+	>.comment-body .comment-text{
+		animation: alg-dtwp-blink 1s;
+		animation-iteration-count: 3;
+	}
+}
+@keyframes alg-dtwp-blink { 50% { background-color:#e6e6e6 ; }  }

@@ -389,7 +389,7 @@ var __webpack_exports__ = {};
 /**
  * Discussions Tab for WooCommerce Products - Frontend JS
  *
- * @version 1.2.7
+ * @version 1.2.8
  * @since   1.2.6
  * @author  Thanks to IT
  */

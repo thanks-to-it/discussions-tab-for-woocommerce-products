@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class
  *
- * @version 1.2.6
+ * @version 1.2.8
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -321,7 +321,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Enqueues main scripts.
 	 *
-	 * @version 1.2.7
+	 * @version 1.2.8
 	 * @since   1.0.0
 	 */
 	function load_scripts() {
@@ -340,6 +340,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 				'respondID'         => $this->discussions_respond_id_wrapper,
 				'respondIDLocation' => $this->discussions_respond_id_location,
 				'plugin_url'        => alg_wc_products_discussions_tab()->plugin_url(),
+				'commentTypeID'     => alg_wc_pdt_get_comment_type_id(),
 				'modulesToLoad'     => apply_filters( 'alg_dtwp_js_modules_to_load', array() )
 			) ) );
 			// Action
