@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discussions Tab for WooCommerce Products 1.2.8\n"
+"Project-Id-Version: Discussions Tab for WooCommerce Products 1.2.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/discussions-tab-for-woocommerce-products\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-03-04T02:34:44+01:00\n"
+"POT-Creation-Date: 2021-03-06T00:47:16+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: discussions-tab-for-woocommerce-products\n"
@@ -40,8 +40,8 @@ msgstr ""
 
 #: includes/class-alg-wc-products-discussions-tab-admin.php:56
 #: includes/class-alg-wc-products-discussions-tab-admin.php:125
-#: includes/class-alg-wc-products-discussions-tab-core.php:225
-#: includes/class-alg-wc-products-discussions-tab-my-account.php:49
+#: includes/class-alg-wc-products-discussions-tab-core.php:245
+#: includes/class-alg-wc-products-discussions-tab-my-account.php:57
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-texts.php:61
 #: includes/settings/class-alg-wc-products-discussions-tab-settings.php:24
 #: templates/dtwp-comments.php:20
@@ -84,11 +84,11 @@ msgstr ""
 msgid "Convert to Review"
 msgstr ""
 
-#: includes/class-alg-wc-products-discussions-tab-core.php:157
+#: includes/class-alg-wc-products-discussions-tab-core.php:177
 msgid "Leave a reply"
 msgstr ""
 
-#: includes/class-alg-wc-products-discussions-tab-core.php:158
+#: includes/class-alg-wc-products-discussions-tab-core.php:178
 #: includes/settings/class-alg-wc-products-discussions-tab-settings-texts.php:123
 msgid "Post Comment"
 msgstr ""

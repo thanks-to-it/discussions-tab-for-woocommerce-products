@@ -33,7 +33,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.2.5
+	 * @version 1.2.9
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -100,6 +100,9 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			add_action( 'alg_dtwp_comments_end',                   array( $this, 'setup_comments_form_position' ) );
 			add_action( 'alg_dtwp_comments_start',                 array( $this, 'setup_comments_form_position' ) );
 
+			// Detect plugin update
+			add_action( 'upgrader_process_complete',               array( $this, 'detect_plugin_update' ), 10, 2 );
+
 			// Compatibility
 			require_once( 'class-alg-wc-products-discussions-tab-compatibility.php' );
 
@@ -109,9 +112,26 @@ class Alg_WC_Products_Discussions_Tab_Core {
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
 
-		/* Add WYSISYG editor to comment form. */
-
+	/**
+	 * detect_plugin_update.
+	 *
+	 * @version 1.2.9
+	 * @since   1.2.9
+	 *
+	 * @param $upgrader_object
+	 * @param $options
+	 */
+	function detect_plugin_update( $upgrader_object, $options ) {
+		$current_plugin_path_name = plugin_basename( alg_wc_products_discussions_tab()->get_filename_path() );
+		if ( $options['action'] == 'update' && $options['type'] == 'plugin' ) {
+			foreach ( $options['plugins'] as $each_plugin ) {
+				if ( $each_plugin == $current_plugin_path_name ) {
+					do_action( 'alg_wc_products_discussions_tab_plugin_update' );
+				}
+			}
+		}
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Support Representative
  *
- * @version 1.2.7
+ * @version 1.2.9
  * @since   1.2.7
  * @author  Thanks to IT
  */
@@ -17,15 +17,23 @@ if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_My_Account' ) ) :
 
 		protected $tab_title='';
 
+		/**
+		 * @version 1.2.9
+		 * @since   1.2.7
+		 *
+		 * Alg_WC_Products_Discussions_Tab_My_Account constructor.
+		 */
 		public function __construct() {
 			add_action( 'init', array( $this, 'my_custom_endpoints' ) );
 			add_filter( 'query_vars', array( $this, 'my_custom_query_vars' ), 0 );
 			add_action( 'after_switch_theme', array( $this, 'my_custom_flush_rewrite_rules' ) );
 			add_filter( 'woocommerce_account_menu_items', array( $this, 'my_custom_my_account_menu_items' ) );
-			add_action( 'woocommerce_account_'.$this->get_tab_id().'_endpoint', array( $this, 'my_custom_endpoint_content' ) );
+			add_action( 'woocommerce_account_' . $this->get_tab_id() . '_endpoint', array( $this, 'my_custom_endpoint_content' ) );
 			add_filter( 'the_title', array( $this, 'my_custom_endpoint_title' ) );
 			register_activation_hook( alg_wc_products_discussions_tab()->get_filename_path(), array( $this, 'my_custom_flush_rewrite_rules' ) );
 			register_deactivation_hook( alg_wc_products_discussions_tab()->get_filename_path(), array( $this, 'my_custom_flush_rewrite_rules' ) );
+			add_action( 'alg_wc_products_discussions_tab_plugin_update', array( $this, 'my_custom_flush_rewrite_rules' ) );
+			add_action( 'woocommerce_settings_save_' . 'alg_wc_products_discussions_tab', array( $this, 'my_custom_flush_rewrite_rules' ) );
 		}
 
 		/**
