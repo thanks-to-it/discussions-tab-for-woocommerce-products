@@ -14,13 +14,16 @@ jQuery( function( $ ) {
 			}
 		},
 		createIconNextToInput: function( input ) {
-			jQuery( '<span style="margin:0px 7px 0 10px" class="input-group-addon"></span>' ).insertAfter( input );
+			jQuery( '<span style="cursor:pointer;position:relative;top:2px;margin:0px 7px 0 10px;vertical-align: middle" class="input-group-addon"></span>' ).insertAfter( input );
 		},
 		callIconPicker: function( element ) {
 			element.iconpicker( {
 				selectedCustomClass: 'alg-dtwp-iconpicker-selected',
 				hideOnSelect: true,
-				placement: 'bottom'
+				placement: 'bottom',
+				templates: {
+					iconpickerItem: '<a role="button" href="javascript://" class="iconpicker-item"><i></i></a>',
+				}
 			} );
 		}
 	};

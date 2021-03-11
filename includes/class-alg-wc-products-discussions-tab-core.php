@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class
  *
- * @version 1.2.8
+ * @version 1.3.0
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -341,19 +341,21 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Enqueues main scripts.
 	 *
-	 * @version 1.2.8
+	 * @version 1.3.0
 	 * @since   1.0.0
 	 */
 	function load_scripts() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$version = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? current_time( 'timestamp' ) : alg_wc_products_discussions_tab()->version;
+
 		// Main css file
 		wp_enqueue_style( 'alg-dtwp',
 			alg_wc_products_discussions_tab()->plugin_url() . '/assets/css/frontend' . $suffix . '.css',
 			array(),
-			alg_wc_products_discussions_tab()->version
+			$version
 		);
 		if ( is_product() ) {
-			wp_enqueue_script( 'alg-dtwp', alg_wc_products_discussions_tab()->plugin_url() . '/assets/js/frontend' . $suffix . '.js', array(), 'false', true );
+			wp_enqueue_script( 'alg-dtwp', alg_wc_products_discussions_tab()->plugin_url() . '/assets/js/frontend' . $suffix . '.js', array(), $version, true );
 			wp_localize_script( 'alg-dtwp', 'alg_dtwp', apply_filters( 'alg_dtwp_localize_script', array(
 				'tabID'             => alg_wc_products_discussions_tab()->core->get_discussions_tab_id(),
 				'commentLink'       => $this->get_comment_link(),

@@ -32,14 +32,6 @@ var map = {
 		"./src/js/modules/iconpicker-manager.js",
 		"src_js_modules_iconpicker-manager_js"
 	],
-	"./labels-manager": [
-		"./src/js/modules/labels-manager.js",
-		"src_js_modules_labels-manager_js"
-	],
-	"./labels-manager.js": [
-		"./src/js/modules/labels-manager.js",
-		"src_js_modules_labels-manager_js"
-	],
 	"./parent-comment-id-fixer": [
 		"./src/js/modules/parent-comment-id-fixer.js",
 		"src_js_modules_parent-comment-id-fixer_js"

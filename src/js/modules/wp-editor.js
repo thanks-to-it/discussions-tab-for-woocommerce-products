@@ -4,7 +4,7 @@ const WPEditor={
 		wp.editor.initialize('discussion', {
 			tinymce: true,
 			teeny: true,
-			quicktags: true
+			quicktags: true,
 		});
 	},
 	init:function(){
@@ -25,6 +25,7 @@ const WPEditor={
 		let toolbarArr = editor.settings.toolbar1.split(',');
 		toolbarArr = toolbarArr.filter(btn => ['bullist', 'numlist'].indexOf(btn) === -1);
 		editor.settings.toolbar1 = toolbarArr.join();
+		editor.settings.content_style='body{font-size:15px;font-family:Source Sans Pro,HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;}';
 	}
 }
 module.exports = WPEditor;

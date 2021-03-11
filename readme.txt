@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 5.6
-Stable tag: 1.2.9
+Stable tag: 1.3.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -61,6 +61,15 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.3.0 - 11/03/2021 =
+* Fix - Wrong text domain in some areas.
+* Fix - General - Rich text editor - Uncaught TypeError if "Disable the visual editor when writing" is activated.
+* Fix - Iconpicker icons on admin scroll to top when selected.
+* Dev - Labels - Add "Title" option for product authors and support reps labels.
+* Dev - Labels - Add "Text color" option for all the possible labels.
+* Dev - Labels - Remove tip checkbox option allowing it to be disabled by leaving the tip text empty.
+* Dev - Labels - Allow to disable the icon by leaving the icon empty.
 
 = 1.2.9 - 05/03/2021 =
 * Fix - Labels - Support Reps - Replace support reps ajax field by a textarea field.

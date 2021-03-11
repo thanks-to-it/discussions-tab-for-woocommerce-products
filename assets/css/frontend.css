@@ -100,6 +100,14 @@
   padding: 6px 10px;
   transition: all 0.25s ease-in-out; }
 
+.alg-dtwp-item-author.comment > .comment-body .comment-meta:before, .alg-dtwp-support-reps.comment > .comment-body .comment-meta:before {
+  padding: 3px 6px;
+  text-align: center;
+  display: block;
+  font-size: 12px;
+  margin: 0 0 9px 0;
+  line-height: 14px; }
+
 .alg-dtwp-loading-tab:after {
   opacity: 0 !important; }
 

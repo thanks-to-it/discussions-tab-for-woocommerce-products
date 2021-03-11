@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings
  *
- * @version 1.2.6
+ * @version 1.3.0
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.2.6
+	 * @version 1.3.0
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
@@ -216,7 +216,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 							'description' => __( 'Display labels on comments/reviews that were written by product authors.', 'discussions-tab-for-woocommerce-products' ),
 						),
 						array(
-							'trigger'     => __( 'Support', 'wish-list-for-woocommerce' ),
+							'trigger'     => __( 'Support', 'discussions-tab-for-woocommerce-products' ),
 							'description' => __( 'We will be ready to help you in case of any issues or questions you may have.', 'discussions-tab-for-woocommerce-products' ),
 						),
 					),

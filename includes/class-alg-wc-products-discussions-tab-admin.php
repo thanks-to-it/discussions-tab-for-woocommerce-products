@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Admin Class
  *
- * @version 1.2.6
+ * @version 1.3.0
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -152,7 +152,7 @@ class Alg_WC_Products_Discussions_Tab_Admin {
 	/**
 	 * Enqueues admin main scripts.
 	 *
-	 * @version 1.2.6
+	 * @version 1.3.0
 	 * @since   1.0.5
 	 */
 	function load_admin_scripts() {
@@ -162,16 +162,17 @@ class Alg_WC_Products_Discussions_Tab_Admin {
 			isset( $_GET['section'] ) && 'labels'                          === $_GET['section']
 		) {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+			$version = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? current_time( 'timestamp' ) : alg_wc_products_discussions_tab()->version;
 			// Font awesome iconpicker
 			wp_enqueue_style( 'alg-dtwp-fa-iconpicker',
 				alg_wc_products_discussions_tab()->plugin_url() . '/assets/vendor/fontawesome-iconpicker/css/fontawesome-iconpicker' . $suffix . '.css',
 				array(),
-				alg_wc_products_discussions_tab()->version
+				$version
 			);
 			wp_enqueue_script( 'alg-dtwp-fa-iconpicker',
 				alg_wc_products_discussions_tab()->plugin_url() . '/assets/vendor/fontawesome-iconpicker/js/fontawesome-iconpicker' . $suffix . '.js',
 				array( 'jquery' ),
-				alg_wc_products_discussions_tab()->version,
+				$version,
 				true
 			);
 			// Font awesome
@@ -182,14 +183,14 @@ class Alg_WC_Products_Discussions_Tab_Admin {
 			wp_enqueue_script( 'alg-dtwp-admin',
 				alg_wc_products_discussions_tab()->plugin_url() . '/assets/js/admin' . $suffix . '.js',
 				array( 'jquery' ),
-				alg_wc_products_discussions_tab()->version,
+				$version,
 				true
 			);
 			// CSS
 			wp_enqueue_style( 'alg-dtwp-admin',
 				alg_wc_products_discussions_tab()->plugin_url() . '/assets/css/admin' . $suffix . '.css',
 				array(),
-				alg_wc_products_discussions_tab()->version
+				$version
 			);
 		}
 	}

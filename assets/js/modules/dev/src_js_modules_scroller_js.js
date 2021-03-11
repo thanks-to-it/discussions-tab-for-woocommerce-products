@@ -9,17 +9,19 @@
 var scroller = {
   init: function init() {
     jQuery('body').on('alg_dtwp_comments_loaded', function () {
-      setTimeout(scroller.scrollByAnchor, 150);
+      setTimeout(scroller.scrollByAnchor, 200);
     });
     jQuery('document').ready(function () {
-      setTimeout(scroller.scrollByAnchor, 150);
+      setTimeout(scroller.scrollByAnchor, 200);
     });
 
     window.onhashchange = function () {
       scroller.scrollByAnchor();
     };
 
-    scroller.activateDiscussionsTab();
+    jQuery('document').ready(function () {
+      scroller.activateDiscussionsTab();
+    });
   },
   activateDiscussionsTab: function activateDiscussionsTab() {
     var hash = window.location.hash;

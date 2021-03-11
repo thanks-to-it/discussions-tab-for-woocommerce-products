@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Labels Section Settings
  *
- * @version 1.2.6
+ * @version 1.3.0
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.1.1
+	 * @version 1.3.0
 	 * @since   1.1.0
 	 */
 	function get_settings() {
@@ -61,40 +61,44 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 				'id'       => 'alg_dtwp_opt_v_owner',
 			),
 			array(
-				'title'    => __( 'Show label', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable "verified owner" label on discussions comments', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Detect comments left by customers who have purchased products', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_v_owner_label',
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),
 			array(
-				'title'    => __( 'Label icon', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Requires "Load Font Awesome" option to be enabled.', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Icon', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Requires "Load Font Awesome" option to be enabled.', 'discussions-tab-for-woocommerce-products' ) . '<br />'
+				              . __( 'Leave empty to disable.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_v_owner_label_icon',
 				'default'  => 'fas fa-check',
 				'class'    => 'alg-dtwp-icon-picker',
+				'css'      => 'width:435px',
 				'type'     => 'text',
 			),
 			array(
-				'title'    => __( 'Label color', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Verified owner label color.', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Icon tip text', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text displayed when mouse is over the icon.', 'discussions-tab-for-woocommerce-products' ) . '<br />'
+				              . __( 'Leave empty to disable.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_v_owner_label_txt',
+				'default'  => __( 'Verified owner', 'discussions-tab-for-woocommerce-products' ),
+				'css'      => 'width:435px',
+				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'Background color', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Background color for the icon.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_v_owner_label_color',
 				'default'  => '#0F834D',
 				'type'     => 'color',
 			),
 			array(
-				'title'    => __( 'Tip', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable a tip that will be displayed when mouse is over the label', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_v_owner_label_tip',
-				'default'  => 'yes',
-				'type'     => 'checkbox',
-			),
-			array(
-				'title'    => __( 'Tip text', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Text that will be displayed in the tip.', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_v_owner_label_txt',
-				'default'  => __( 'Verified owner', 'discussions-tab-for-woocommerce-products' ),
-				'type'     => 'text',
+				'title'    => __( 'Text color', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text color for the icon', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_v_owner_txt_color',
+				'default'  => '#fff',
+				'type'     => 'color',
 			),
 			array(
 				'type'     => 'sectionend',
@@ -103,46 +107,59 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 
 			// Author settings
 			array(
-				'title'    => __( 'Authors', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Product authors', 'discussions-tab-for-woocommerce-products' ),
 				'type'     => 'title',
 				'desc'     => __( 'Users who own the products.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_author',
 			),
 			array(
-				'title'    => __( 'Show label', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable "author" label on discussions comments', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Detect comments left by product authors', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_author_label',
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),
 			array(
-				'title'    => __( 'Label icon', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Requires "Load Font Awesome" option to be enabled.', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Icon', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Requires "Load Font Awesome" option to be enabled.', 'discussions-tab-for-woocommerce-products' ) . '<br />'
+				              . __( 'Leave empty to disable.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_author_label_icon',
 				'default'  => 'fas fa-user',
 				'class'    => 'alg-dtwp-icon-picker',
+				'css'      => 'width:435px',
 				'type'     => 'text',
 			),
 			array(
-				'title'    => __( 'Label color', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Author label color', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Icon tip text', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text displayed when mouse is over the icon.', 'discussions-tab-for-woocommerce-products' ) . '<br />'
+				              . __( 'Leave empty to disable.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_author_label_txt',
+				'default'  => __( 'Product author', 'discussions-tab-for-woocommerce-products' ),
+				'css'      => 'width:435px',
+				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'Title', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text displayed above profile picture.', 'discussions-tab-for-woocommerce-products' ) . '<br />' .
+				              __( 'Leave empty to disable.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_author_title',
+				'default'  => __( 'Product author', 'discussions-tab-for-woocommerce-products' ),
+				'css'      => 'width:435px',
+				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'Background color', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Background color for the icon and title.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_author_label_color',
 				'default'  => '#ec800d',
 				'type'     => 'color',
 			),
 			array(
-				'title'    => __( 'Tip', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable a tip that will be displayed when mouse is over the label', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_author_label_tip',
-				'default'  => 'yes',
-				'type'     => 'checkbox',
-			),
-			array(
-				'title'    => __( 'Tip text', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Text that will be displayed in the tip.', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_author_label_txt',
-				'default'  => __( 'Product author', 'discussions-tab-for-woocommerce-products' ),
-				'type'     => 'text',
+				'title'    => __( 'Text color', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text color for the icon and title.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_author_txt_color',
+				'default'  => '#fff',
+				'type'     => 'color',
 			),
 			array(
 				'type'     => 'sectionend',
@@ -157,40 +174,53 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 				'id'       => 'alg_dtwp_opt_support',
 			),
 			array(
-				'title'    => __( 'Show label', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable "Support reps" label on discussions comments', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Detect comments left by support reps', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_support_label',
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),
 			array(
-				'title'    => __( 'Label icon', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Requires "Load Font Awesome" option to be enabled.', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Icon', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Requires "Load Font Awesome" option to be enabled.', 'discussions-tab-for-woocommerce-products' ) . '<br />'
+				              . __( 'Leave empty to disable.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_support_label_icon',
 				'default'  => 'fas fa-life-ring',
 				'class'    => 'alg-dtwp-icon-picker',
+				'css'      => 'width:435px',
 				'type'     => 'text',
 			),
 			array(
-				'title'    => __( 'Label color', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'support label color', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Icon tip text', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text displayed when mouse is over the icon.', 'discussions-tab-for-woocommerce-products' ) . '<br />'
+				              . __( 'Leave empty to disable.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_label_txt',
+				'css'      => 'width:435px',
+				'default'  => __( 'Support', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'Title', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text displayed above profile picture.', 'discussions-tab-for-woocommerce-products' ) . '<br />' .
+				              __( 'Leave empty to disable.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_title',
+				'default'  => __( 'Support', 'discussions-tab-for-woocommerce-products' ),
+				'css'      => 'width:435px',
+				'type'     => 'text',
+			),
+			array(
+				'title'    => __( 'Background color', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Background color for the icon and title.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_support_label_color',
 				'default'  => '#0085a2',
 				'type'     => 'color',
 			),
 			array(
-				'title'    => __( 'Tip', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable tip that will be displayed when mouse is over the label', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_support_label_tip',
-				'default'  => 'yes',
-				'type'     => 'checkbox',
-			),
-			array(
-				'title'    => __( 'Tip text', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Text that will be displayed in the tip.', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_support_label_txt',
-				'default'  => __( 'Support', 'discussions-tab-for-woocommerce-products' ),
-				'type'     => 'text',
+				'title'    => __( 'Text color', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Text color for the icon and title.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_support_txt_color',
+				'default'  => '#ffffff',
+				'type'     => 'color',
 			),
 			array(
 				'title'    => __( 'My account tab', 'discussions-tab-for-woocommerce-products' ),
@@ -250,10 +280,10 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 				'id'       => 'alg_dtwp_opt_labels_advanced',
 			),
 			array(
-				'title'    => __( 'Load Font Awesome', 'wish-list-for-woocommerce' ),
-				'desc'     => __( 'Enable', 'wish-list-for-woocommerce' ),
+				'title'    => __( 'Load Font Awesome', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
 				'desc_tip' => __( 'Loads most recent version of Font Awesome.', 'discussions-tab-for-woocommerce-products' ) . ' ' .
-					__( 'Only mark this if you are not loading Font Awesome anywhere else. Font Awesome is responsible for creating icons.', 'wish-list-for-woocommerce' ),
+					__( 'Only mark this if you are not loading Font Awesome anywhere else. Font Awesome is responsible for creating icons.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_font_awesome',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
