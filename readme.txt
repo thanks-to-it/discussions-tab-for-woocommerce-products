@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 5.6
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,7 +13,9 @@ Creates a discussions tab for WooCommerce products.
 
 **Discussions Tab for WooCommerce Products** plugin creates a discussions tab for WooCommerce Products.
 
-Allow customers to ask questions about your WooCommerce products. Make them more satisfied replying their comments and answering their questions.
+In other words, this plugin allows to use the default WordPress **comment** system on a custom product tab.
+
+Create a **support** tab and let customers ask questions about your WooCommerce products. Make them more satisfied replying their comments and answering their questions.
 
 That will make your brand more credible and your customers more confident. As a result, you'll have more chances to increase your sales.
 
@@ -61,6 +63,12 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.3.1 - 01/04/2021 =
+* Fix - General - Rich text editor - Fix line breaks.
+* Fix - Possible PHP warning Trying to get property 'comment_type' of non-object.
+* Dev - General - Create "Custom sanitization" option for discussion comments.
+* Improve plugin description on readme.
 
 = 1.3.0 - 11/03/2021 =
 * Fix - Wrong text domain in some areas.

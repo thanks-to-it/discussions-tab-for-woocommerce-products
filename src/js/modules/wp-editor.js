@@ -2,7 +2,14 @@ const WPEditor={
 	initTinyMCE:function(){
 		wp.editor.remove('discussion');
 		wp.editor.initialize('discussion', {
-			tinymce: true,
+			tinymce: {
+				wpautop: true,
+				//toolbar1: 'code',
+				//toolbar1: 'bold italic link codesample',
+				//plugins : 'charmap colorpicker compat3x directionality fullscreen hr image lists media paste tabfocus textcolor wordpress wpautoresize wpdialogs wpeditimage wpemoji wpgallery wplink wptextpattern wpview',
+				//toolbar1: 'bold italic underline strikethrough | bullist numlist | blockquote hr wp_more | alignleft aligncenter alignright | link unlink | fullscreen | wp_adv',
+				//toolbar2: 'formatselect alignjustify forecolor | pastetext removeformat charmap | outdent indent | undo redo | wp_help'
+			},
 			teeny: true,
 			quicktags: true,
 		});
@@ -25,6 +32,17 @@ const WPEditor={
 		let toolbarArr = editor.settings.toolbar1.split(',');
 		toolbarArr = toolbarArr.filter(btn => ['bullist', 'numlist'].indexOf(btn) === -1);
 		editor.settings.toolbar1 = toolbarArr.join();
+
+		//editor.settings.wpautop=true;
+		//editor.settings.autop=true;
+		//editor.settings.forced_root_block = '';
+		//editor.settings.force_br_newlines = true;
+		//editor.settings.force_p_newlines = false;
+
+		/*editor.settings.remove_linebreaks=true;
+		editor.settings.convert_newlines_to_brs=true;
+		editor.settings.remove_redundant_brs=true;*/
+
 		editor.settings.content_style='body{font-size:15px;font-family:Source Sans Pro,HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;}';
 	}
 }

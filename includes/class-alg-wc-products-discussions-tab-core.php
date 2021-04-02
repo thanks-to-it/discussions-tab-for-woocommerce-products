@@ -20,6 +20,8 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 */
 	private $is_discussion_tab = false;
 
+	private $discussion_comment_on_update = false;
+
 	/**
 	 * discussions_respond_id_wrapper.
 	 */
@@ -109,9 +111,83 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			// My account tab
 			require_once( 'class-alg-wc-products-discussions-tab-my-account.php' );
 
+			// Filters and sanitize comment data
+			add_filter( 'pre_comment_content', array( $this, 'filter_and_sanitize_comment' ), 20 );
+
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * get_default_allowed_comment_html.
+	 *
+	 * @version 1.3.1
+	 * @since   1.3.1
+	 *
+	 * @return array
+	 */
+	function get_default_allowed_comment_html(){
+		return array(
+			'a'          => array(
+				'href'   => array(),
+				'title'  => array(),
+				'target' => array( '_blank' )
+			),
+			'abbr'       => array( 'title' => true ),
+			'acronym'    => array( 'title' => true ),
+			'b'          => array(),
+			'blockquote' => array( 'cite' => true ),
+			'cite'       => array(),
+			'code'       => array(),
+			'pre'        => array(),
+			'del'        => array( 'datetime' => true ),
+			'em'         => array(),
+			'i'          => array(),
+			'q'          => array( 'cite' => true ),
+			's'          => array(),
+			'strike'     => array(),
+			'strong'     => array(),
+		);
+	}
+
+	/**
+	 * sanitization_content_valid.
+	 *
+	 * @version 1.3.1
+	 * @since   1.3.1
+	 *
+	 * @return bool
+	 */
+	function sanitization_content_valid() {
+		$allowed_html = get_option( 'alg_dtwp_opt_custom_sanitization_content', wp_json_encode( $this->get_default_allowed_comment_html() ) );
+		$ob           = json_decode( $allowed_html );
+		if ( $ob === null ) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * filter_and_sanitize_comment.
+	 *
+	 * @version 1.3.1
+	 * @since   1.3.1
+	 *
+	 * @param $comment_data
+	 *
+	 * @return mixed
+	 */
+	function filter_and_sanitize_comment( $comment_data ) {
+		if (
+			$this->discussion_comment_on_update
+			&& 'yes' === get_option( 'alg_dtwp_opt_custom_sanitization', 'no' )
+		) {
+			$allowed_html = get_option( 'alg_dtwp_opt_custom_sanitization_content', wp_json_encode( $this->get_default_allowed_comment_html() ) );
+			$comment_data = wp_kses( $comment_data, json_decode( $allowed_html,true ) );
+		}
+		return $comment_data;
 	}
 
 	/**
@@ -409,7 +485,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Adds discussions comment type in comment data.
 	 *
-	 * @version 1.1.0
+	 * @version 1.3.1
 	 * @since   1.0.0
 	 *
 	 * @param   $comment_data
@@ -419,9 +495,14 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	function add_discussions_comment_type_in_comment_data( $comment_data ) {
 		$comment_type_id = alg_wc_pdt_get_comment_type_id();
 		if (
-			(   isset( $_REQUEST[ $comment_type_id ] ) && filter_var( $_REQUEST[ $comment_type_id ], FILTER_VALIDATE_BOOLEAN ) ) ||
+			( isset( $_REQUEST[ $comment_type_id ] ) && filter_var( $_REQUEST[ $comment_type_id ], FILTER_VALIDATE_BOOLEAN ) ) ||
 			( ! isset( $_REQUEST[ $comment_type_id ] ) && ! empty( $comment_data['comment_parent'] ) && get_comment_type( $comment_data['comment_parent'] ) == $comment_type_id )
 		) {
+			$this->discussion_comment_on_update = true;
+			if ( 'yes' === get_option( 'alg_dtwp_opt_custom_sanitization', 'no' ) ) {
+				remove_filter( 'pre_comment_content', 'wp_filter_post_kses' );
+				remove_filter( 'pre_comment_content', 'wp_filter_kses' );
+			}
 			$comment_data['comment_type'] = $comment_type_id;
 		}
 		return $comment_data;
