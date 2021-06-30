@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Support Representative
  *
- * @version 1.2.9
+ * @version 1.3.2
  * @since   1.2.7
  * @author  Thanks to IT
  */
@@ -18,13 +18,13 @@ if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_My_Account' ) ) :
 		protected $tab_title='';
 
 		/**
-		 * @version 1.2.9
+		 * @version 1.3.2
 		 * @since   1.2.7
 		 *
 		 * Alg_WC_Products_Discussions_Tab_My_Account constructor.
 		 */
 		public function __construct() {
-			add_action( 'init', array( $this, 'my_custom_endpoints' ) );
+			add_action( 'init', array( $this, 'my_custom_endpoints' ), PHP_INT_MAX );
 			add_filter( 'query_vars', array( $this, 'my_custom_query_vars' ), 0 );
 			add_action( 'after_switch_theme', array( $this, 'my_custom_flush_rewrite_rules' ) );
 			add_filter( 'woocommerce_account_menu_items', array( $this, 'my_custom_my_account_menu_items' ) );

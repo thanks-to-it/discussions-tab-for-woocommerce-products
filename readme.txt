@@ -2,8 +2,8 @@
 Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
-Tested up to: 5.6
-Stable tag: 1.3.1
+Tested up to: 5.7
+Stable tag: 1.3.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,12 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.3.2 - 29/06/2021 =
+* Fix - `flush_rewrite_rules` doesn't work after saving the admin discussions page.
+* Dev - General - Add option to remove content from comments.
+* Tested up to: 5.7.
+* WC tested up to: 5.4.
 
 = 1.3.1 - 01/04/2021 =
 * Fix - General - Rich text editor - Fix line breaks.

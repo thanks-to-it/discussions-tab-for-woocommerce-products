@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings
  *
- * @version 1.3.1
+ * @version 1.3.2
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.3.1
+	 * @version 1.3.2
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
@@ -205,6 +205,23 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 				'type'     => 'textarea',
 			),
 			array(
+				'title'    => __( 'Content removal', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Remove content from discussion comments', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => sprintf( __( 'The content won\'t be removed from db. It will be only filtered with the %s hook.', 'discussions-tab-for-woocommerce-products' ), '<code>' . 'comment_text' . '</code>' ),
+				'id'       => 'alg_dtwp_opt_remove_content',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'desc'                                => __( 'Content that will be removed:', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip'                            => __( 'Add one value per line.', 'discussions-tab-for-woocommerce-products' ),
+				'id'                                  => 'alg_dtwp_opt_content_to_remove',
+				'alg_wc_products_discussions_tab_raw' => true,
+				'default'                             => '<p>&nbsp;</p>',
+				'type'                                => 'textarea',
+			),
+			array(
 				'title'    =>  __( 'Pro version', 'discussions-tab-for-woocommerce-products' ),
 				'enabled'  => apply_filters( 'alg_wc_products_discussions_tab_settings', true ),
 				'type'     => 'alg_wc_pdtmb',
@@ -262,7 +279,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 	 * @return string
 	 */
 	function get_sanitization_content_desc() {
-		$desc = __( 'HTML tags allowed.', 'discussions-tab-for-woocommerce-products' );
+		$desc = __( 'HTML tags allowed:', 'discussions-tab-for-woocommerce-products' );
 		$desc .= ! alg_wc_products_discussions_tab()->core->sanitization_content_valid() ? '<br />' . '<span style="color:red">' . __( 'JSON not valid. Please check the content.', 'discussions-tab-for-woocommerce-products' ) . '</span>' : '';
 		return $desc;
 	}
