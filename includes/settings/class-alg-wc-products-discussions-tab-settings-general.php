@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings
  *
- * @version 1.3.2
+ * @version 1.3.3
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -28,30 +28,11 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.3.2
+	 * @version 1.3.3
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
 	function get_settings() {
-
-		$plugin_settings = array(
-			array(
-				'title'    => __( 'Discussions Tab Options', 'discussions-tab-for-woocommerce-products' ),
-				'type'     => 'title',
-				'id'       => 'alg_wc_products_discussions_tab_plugin_options',
-			),
-			array(
-				'title'    => __( 'Discussions Tab for Products', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => '<strong>' . __( 'Enable plugin', 'discussions-tab-for-woocommerce-products' ) . '</strong>',
-				'id'       => 'alg_dtwp_opt_enable',
-				'default'  => 'yes',
-				'type'     => 'checkbox',
-			),
-			array(
-				'type'     => 'sectionend',
-				'id'       => 'alg_wc_products_discussions_tab_plugin_options',
-			),
-		);
 
 		$general_settings = array(
 			array(
@@ -60,8 +41,94 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 				'id'       => 'alg_dtwp_opt_general',
 			),
 			array(
+				'title'    => __( 'Enable plugin', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => sprintf( __( 'Enable %s plugin', 'discussions-tab-for-woocommerce-products' ), '<strong>' . __( 'Discussions Tab for WooCommerce Products', 'discussions-tab-for-woocommerce-products' ) . '</strong>' ),
+				'id'       => 'alg_dtwp_opt_enable',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Open comments', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Open comments for product post type', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Enable if you can\'t see the comment form on the discussion tab or if you\'re getting the "Comments are closed" message. ', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_open_comments',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Restrict discussions', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Discussions comments can only be left by "verified owners"', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_v_owner_restrict',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'title'    => __( 'AJAX discussions', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Load comments via AJAX if the discussions tab is triggered', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Enable if you have a lot of discussions comments. ', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_ajax_tab',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_dtwp_opt_general',
+			),
+		);
+
+		$comment_meta = array(
+			array(
+				'title'    => __( 'Comment meta', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'title',
+				'desc'     => __( 'Data about the comment itself, like comment type, comment parent ID and the post/product in which the comment belongs to.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_comment_meta_section',
+			),
+			array(
+				'title'    => __( 'Comment type conversion', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Allow admin to convert discussions to reviews and vice versa', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => sprintf( __( 'Will add "Convert to Review" and "Convert to Discussion" options to admin\'s %s section.', 'discussions-tab-for-woocommerce-products' ),
+					'<a href="' . admin_url( 'edit-comments.php' ) . '" target="_blank">' . __( 'Comments', 'discussions-tab-for-woocommerce-products' ) . '</a>' ),
+				'id'       => 'alg_dtwp_admin_conversions_enable',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'             => __( 'Parent ID', 'discussions-tab-for-woocommerce-products' ),
+				'desc'              => __( 'Allow admin to edit discussion comment parent ID', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip'          => __( 'A new meta box will be added to the "edit comment" page.', 'discussions-tab-for-woocommerce-products' ),
+				'id'                => 'alg_dtwp_edit_comment_parent_id',
+				'default'           => 'no',
+				'type'              => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'title'             => __( 'Post ID', 'discussions-tab-for-woocommerce-products' ),
+				'desc'              => __( 'Allow admin to edit discussion comment post ID', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip'          => __( 'A new meta box will be added to the "edit comment" page.', 'discussions-tab-for-woocommerce-products' ),
+				'id'                => 'alg_dtwp_edit_comment_post_id',
+				'default'           => 'no',
+				'type'              => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_dtwp_opt_comment_meta_section',
+			),
+		);
+
+		$discussions_tab = array(
+			array(
+				'title'    => __( 'Discussions tab', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'title',
+				'desc'     => __( 'A tab added to the product page with the discussion comments.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_discussions_tab_section',
+			),
+			array(
 				'title'    => __( 'Count replies', 'discussions-tab-for-woocommerce-products' ),
 				'desc'     => __( 'Consider replies when counting the discussions comments total amount', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => sprintf( __( 'Changes how the %s from the %s option works.', 'discussions-tab-for-woocommerce-products' ), '<code>' . '%number_of_comments%' . '</code>', '<strong>' . __( 'Texts > Tab title', 'discussions-tab-for-woocommerce-products' ) . '</strong>' ),
 				'id'       => 'alg_dtwp_opt_count_replies',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
@@ -69,7 +136,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			array(
 				'title'    => __( 'Tab link', 'discussions-tab-for-woocommerce-products' ),
 				'desc'     => __( 'Link that will automatically open your discussions tab.', 'discussions-tab-for-woocommerce-products' ) . '<br>' .
-					sprintf( __( 'E.g.: %s', 'discussions-tab-for-woocommerce-products' ), '<code>' . $this->get_example_link( 'tab' ) . '</code>' ),
+				              sprintf( __( 'E.g.: %s', 'discussions-tab-for-woocommerce-products' ), '<code>' . $this->get_example_link( 'tab' ) . '</code>' ),
 				'id'       => 'alg_dtwp_opt_tab_id',
 				'default'  => 'discussions',
 				'class'    => 'regular-input',
@@ -78,7 +145,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			array(
 				'title'    => __( 'Comment link', 'discussions-tab-for-woocommerce-products' ),
 				'desc'     => __( 'Link that will automatically open your discussions tab on a specific comment.', 'discussions-tab-for-woocommerce-products' ) . '<br>' .
-					sprintf( __( 'E.g.: %s', 'discussions-tab-for-woocommerce-products' ), '<code>' . $this->get_example_link( 'comment' ) . '</code>' ),
+				              sprintf( __( 'E.g.: %s', 'discussions-tab-for-woocommerce-products' ), '<code>' . $this->get_example_link( 'comment' ) . '</code>' ),
 				'desc_tip' => __( 'This link will be displayed after a comment is posted on frontend.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_comment_link',
 				'default'  => 'discussion',
@@ -88,31 +155,92 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			array(
 				'title'    => __( 'Tab position', 'discussions-tab-for-woocommerce-products' ),
 				'desc_tip' => __( 'Tab priority (i.e. position).', 'discussions-tab-for-woocommerce-products' ) . ' ' .
-					sprintf( __( 'Default WooCommerce tabs priorities are: %s.', 'discussions-tab-for-woocommerce-products' ),
-						implode( ', ', array(
-							__( 'Description', 'woocommerce' ) . ' - 10',
-							__( 'Additional information', 'woocommerce' ) . ' - 20',
-							__( 'Reviews', 'woocommerce' ) . ' - 30',
-						) ) ),
+				              sprintf( __( 'Default WooCommerce tabs priorities are: %s.', 'discussions-tab-for-woocommerce-products' ),
+					              implode( ', ', array(
+						              __( 'Description', 'woocommerce' ) . ' - 10',
+						              __( 'Additional information', 'woocommerce' ) . ' - 20',
+						              __( 'Reviews', 'woocommerce' ) . ' - 30',
+					              ) ) ),
 				'id'       => 'alg_dtwp_opt_tab_priority',
 				'default'  => 50,
 				'type'     => 'number',
 			),
 			array(
-				'title'    => __( 'Shortcodes', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable shortcodes in discussion comments', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_sc_discussions',
-				'default'  => 'no',
-				'type'     => 'checkbox',
-				'checkboxgroup' => 'start',
+				'type'     => 'sectionend',
+				'id'       => 'alg_dtwp_opt_discussions_tab_section',
+			),
+		);
+
+		$email_notification_settings = array(
+			array(
+				'title'    => __( 'Notification via email', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'title',
+				'desc'     => __( 'A notification sent via email when there is a new interaction on discussion comments.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_email_notification_section',
 			),
 			array(
-				'desc'     => sprintf( __( 'Enable shortcodes to be viewed in <a href="%s" target="_blank">edit comments page</a> on admin', 'discussions-tab-for-woocommerce-products' ), admin_url( 'edit-comments.php' ) ),
-				'desc_tip' => sprintf( __( '"%s" option must be enabled.', 'discussions-tab-for-woocommerce-products' ), __( 'Enable shortcodes in discussion comments', 'discussions-tab-for-woocommerce-products' ) ),
-				'id'       => 'alg_dtwp_opt_sc_admin',
+				'title'    => __( 'Enable notifications', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Send notifications via e-mail when a new comment is posted or its status is set to approved', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_email_notifications_enabled',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Comment authors', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Also notify comment authors via email when they receive replies', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'By default, only product authors are notified.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_notify_comment_authors',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				'checkboxgroup' => 'end',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'title'    => __( 'Manual notification', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Allow sending manual notifications to the product author on the "edit comment" page', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => sprintf( __( 'If the %s option is enabled and the comment is a reply the parent comment author will also be notified.', 'discussions-tab-for-woocommerce-products' ), '<strong>' . __( 'Replies', 'discussions-tab-for-woocommerce-products' ) . '</strong>' ),
+				'id'       => 'alg_dtwp_manual_notifications_enabled',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'title'    => __( 'Notification text', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Remove undesired texts and actions from notification', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Removes the IP address, texts like "In reply to:" and actions like "Trash it", "Spam it" and "Delete it".', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_remove_undesired_texts_from_notification',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'title'    => __( 'Unsubscribing', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Create a "Unsubscribe" link on the notification email', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_unsubscribing_enabled',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'desc_tip' => __( 'Confirmation message displayed when a user does not want to receive notifications any more.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_unsubscribe_email_txt',
+				'default'  => __( 'You have been successfully unsubscribed', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'text',
+				'class'    => 'regular-input',
+				'css'      => 'width:100%',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'readonly' => 'readonly' ) ),
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_dtwp_opt_email_notification_section',
+			),
+		);
+
+		$comment_form = array(
+			array(
+				'title'    => __( 'Discussions form', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'title',
+				'desc'     => __( 'The form used to display the discussions comment field.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_discussions_form_section',
 			),
 			array(
 				'title'             => __( 'Comment form position', 'discussions-tab-for-woocommerce-products' ),
@@ -137,61 +265,35 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 			),
 			array(
 				'type'     => 'sectionend',
-				'id'       => 'alg_dtwp_opt_general',
+				'id'       => 'alg_dtwp_opt_discussions_form_section',
 			),
 		);
 
-		$extra_settings = array(
+		$comment_content = array(
 			array(
-				'title'    => __( 'Extra Options', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Comment content', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'The content from discussions comments.', 'discussions-tab-for-woocommerce-products' ),
 				'type'     => 'title',
-				'id'       => 'alg_dtwp_opt_extra',
+				'id'       => 'alg_dtwp_opt_comment_content',
 			),
 			array(
-				'title'    => __( 'Open comments', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Open comments for product post type', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Enable if you can\'t see the comment form on the discussion tab or if you\'re getting the "Comments are closed" message. ', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_open_comments',
+				'title'    => __( 'Shortcodes', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Enable shortcodes in discussion comments', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_sc_discussions',
 				'default'  => 'no',
 				'type'     => 'checkbox',
+				'checkboxgroup' => 'start',
 			),
 			array(
-				'title'    => __( 'AJAX tab', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Load discussions tab content via AJAX', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Enable if you have a lot of comments. ', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_ajax_tab',
+				'desc'     => sprintf( __( 'Enable shortcodes to be viewed in <a href="%s" target="_blank">edit comments page</a> on admin', 'discussions-tab-for-woocommerce-products' ), admin_url( 'edit-comments.php' ) ),
+				'desc_tip' => sprintf( __( '"%s" option must be enabled.', 'discussions-tab-for-woocommerce-products' ), __( 'Enable shortcodes in discussion comments', 'discussions-tab-for-woocommerce-products' ) ),
+				'id'       => 'alg_dtwp_opt_sc_admin',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+				'checkboxgroup' => 'end',
 			),
 			array(
-				'title'    => __( 'Restrict discussions', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Discussions comments can only be left by "verified owners"', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_v_owner_restrict',
-				'default'  => 'no',
-				'type'     => 'checkbox',
-				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
-			),
-			array(
-				'title'    => __( 'Notify authors', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Notify comment authors via email when they receive replies', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'They can unsubscribe clicking on the "Unsubscribe" link on the notification email.', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_notify_comment_authors',
-				'default'  => 'no',
-				'type'     => 'checkbox',
-				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
-			),
-			array(
-				'desc_tip' => __( 'Confirmation message displayed when a user does not want to receive notifications any more.', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_unsubscribe_email_txt',
-				'default'  => __( 'You have been successfully unsubscribed', 'discussions-tab-for-woocommerce-products' ),
-				'type'     => 'text',
-				'class'    => 'regular-input',
-				'css'      => 'width:100%',
-				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'readonly' => 'readonly' ) ),
-			),
-			array(
-				'title'    => __( 'Custom sanitization', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Content sanitization', 'discussions-tab-for-woocommerce-products' ),
 				'desc'     => __( 'Enable custom sanitization for discussion comments', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_custom_sanitization',
 				'default'  => 'no',
@@ -222,52 +324,12 @@ class Alg_WC_Products_Discussions_Tab_Settings_General extends Alg_WC_Products_D
 				'type'                                => 'textarea',
 			),
 			array(
-				'title'    =>  __( 'Pro version', 'discussions-tab-for-woocommerce-products' ),
-				'enabled'  => apply_filters( 'alg_wc_products_discussions_tab_settings', true ),
-				'type'     => 'alg_wc_pdtmb',
-				'show_in_pro' => false,
-				'accordion' => array(
-					'title' => __( 'Take a look on some of its features:', 'discussions-tab-for-woocommerce-products' ),
-					'items' => array(
-						array(
-							'trigger'     => __( 'Use social networks like Facebook at your favor', 'discussions-tab-for-woocommerce-products' ),
-							'description' => __( 'Let your customers auto fill their names, e-mail and even get their Facebook profile picture with just one click.', 'discussions-tab-for-woocommerce-products' ),
-							'img_src'     => plugins_url( '../../assets/images/autofill-frontend.png', __FILE__ ),
-						),
-						array(
-							'trigger'     => __( 'Decide if comments can be posted by anyone or only the ones who bought the product', 'discussions-tab-for-woocommerce-products' ),
-							'description' => __( 'You can also choose to simply add a label on comments made by customers.', 'discussions-tab-for-woocommerce-products' ),
-						),
-						array(
-							'trigger'     => __( 'Notify comment authors via email', 'discussions-tab-for-woocommerce-products' ),
-							'description' => __( 'Notify comment authors via email when they receive replies.', 'discussions-tab-for-woocommerce-products' ),
-						),
-						array(
-							'trigger'     => __( 'Show if comments are being replied by product authors', 'discussions-tab-for-woocommerce-products' ),
-							'description' => __( 'Display labels on comments/reviews that were written by product authors.', 'discussions-tab-for-woocommerce-products' ),
-						),
-						array(
-							'trigger'     => __( 'Support', 'discussions-tab-for-woocommerce-products' ),
-							'description' => __( 'We will be ready to help you in case of any issues or questions you may have.', 'discussions-tab-for-woocommerce-products' ),
-						),
-					),
-				),
-				'call_to_action' => array(
-					'href'   => 'https://wpfactory.com/item/discussions-tab-for-woocommerce-products/',
-					'label'  => __( 'Upgrade to Pro version now', 'discussions-tab-for-woocommerce-products' ),
-				),
-				'description' => __( 'Do you like the free version of this plugin? Imagine what the Pro version can do for you!', 'discussions-tab-for-woocommerce-products' ) . ' ' .
-					sprintf( __( 'Check it out at <a target="_blank" href="%1$s">%1$s</a>', 'discussions-tab-for-woocommerce-products' ),
-						'https://wpfactory.com/item/discussions-tab-for-woocommerce-products/' ),
-				'id'       => 'alg_dtwp_cmb_pro',
-			),
-			array(
 				'type'     => 'sectionend',
-				'id'       => 'alg_dtwp_opt_extra',
+				'id'       => 'alg_dtwp_opt_comment_content',
 			),
 		);
 
-		return array_merge( $plugin_settings, $general_settings, $extra_settings );
+		return array_merge( $general_settings, $discussions_tab, $comment_form, $email_notification_settings, $comment_meta, $comment_content );
 	}
 
 	/**

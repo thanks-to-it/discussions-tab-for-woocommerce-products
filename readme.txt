@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 5.7
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,18 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.3.3 - 14/07/2021 =
+* Fix - Free and pro plugins can't be active at the same time.
+* Dev - Use wpf-promoting-notice library to add notice on settings page regarding pro version.
+* Dev - Labels - Add option to manage the icons positioning.
+* Dev - Advanced - Add option to edit discussion comment parent ID.
+* Dev - Advanced - Add option to edit discussion comment post ID.
+* Dev - General - Add option to send manual notification to product author.
+* Dev - General - Add option to remove undesired texts from notification.
+* Dev - General - Add option to unsubscribe from notifications.
+* Dev - General - Add option to enable/disable email notification.
+* Rearrange admin settings.
 
 = 1.3.2 - 29/06/2021 =
 * Fix - `flush_rewrite_rules` doesn't work after saving the admin discussions page.

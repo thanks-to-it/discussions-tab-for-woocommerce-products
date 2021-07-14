@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Labels Section Settings
  *
- * @version 1.3.0
+ * @version 1.3.3
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.3.0
+	 * @version 1.3.3
 	 * @since   1.1.0
 	 */
 	function get_settings() {
@@ -49,8 +49,49 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
+				'title'             => __( 'Icons positioning', 'discussions-tab-for-woocommerce-products' ),
+				'id'                => 'alg_dtwp_icons_positioning',
+				'default'           => 'comment_text',
+				'type'              => 'select',
+				'options'           => array(
+					'comment_text'   => __( 'Next to comment text', 'discussions-tab-for-woocommerce-products' ),
+					'comment_author' => __( 'Next to comment author', 'discussions-tab-for-woocommerce-products' ),
+				),
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_dtwp_opt_labels',
+			),
+
+			// Tips style
+			array(
+				'title'    => __( 'Tips Style', 'discussions-tab-for-woocommerce-products' ),
+				'type'     => 'title',
+				'desc'     => __( 'Tips are hints that are displayed when mouse is over the icons.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_tip_style',
+			),
+			array(
+				'title'    => __( 'Tip text color', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_label_tip_txt_color',
+				'default'  => '#222',
+				'type'     => 'color',
+			),
+			array(
+				'title'    => __( 'Tip background color', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_label_tip_bkg_color',
+				'default'  => '#fef4c5',
+				'type'     => 'color',
+			),
+			array(
+				'title'    => __( 'Tip border color', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_label_tip_border_color',
+				'default'  => '#d4b943',
+				'type'     => 'color',
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_dtwp_opt_tip_style',
 			),
 
 			// Verify Owner settings
@@ -243,36 +284,6 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 				'id'       => 'alg_dtwp_opt_support',
 			),
 
-			// Tips style
-			array(
-				'title'    => __( 'Tips Style', 'discussions-tab-for-woocommerce-products' ),
-				'type'     => 'title',
-				'desc'     => __( 'Style for tips.', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_tip_style',
-			),
-			array(
-				'title'    => __( 'Tip text color', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_label_tip_txt_color',
-				'default'  => '#222',
-				'type'     => 'color',
-			),
-			array(
-				'title'    => __( 'Tip background color', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_label_tip_bkg_color',
-				'default'  => '#fef4c5',
-				'type'     => 'color',
-			),
-			array(
-				'title'    => __( 'Tip border color', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_label_tip_border_color',
-				'default'  => '#d4b943',
-				'type'     => 'color',
-			),
-			array(
-				'type'     => 'sectionend',
-				'id'       => 'alg_dtwp_opt_tip_style',
-			),
-
 			// Advanced
 			array(
 				'title'    => __( 'Advanced Options', 'discussions-tab-for-woocommerce-products' ),
@@ -281,9 +292,8 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 			),
 			array(
 				'title'    => __( 'Load Font Awesome', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Loads most recent version of Font Awesome.', 'discussions-tab-for-woocommerce-products' ) . ' ' .
-					__( 'Only mark this if you are not loading Font Awesome anywhere else. Font Awesome is responsible for creating icons.', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Loads most recent version of Font Awesome.', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => __( 'Only mark this if you are not loading Font Awesome anywhere else. Font Awesome is responsible for creating icons.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_font_awesome',
 				'default'  => 'yes',
 				'type'     => 'checkbox',

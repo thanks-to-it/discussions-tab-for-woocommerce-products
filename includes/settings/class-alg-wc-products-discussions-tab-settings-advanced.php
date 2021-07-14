@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Advanced Section Settings
  *
- * @version 1.1.0
+ * @version 1.3.3
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -28,7 +28,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Advanced extends Alg_WC_Products_
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.1.0
+	 * @version 1.3.3
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) add "Comments columns" option ("Setups comments columns in admin").
 	 */
@@ -55,26 +55,7 @@ class Alg_WC_Products_Discussions_Tab_Settings_Advanced extends Alg_WC_Products_
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_dtwp_adv_template',
-			),
-			array(
-				'title'    => __( 'Admin Options', 'discussions-tab-for-woocommerce-products' ),
-				'type'     => 'title',
-				'id'       => 'alg_dtwp_admin_options',
-			),
-			array(
-				'title'    => __( 'Conversions', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Enable', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Will allow admin to convert discussions to reviews and vice versa.', 'discussions-tab-for-woocommerce-products' ) . ' ' .
-					sprintf( __( 'Will add "Convert to Review" and "Convert to Discussion" options to admin\'s %s section.', 'discussions-tab-for-woocommerce-products' ),
-						'<a href="' . admin_url( 'edit-comments.php' ) . '" target="_blank">' . __( 'Comments', 'discussions-tab-for-woocommerce-products' ) . '</a>' ),
-				'id'       => 'alg_dtwp_admin_conversions_enable',
-				'default'  => 'yes',
-				'type'     => 'checkbox',
-			),
-			array(
-				'type'     => 'sectionend',
-				'id'       => 'alg_dtwp_admin_options',
-			),
+			)
 		);
 		return $advanced_settings;
 	}

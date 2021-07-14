@@ -1,21 +1,27 @@
 .alg-dtwp-labels {
 	z-index: 9;
-	display: block;
 	content: '';
-	position: absolute;
-	right: -4px;
-	top: -4px;
-	text-align: center;
-	.alg-dtwp-label {
-		right: 15px;
-		top: 15px;
-		margin-left: 8px;
+	text-align: right;
+	font-size: 0;
+	vertical-align: middle;
+	margin-left: 3px;
+	top:-1px;
+	position:relative;
+	&.alg-dtwp-comment-text-labels {
+		right: -4px;
+		top: -4px;
+		position: absolute;
+		.alg-dtwp-label {
+			right: 15px;
+			top: 15px;
+		}
 	}
 }
 
 .alg-dtwp-label {
+	margin-left: 5px;
 	line-height: 11px;
-	vertical-align: top;
+	vertical-align: baseline;
 	background-color: #ccc;
 	width: 15px;
 	height: 15px;
@@ -29,6 +35,7 @@
 	.alg-dtwp-fa {
 		color: #fff;
 		font-size: 11px;
+		line-height: 14px;
 	}
 	&:hover .alg-dtwp-tip {
 		opacity: 1;
@@ -53,13 +60,13 @@
 }
 
 // Label title
-.alg-dtwp-item-author.comment, .alg-dtwp-support-reps.comment{
-	> .comment-body .comment-meta:before{
-		padding:3px 6px;
-		text-align:center;
-		display:block;
-		font-size:12px;
-		margin:0 0 9px 0;
-		line-height:14px
+.alg-dtwp-item-author.comment, .alg-dtwp-support-reps.comment {
+	> .comment-body .comment-meta:before {
+		padding: 3px 6px;
+		text-align: center;
+		display: block;
+		font-size: 12px;
+		margin: 0 0 9px 0;
+		line-height: 14px
 	}
 }
