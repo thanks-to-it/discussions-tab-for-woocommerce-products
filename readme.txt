@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 5.7
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,12 +64,19 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 
 == Changelog ==
 
+= 1.3.4 - 26/07/2021 =
+* Fix - Email - Manual email displays incorrect notices on admin.
+* Fix - Labels - Some icons are not being displayed when using "Icons positioning" as "Next to comment author".
+* Dev - Email - Add option to show labels next to comment author name.
+* Refactor plugin.
+* Rearrange admin settings.
+
 = 1.3.3 - 14/07/2021 =
 * Fix - Free and pro plugins can't be active at the same time.
 * Dev - Use wpf-promoting-notice library to add notice on settings page regarding pro version.
 * Dev - Labels - Add option to manage the icons positioning.
-* Dev - Advanced - Add option to edit discussion comment parent ID.
-* Dev - Advanced - Add option to edit discussion comment post ID.
+* Dev - General - Add option to edit discussion comment parent ID.
+* Dev - General - Add option to edit discussion comment post ID.
 * Dev - General - Add option to send manual notification to product author.
 * Dev - General - Add option to remove undesired texts from notification.
 * Dev - General - Add option to unsubscribe from notifications.

@@ -7,11 +7,13 @@
  * @author  Thanks to IT
  */
 
+namespace WPFactory\WC_Products_Discussions_Tab;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_Compatibility' ) ) :
+if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Compatibility' ) ) :
 
-class Alg_WC_Products_Discussions_Tab_Compatibility {
+class Compatibility {
 
 	/**
 	 * Constructor.
@@ -76,5 +78,3 @@ class Alg_WC_Products_Discussions_Tab_Compatibility {
 }
 
 endif;
-
-return new Alg_WC_Products_Discussions_Tab_Compatibility();

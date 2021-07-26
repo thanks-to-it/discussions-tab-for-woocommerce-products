@@ -7,11 +7,13 @@
  * @author  Thanks to IT
  */
 
+namespace WPFactory\WC_Products_Discussions_Tab\Settings;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_Settings_Labels' ) ) :
+if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Labels' ) ) :
 
-class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Discussions_Tab_Settings_Section {
+class Settings_Labels extends Settings_Section {
 
 	/**
 	 * Constructor.
@@ -310,5 +312,3 @@ class Alg_WC_Products_Discussions_Tab_Settings_Labels extends Alg_WC_Products_Di
 }
 
 endif;
-
-return new Alg_WC_Products_Discussions_Tab_Settings_Labels();

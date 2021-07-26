@@ -13,6 +13,7 @@ class ComposerStaticInit3048af89502f1d1f2d30e38b0955a7f5
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'WPFactory\\Promoting_Notice\\Core' => __DIR__ . '/..' . '/wpfactory/wpfactory-promoting-notice/src/php/class-core.php',
+        'WPFactory\\WPFactory_Autoloader\\WPFactory_Autoloader' => __DIR__ . '/..' . '/wpfactory/wpfactory-autoloader/src/php/class-wpfactory-autoloader.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

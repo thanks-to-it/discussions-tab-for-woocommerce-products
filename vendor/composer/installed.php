@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9e2513f6d3da01f3d5e4741e0efdbd33d72b4d16',
+    'reference' => '792ac6ea9407a18e13f81cee16fb61b80562d201',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9e2513f6d3da01f3d5e4741e0efdbd33d72b4d16',
+      'reference' => '792ac6ea9407a18e13f81cee16fb61b80562d201',
+    ),
+    'wpfactory/wpfactory-autoloader' => 
+    array (
+      'pretty_version' => 'v1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '89a0f13705b6d6fede0da5982f123ef880d5cdaf',
     ),
     'wpfactory/wpfactory-promoting-notice' => 
     array (

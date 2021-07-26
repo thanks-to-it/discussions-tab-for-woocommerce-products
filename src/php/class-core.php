@@ -7,11 +7,13 @@
  * @author  Thanks to IT
  */
 
+namespace WPFactory\WC_Products_Discussions_Tab;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_Core' ) ) :
+if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Core' ) ) :
 
-class Alg_WC_Products_Discussions_Tab_Core {
+class Core {
 
 	/**
 	 * is_discussion_tab.
@@ -35,7 +37,7 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.2.9
+	 * @version 1.3.4
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -106,10 +108,13 @@ class Alg_WC_Products_Discussions_Tab_Core {
 			add_action( 'upgrader_process_complete',               array( $this, 'detect_plugin_update' ), 10, 2 );
 
 			// Compatibility
-			require_once( 'class-alg-wc-products-discussions-tab-compatibility.php' );
+			new Compatibility();
 
 			// My account tab
-			require_once( 'class-alg-wc-products-discussions-tab-my-account.php' );
+			new My_Account();
+
+			// New comment Email
+			new New_Comment_Email();
 
 			// Filters and sanitize comment data
 			add_filter( 'pre_comment_content', array( $this, 'filter_and_sanitize_comment' ), 20 );
@@ -725,12 +730,12 @@ class Alg_WC_Products_Discussions_Tab_Core {
 	 * @version 1.1.0
 	 * @since   1.0.2
 	 * @param   $link
-	 * @param   WP_Comment $comment
+	 * @param   \WP_Comment $comment
 	 * @param   $args
 	 * @param   $cpage
 	 * @return  mixed
 	 */
-	function change_comment_link( $link, WP_Comment $comment, $args, $cpage ) {
+	function change_comment_link( $link, \WP_Comment $comment, $args, $cpage ) {
 		if ( $comment->comment_type != alg_wc_pdt_get_comment_type_id() ) {
 			return $link;
 		}
@@ -740,5 +745,3 @@ class Alg_WC_Products_Discussions_Tab_Core {
 }
 
 endif;
-
-return new Alg_WC_Products_Discussions_Tab_Core();

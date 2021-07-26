@@ -7,11 +7,13 @@
  * @author  Thanks to IT
  */
 
+namespace WPFactory\WC_Products_Discussions_Tab;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_Admin' ) ) :
+if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Admin' ) ) :
 
-class Alg_WC_Products_Discussions_Tab_Admin {
+class Admin {
 
 	/**
 	 * Constructor.
@@ -39,7 +41,8 @@ class Alg_WC_Products_Discussions_Tab_Admin {
 
 			// Conversions
 			if ( 'yes' === get_option( 'alg_dtwp_admin_conversions_enable', 'yes' ) ) {
-				require_once( 'class-alg-wc-products-discussions-tab-conversions.php' );
+				new Conversions();
+				//require_once( 'class-alg-wc-products-discussions-tab-conversions.php' );
 			}
 		}
 	}
@@ -198,5 +201,3 @@ class Alg_WC_Products_Discussions_Tab_Admin {
 }
 
 endif;
-
-return new Alg_WC_Products_Discussions_Tab_Admin();

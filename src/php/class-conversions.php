@@ -7,11 +7,13 @@
  * @author  Thanks to IT
  */
 
+namespace WPFactory\WC_Products_Discussions_Tab;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_Conversions' ) ) :
+if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Conversions' ) ) :
 
-class Alg_WC_Products_Discussions_Tab_Conversions {
+class Conversions {
 
 	/**
 	 * comment_action_convert.
@@ -177,5 +179,3 @@ class Alg_WC_Products_Discussions_Tab_Conversions {
 }
 
 endif;
-
-return new Alg_WC_Products_Discussions_Tab_Conversions();

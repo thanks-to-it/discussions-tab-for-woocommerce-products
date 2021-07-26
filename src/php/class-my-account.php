@@ -1,19 +1,21 @@
 <?php
 /**
- * Discussions Tab for WooCommerce Products - Support Representative
+ * Discussions Tab for WooCommerce Products - My Account
  *
  * @version 1.3.2
  * @since   1.2.7
  * @author  Thanks to IT
  */
 
+namespace WPFactory\WC_Products_Discussions_Tab;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_My_Account' ) ) :
+if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\My_Account' ) ) :
 
-	class Alg_WC_Products_Discussions_Tab_My_Account {
+	class My_Account {
 
 		protected $tab_title='';
 
@@ -21,7 +23,7 @@ if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_My_Account' ) ) :
 		 * @version 1.3.2
 		 * @since   1.2.7
 		 *
-		 * Alg_WC_Products_Discussions_Tab_My_Account constructor.
+		 * My_Account constructor.
 		 */
 		public function __construct() {
 			add_action( 'init', array( $this, 'my_custom_endpoints' ), PHP_INT_MAX );
@@ -166,5 +168,3 @@ if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab_My_Account' ) ) :
 	}
 
 endif;
-
-return new Alg_WC_Products_Discussions_Tab_My_Account();

@@ -3,7 +3,7 @@
 Plugin Name: Discussions Tab for WooCommerce Products
 Plugin URI: https://wpfactory.com/item/discussions-tab-for-woocommerce-products/
 Description: Creates a discussions tab for WooCommerce products.
-Version: 1.3.3
+Version: 1.3.4
 Author: Thanks to IT
 Author URI: http://github.com/thanks-to-it
 Text Domain: discussions-tab-for-woocommerce-products
@@ -34,6 +34,11 @@ if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab' ) ) :
 	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 endif;
 
+// Autoloader
+$autoloader = new WPFactory\WPFactory_Autoloader\WPFactory_Autoloader();
+$autoloader->add_namespace( 'WPFactory\WC_Products_Discussions_Tab', plugin_dir_path( __FILE__ ) . '/src/php' );
+$autoloader->init();
+
 if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab' ) ) :
 
 /**
@@ -51,13 +56,22 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @var   string
 	 * @since 1.1.0
 	 */
-	public $version = '1.3.3';
+	public $version = '1.3.4';
 
 	/**
 	 * @var   Alg_WC_Products_Discussions_Tab The single instance of the class
 	 * @since 1.1.0
 	 */
 	protected static $_instance = null;
+
+	/**
+	 * Core.
+	 *
+	 * @since 1.3.4
+	 *
+	 * @var \WPFactory\WC_Products_Discussions_Tab\Core
+	 */
+	public $core;
 
 	/**
 	 * Main Alg_WC_Products_Discussions_Tab Instance
@@ -82,27 +96,39 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @version 1.1.1
 	 * @since   1.1.0
 	 * @access  public
-	 * @todo    [dev] readme.txt: Premium Version: "Support"?
-	 * @todo    [dev] add translation (i.e. WPML/Polylang) shortcode
 	 */
 	function __construct() {
 
+	}
+
+	/**
+	 * init.
+	 *
+	 * @version 1.3.4
+	 * @since   1.3.4
+	 *
+	 * @todo    [dev] readme.txt: Premium Version: "Support"?
+	 * @todo    [dev] add translation (i.e. WPML/Polylang) shortcode
+	 */
+	function init(){
 		// Set up localisation
 		load_plugin_textdomain( 'discussions-tab-for-woocommerce-products', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 
-		// Pro
-		if ( 'discussions-tab-for-woocommerce-products-pro.php' === basename( __FILE__ ) ) {
-			require_once( 'includes/pro/class-alg-wc-products-discussions-tab-pro.php' );
-		}
-
 		// Include required files
 		$this->includes();
+
+		// Pro
+		if ( 'discussions-tab-for-woocommerce-products-pro.php' === basename( __FILE__ ) ) {
+			new \WPFactory\WC_Products_Discussions_Tab\Pro\Pro();
+		}
+
+		// Core
+		$this->core = new \WPFactory\WC_Products_Discussions_Tab\Core();
 
 		// Admin
 		if ( is_admin() ) {
 			$this->admin();
 		}
-
 	}
 
 	/**
@@ -113,31 +139,30 @@ final class Alg_WC_Products_Discussions_Tab {
 	 */
 	function includes() {
 		// Functions
-		require_once( 'includes/alg-wc-products-discussions-tab-functions.php' );
-		// Core
-		$this->core = require_once( 'includes/class-alg-wc-products-discussions-tab-core.php' );
+		require_once( 'src/php/functions.php' );
 	}
 
 	/**
 	 * admin.
 	 *
-	 * @version 1.1.0
+	 * @version 1.3.4
 	 * @since   1.1.0
 	 */
 	function admin() {
 		// Action links
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		// Admin core
-		require_once( 'includes/class-alg-wc-products-discussions-tab-admin.php' );
+		new \WPFactory\WC_Products_Discussions_Tab\Admin();
 		// Settings
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
-		require_once( 'includes/settings/class-alg-wc-products-discussions-tab-settings-section.php' );
-		$this->settings = array();
-		$this->settings['general']  = require_once( 'includes/settings/class-alg-wc-products-discussions-tab-settings-general.php' );
-		$this->settings['texts']    = require_once( 'includes/settings/class-alg-wc-products-discussions-tab-settings-texts.php' );
-		$this->settings['labels']   = require_once( 'includes/settings/class-alg-wc-products-discussions-tab-settings-labels.php' );
-		$this->settings['social']   = require_once( 'includes/settings/class-alg-wc-products-discussions-tab-settings-social.php' );
-		$this->settings['advanced'] = require_once( 'includes/settings/class-alg-wc-products-discussions-tab-settings-advanced.php' );
+
+		$this->settings               = array();
+		$this->settings['general']    = new \WPFactory\WC_Products_Discussions_Tab\Settings\Settings_General();
+		$this->settings['email']      = new \WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Email();
+		$this->settings['texts']      = new \WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Texts();
+		$this->settings['labels']     = new \WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Labels();
+		$this->settings['social']     = new \WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Social();
+		$this->settings['advanced']   = new \WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Advanced();
 		// Version updated
 		if ( get_option( 'alg_wc_products_discussions_tab_version', '' ) !== $this->version ) {
 			add_action( 'admin_init', array( $this, 'version_updated' ) );
@@ -169,7 +194,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @since   1.1.0
 	 */
 	function add_woocommerce_settings_tab( $settings ) {
-		$settings[] = require_once( 'includes/settings/class-alg-wc-products-discussions-tab-settings.php' );
+		$settings[] = new \WPFactory\WC_Products_Discussions_Tab\Settings\Settings();
 		return $settings;
 	}
 
@@ -235,4 +260,5 @@ if ( ! function_exists( 'alg_wc_products_discussions_tab' ) ) {
 	}
 }
 
-add_action( 'plugins_loaded', 'alg_wc_products_discussions_tab' );
+$plugin = alg_wc_products_discussions_tab();
+$plugin->init();
