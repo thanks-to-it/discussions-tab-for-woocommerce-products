@@ -2,8 +2,8 @@
 Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
-Tested up to: 5.7
-Stable tag: 1.3.4
+Tested up to: 5.8
+Stable tag: 1.3.5
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,11 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.3.5 - 26/07/2021 =
+* Tested up to: 5.8.
+* WC tested up to: 5.4.
+* Add github deploy setup.
 
 = 1.3.4 - 26/07/2021 =
 * Fix - Email - Manual email displays incorrect notices on admin.
