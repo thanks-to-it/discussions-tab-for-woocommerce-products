@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 5.8
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,14 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.3.6 - 09/08/2021 =
+* Fix - Comment edit redirect link from frontend.
+* Fix - Display comment edit link on frontend only to admins.
+* Fix - Remove space below comments.
+* Dev - Emails - New comment email - Add new option to replace `#comments` anchor by discussions tab anchor.
+* Dev - General - Comment meta - Add new option allowing admin to edit discussion comment user ID.
+* Dev - General - Add new option to Show "edit comment link" only for users with the "moderate_comments" capability.
 
 = 1.3.5 - 26/07/2021 =
 * Tested up to: 5.8.

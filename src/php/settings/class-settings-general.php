@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings
  *
- * @version 1.3.3
+ * @version 1.3.6
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -30,7 +30,7 @@ class Settings_General extends Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.3.3
+	 * @version 1.3.6
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
@@ -75,6 +75,13 @@ class Settings_General extends Settings_Section {
 				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
+				'title'             => __( 'Comment actions', 'discussions-tab-for-woocommerce-products' ),
+				'desc'              => sprintf( __( 'Show "edit comment link" only for users with the %s capability', 'discussions-tab-for-woocommerce-products' ), '<code>' . 'moderate_comments' . '</code>' ),
+				'id'                => 'alg_dtwp_edit_comments_link_requires_moderate_comments',
+				'default'           => 'yes',
+				'type'              => 'checkbox',
+			),
+			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_dtwp_opt_general',
 			),
@@ -110,6 +117,15 @@ class Settings_General extends Settings_Section {
 				'desc'              => __( 'Allow admin to edit discussion comment post ID', 'discussions-tab-for-woocommerce-products' ),
 				'desc_tip'          => __( 'A new meta box will be added to the "edit comment" page.', 'discussions-tab-for-woocommerce-products' ),
 				'id'                => 'alg_dtwp_edit_comment_post_id',
+				'default'           => 'no',
+				'type'              => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
+				'title'             => __( 'User ID', 'discussions-tab-for-woocommerce-products' ),
+				'desc'              => __( 'Allow admin to edit discussion comment user ID', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip'          => __( 'A new meta box will be added to the "edit comment" page.', 'discussions-tab-for-woocommerce-products' ),
+				'id'                => 'alg_dtwp_edit_comment_user_id',
 				'default'           => 'no',
 				'type'              => 'checkbox',
 				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),

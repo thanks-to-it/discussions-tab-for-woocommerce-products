@@ -37,7 +37,7 @@ class Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.3.4
+	 * @version 1.3.6
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -119,9 +119,60 @@ class Core {
 			// Filters and sanitize comment data
 			add_filter( 'pre_comment_content', array( $this, 'filter_and_sanitize_comment' ), 20 );
 
+			// Fix comment edit redirect
+			add_filter( 'comment_edit_redirect', array( $this, 'fix_comment_edit_redirect_from_frontend' ), 11, 2 );
+
+			// Edit comment link
+			add_filter( 'edit_comment_link', array( $this, 'handle_discussion_comment_edit_link' ), 10, 2 );
+
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * handle_discussion_comment_edit_link.
+	 *
+	 * @version 1.3.6
+	 * @since   1.3.6
+	 *
+	 * @param $link
+	 * @param $comment_id
+	 *
+	 * @return string
+	 */
+	function handle_discussion_comment_edit_link( $link, $comment_id ) {
+		if (
+			'yes' === get_option( 'alg_dtwp_edit_comments_link_requires_moderate_comments', 'yes' ) &&
+			! empty( $comment = get_comment( $comment_id ) ) &&
+			alg_wc_pdt_get_comment_type_id() === $comment->comment_type &&
+			! current_user_can( 'moderate_comments' )
+		) {
+			$link = '';
+		}
+		return $link;
+	}
+
+	/**
+	 * fix_comment_edit_redirect_from_frontend.
+	 *
+	 * @version 1.3.6
+	 * @since   1.3.6
+	 *
+	 * @param $location
+	 * @param $comment_id
+	 *
+	 * @return mixed
+	 */
+	function fix_comment_edit_redirect_from_frontend( $location, $comment_id ) {
+		if (
+			! empty( $comment = get_comment( $comment_id ) ) &&
+			alg_wc_pdt_get_comment_type_id() === $comment->comment_type &&
+			false === strpos( $location, 'edit-comments.php' )
+		) {
+			$location = get_comment_link( $comment_id );
+		}
+		return $location;
 	}
 
 	/**

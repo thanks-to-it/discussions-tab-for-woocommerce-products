@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - New comment email.
  *
- * @version 1.3.4
+ * @version 1.3.6
  * @since   1.3.3
  * @author  Thanks to IT
  */
@@ -20,7 +20,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\New_Comment_Email' )
 		/**
 		 * Constructor.
 		 *
-		 * @version 1.3.3
+		 * @version 1.3.6
 		 * @since   1.3.3
 		 */
 		function __construct() {
@@ -29,6 +29,8 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\New_Comment_Email' )
 			add_action( 'admin_notices', array( $this, 'show_notification_notice' ) );
 			// Removes undesired text.
 			add_filter( 'comment_notification_text', array( $this, 'remove_native_actions' ), 10, 2 );
+			// Replaces comments anchor.
+			add_filter( 'comment_notification_text', array( $this, 'replace_comments_anchor' ), 10, 2 );
 		}
 
 		/**
@@ -91,6 +93,28 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\New_Comment_Email' )
 				$email_text = preg_replace( "/(Trash it:.*)|(Spam it:.*)|(Delete it:.*)|(In reply to:.*)|( \(IP address:.*)/", "", $email_text );
 				// Trims at the end
 				$email_text = preg_replace( "/\s*\z/", "", $email_text );
+			}
+			return $email_text;
+		}
+
+		/**
+		 * replace_comments_anchor.
+		 *
+		 * @version 1.3.6
+		 * @since   1.3.6
+		 *
+		 * @param $email_text
+		 * @param $comment_id
+		 *
+		 * @return string
+		 */
+		function replace_comments_anchor( $email_text, $comment_id ) {
+			if (
+				'yes' === get_option( 'alg_dtwp_new_comment_email_replace_comments_anchor', 'yes' ) &&
+				! empty( $comment = get_comment( $comment_id ) ) &&
+				alg_wc_pdt_get_comment_type_id() === $comment->comment_type
+			) {
+				$email_text = str_replace( '#comments', '#tab-' . alg_wc_products_discussions_tab()->core->get_discussions_tab_id(), $email_text );
 			}
 			return $email_text;
 		}

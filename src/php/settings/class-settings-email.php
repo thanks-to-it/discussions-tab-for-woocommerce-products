@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Email Section Settings
  *
- * @version 1.3.4
+ * @version 1.3.6
  * @since   1.3.4
  * @author  Thanks to IT
  */
@@ -30,7 +30,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Em
 		/**
 		 * get_settings.
 		 *
-		 * @version 1.3.4
+		 * @version 1.3.6
 		 * @since   1.3.4
 		 */
 		function get_settings() {
@@ -61,12 +61,21 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Em
 					'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 				),
 				array(
-					'title'    => __( 'Email text', 'discussions-tab-for-woocommerce-products' ),
-					'desc'     => __( 'Remove undesired texts and actions from the email', 'discussions-tab-for-woocommerce-products' ),
-					'desc_tip' => __( 'Removes the IP address, texts like "In reply to:" and actions like "Trash it", "Spam it" and "Delete it".', 'discussions-tab-for-woocommerce-products' ),
-					'id'       => 'alg_dtwp_remove_undesired_texts_from_notification',
-					'default'  => 'yes',
-					'type'     => 'checkbox',
+					'title'         => __( 'Email text', 'discussions-tab-for-woocommerce-products' ),
+					'desc'          => __( 'Remove undesired texts and actions from the email', 'discussions-tab-for-woocommerce-products' ),
+					'desc_tip'      => __( 'Removes the IP address, texts like "In reply to:" and actions like "Trash it", "Spam it" and "Delete it".', 'discussions-tab-for-woocommerce-products' ),
+					'id'            => 'alg_dtwp_remove_undesired_texts_from_notification',
+					'checkboxgroup' => 'start',
+					'default'       => 'yes',
+					'type'          => 'checkbox',
+				),
+				array(
+					'desc'          => __( 'Replace <code>#comments</code> anchor by discussions tab anchor', 'discussions-tab-for-woocommerce-products' ),
+					'desc_tip'      => sprintf( __( 'It should fix the permalink after texts like: %s', 'discussions-tab-for-woocommerce-products' ), '"' . __( 'You can see all comments on this post here:', 'discussions-tab-for-woocommerce-products' ) . '"' ),
+					'checkboxgroup' => 'end',
+					'id'            => 'alg_dtwp_new_comment_email_replace_comments_anchor',
+					'default'       => 'yes',
+					'type'          => 'checkbox',
 				),
 				array(
 					'title'             => __( 'Labels', 'discussions-tab-for-woocommerce-products' ),
