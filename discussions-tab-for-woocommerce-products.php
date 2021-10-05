@@ -3,14 +3,14 @@
 Plugin Name: Discussions Tab for WooCommerce Products
 Plugin URI: https://wpfactory.com/item/discussions-tab-for-woocommerce-products/
 Description: Creates a discussions tab for WooCommerce products.
-Version: 1.3.6
+Version: 1.3.7
 Author: Thanks to IT
 Author URI: http://github.com/thanks-to-it
 Text Domain: discussions-tab-for-woocommerce-products
 Domain Path: /langs
 Copyright: © 2021 Thanks to IT
 WC requires at least: 3.0.0
-WC tested up to: 5.4
+WC tested up to: 5.7
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -18,14 +18,27 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Handle is_plugin_active function
-if ( ! function_exists( 'is_plugin_active' ) ) {
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if ( ! function_exists( 'alg_wc_products_discussions_tab_is_plugin_active' ) ) {
+	/**
+	 * alg_wc_products_discussions_tab_is_plugin_active.
+	 *
+	 * @version 1.3.7
+	 * @since   1.3.7
+	 */
+	function alg_wc_products_discussions_tab_is_plugin_active( $plugin ) {
+		return ( function_exists( 'is_plugin_active' ) ? is_plugin_active( $plugin ) :
+			(
+				in_array( $plugin, apply_filters( 'active_plugins', ( array ) get_option( 'active_plugins', array() ) ) ) ||
+				( is_multisite() && array_key_exists( $plugin, ( array ) get_site_option( 'active_sitewide_plugins', array() ) ) )
+			)
+		);
+	}
 }
 
 // Check for active plugins
 if (
-	! is_plugin_active( 'woocommerce/woocommerce.php' ) ||
-	( 'discussions-tab-for-woocommerce-products.php' === basename( __FILE__ ) && is_plugin_active( 'discussions-tab-for-woocommerce-products-pro/discussions-tab-for-woocommerce-products-pro.php' ) )
+	! alg_wc_products_discussions_tab_is_plugin_active( 'woocommerce/woocommerce.php' ) ||
+	( 'discussions-tab-for-woocommerce-products.php' === basename( __FILE__ ) && alg_wc_products_discussions_tab_is_plugin_active( 'discussions-tab-for-woocommerce-products-pro/discussions-tab-for-woocommerce-products-pro.php' ) )
 ) {
 	return;
 }
@@ -56,7 +69,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @var   string
 	 * @since 1.1.0
 	 */
-	public $version = '1.3.6';
+	public $version = '1.3.7';
 
 	/**
 	 * @var   Alg_WC_Products_Discussions_Tab The single instance of the class

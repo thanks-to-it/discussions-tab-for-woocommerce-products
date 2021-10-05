@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class
  *
- * @version 1.3.0
+ * @version 1.3.7
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -408,29 +408,31 @@ class Core {
 	function add_discussions_tab_content() {
 		do_action( 'alg_dtwp_tab_content' );
 		if ( apply_filters( 'alg_dtwp_comments_template_output_validation', true ) ) {
-			$this->comments_template();
+			echo $this->get_comments_template();
 		}
 	}
 
 	/**
 	 * get_comments_template.
 	 *
-	 * @version 1.2.3
+	 * @version 1.3.7
 	 * @since   1.2.3
-	 *
-	 * @param bool $echo
 	 *
 	 * @return false|string
 	 */
-	function comments_template( $echo = true ) {
+	function get_comments_template() {
 		$this->is_discussion_tab = true;
+		global $post;
+		if (
+			empty( $post ) ||
+			! is_a( wc_get_product( $post ), 'WC_Product' )
+		) {
+			return '';
+		}
 		ob_start();
 		comments_template();
 		$result = ob_get_contents();
 		ob_end_clean();
-		if ( $echo ) {
-			echo $result;
-		}
 		do_action( 'alg_dtwp_after_comments_template' );
 		$this->is_discussion_tab = false;
 		return $result;
