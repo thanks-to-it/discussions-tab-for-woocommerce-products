@@ -48,6 +48,14 @@ var map = {
 		"./src/js/modules/scroller.js",
 		"src_js_modules_scroller_js"
 	],
+	"./subscription": [
+		"./src/js/modules/subscription.js",
+		"src_js_modules_subscription_js"
+	],
+	"./subscription.js": [
+		"./src/js/modules/subscription.js",
+		"src_js_modules_subscription_js"
+	],
 	"./wp-editor": [
 		"./src/js/modules/wp-editor.js",
 		"src_js_modules_wp-editor_js"

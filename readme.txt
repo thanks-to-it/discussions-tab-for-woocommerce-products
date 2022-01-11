@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 5.8
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,12 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.3.8 - 11/01/2021 =
+* Dev - Email - Unsubscribing - Add a checkbox above the discussion comments allowing to subscribe/unsubscribe.
+* Dev - Email - Unsubscribing - Remove unsubscribe link from "New comment email".
+* Dev - Email - Unsubscribing - Remove `dtwp_subscribed` comment meta and replace it by `dtwp_unsubscribed` post meta.
+* WC tested up to: 6.0.
 
 = 1.3.7 - 05/10/2021 =
 * Fix - Uncaught Error: Call to a member function get_id() on bool.

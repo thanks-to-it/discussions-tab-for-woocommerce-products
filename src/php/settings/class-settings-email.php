@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Email Section Settings
  *
- * @version 1.3.6
+ * @version 1.3.8
  * @since   1.3.4
  * @author  Thanks to IT
  */
@@ -30,7 +30,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Em
 		/**
 		 * get_settings.
 		 *
-		 * @version 1.3.6
+		 * @version 1.3.8
 		 * @since   1.3.4
 		 */
 		function get_settings() {
@@ -41,24 +41,6 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Em
 					'desc'  => __( 'A notification sent via email when there is a new discussion comment.', 'discussions-tab-for-woocommerce-products' ) . '<br />' .
 					           sprintf( __( 'The email depends on the %s option.', 'discussions-tab-for-woocommerce-products' ), '<a href="' . admin_url( 'options-discussion.php' ) . '">' . __( 'Email me whenever > Anyone posts a comment', 'discussions-tab-for-woocommerce-products' ) . '</a>' ),
 					'id'       => 'alg_dtwp_opt_email_notification_section',
-				),
-				array(
-					'title'    => __( 'Comment authors', 'discussions-tab-for-woocommerce-products' ),
-					'desc'     => __( 'Also notify comment authors via email when they receive replies', 'discussions-tab-for-woocommerce-products' ),
-					'desc_tip' => __( 'By default, only product authors are notified.', 'discussions-tab-for-woocommerce-products' ),
-					'id'       => 'alg_dtwp_notify_comment_authors',
-					'default'  => 'no',
-					'type'     => 'checkbox',
-					'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
-				),
-				array(
-					'title'    => __( 'Manual email', 'discussions-tab-for-woocommerce-products' ),
-					'desc'     => __( 'Allow sending manual emails to the product author on the "edit comment" page', 'discussions-tab-for-woocommerce-products' ),
-					'desc_tip' => sprintf( __( 'If the %s option is enabled and the comment is a reply the parent comment author will also be notified.', 'discussions-tab-for-woocommerce-products' ), '<strong>' . __( 'Comment authors', 'discussions-tab-for-woocommerce-products' ) . '</strong>' ),
-					'id'       => 'alg_dtwp_manual_notifications_enabled',
-					'default'  => 'no',
-					'type'     => 'checkbox',
-					'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 				),
 				array(
 					'title'         => __( 'Email text', 'discussions-tab-for-woocommerce-products' ),
@@ -86,14 +68,24 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Em
 					'type'              => 'checkbox',
 				),
 				array(
-					'title'    => __( 'Unsubscribing', 'discussions-tab-for-woocommerce-products' ),
-					'desc'     => __( 'Create a "Unsubscribe" link on the notification email', 'discussions-tab-for-woocommerce-products' ),
-					'id'       => 'alg_dtwp_unsubscribing_enabled',
+					'title'    => __( 'Comment authors', 'discussions-tab-for-woocommerce-products' ),
+					'desc'     => __( 'Also notify comment authors via email when they receive replies', 'discussions-tab-for-woocommerce-products' ),
+					'desc_tip' => __( 'By default, only product authors are notified. This option notifies all thread participants.', 'discussions-tab-for-woocommerce-products' ),
+					'id'       => 'alg_dtwp_notify_comment_authors',
 					'default'  => 'no',
 					'type'     => 'checkbox',
-					'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'readonly' => 'readonly' ) ),
+					'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 				),
 				array(
+					'title'             => __( 'Unsubscribing', 'discussions-tab-for-woocommerce-products' ),
+					'desc'              => __( 'Create a checkbox above the discussion comments allowing registered users to subscribe/unsubscribe.', 'discussions-tab-for-woocommerce-products' ),
+					'desc_tip'          => sprintf( __( 'If enabled, it will make more sense to also enable the %s option.', 'discussions-tab-for-woocommerce-products' ), '<strong>' . __( 'Comment authors', 'discussions-tab-for-woocommerce-products' ) . '</strong>' ),
+					'id'                => 'alg_dtwp_unsubscribing_enabled',
+					'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+					'default'           => 'no',
+					'type'              => 'checkbox',
+				),
+				/*array(
 					'desc_tip' => __( 'Confirmation message displayed when a user does not want to receive notifications any more.', 'discussions-tab-for-woocommerce-products' ),
 					'id'       => 'alg_dtwp_unsubscribe_email_txt',
 					'default'  => __( 'You have been successfully unsubscribed.', 'discussions-tab-for-woocommerce-products' ),
@@ -101,6 +93,15 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Em
 					'class'    => 'regular-input',
 					'css'      => 'width:100%',
 					'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'readonly' => 'readonly' ) ),
+				),*/
+				array(
+					'title'    => __( 'Manual email', 'discussions-tab-for-woocommerce-products' ),
+					'desc'     => __( 'Allow sending manual emails to the product author on the "edit comment" page', 'discussions-tab-for-woocommerce-products' ),
+					'desc_tip' => sprintf( __( 'If the %s option is enabled and the comment is a reply the parent comment author will also be notified.', 'discussions-tab-for-woocommerce-products' ), '<strong>' . __( 'Comment authors', 'discussions-tab-for-woocommerce-products' ) . '</strong>' ),
+					'id'       => 'alg_dtwp_manual_notifications_enabled',
+					'default'  => 'no',
+					'type'     => 'checkbox',
+					'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 				),
 				array(
 					'type'     => 'sectionend',

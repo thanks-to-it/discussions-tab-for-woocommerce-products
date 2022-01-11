@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Comments Template
  *
- * @version 1.2.4
+ * @version 1.3.8
  * @since   1.0.0
  * @author  Thanks to IT
  */
@@ -33,7 +33,6 @@ if ( post_password_required() ) {
 <div class="alg-dtwp-wrapper">
 	<div id="comments" class="comments-area <?php echo wp_get_theme()->get('Name'); ?>" aria-label="Post Comments">
 
-
 		<?php
 
 		if ( have_comments() ) : ?>
@@ -44,6 +43,23 @@ if ( post_password_required() ) {
 				echo sprintf( $text, '<span>' . get_the_title() . '</span>', (int) get_comments_number());
 				?>
 			</h2>
+
+			<?php // Subscription. ?>
+			<?php if ( is_user_logged_in() && 'yes' === get_option( 'alg_dtwp_unsubscribing_enabled', 'no' ) ) : ?>
+				<?php
+				$unsubscribed_users = get_post_meta( get_the_ID(), 'dtwp_unsubscribed', false );
+				$subscribed         = in_array( wp_get_current_user()->user_email, $unsubscribed_users ) ? false : true;
+				?>
+				<div class="dtwp-subscription">
+					<input type="checkbox" id="dtwp_subscribe_via_email" name="dtwp_subscribe_via_email" value="1" <?php checked( $subscribed, 1 ); ?>/>
+					<label for="dtwp_subscribe_via_email"><?php _e( 'Subscribe via email', 'discussions-tab-for-woocommerce-products' ); ?></label>
+					<?php if ( (int) get_current_user_id() !== (int) get_post_field( 'post_author', get_the_ID() ) ): ?>
+						<p class="description desc"><?php _e( 'You\'ll only receive emails from the threads you\'ve commented on.', 'discussions-tab-for-woocommerce-products' ); ?></p>
+					<?php else: ?>
+						<p class="description desc"><?php _e( 'You\'ll receive emails for every comment posted.', 'discussions-tab-for-woocommerce-products' ); ?></p>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
 
 			<?php do_action('alg_dtwp_comments_start'); ?>
 
@@ -83,6 +99,5 @@ if ( post_password_required() ) {
 		do_action('alg_dtwp_comments_end');
 
 		?>
-
-	</div><!-- #comments -->
+	</div>
 </div>

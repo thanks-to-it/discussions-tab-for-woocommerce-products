@@ -89,7 +89,7 @@ class Settings_General extends Settings_Section {
 
 		$comment_meta = array(
 			array(
-				'title'    => __( 'Comment meta', 'discussions-tab-for-woocommerce-products' ),
+				'title'    => __( 'Editable comment meta on admin', 'discussions-tab-for-woocommerce-products' ),
 				'type'     => 'title',
 				'desc'     => __( 'Data about the comment itself, like comment type, comment parent ID and the post/product in which the comment belongs to.', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_comment_meta_section',

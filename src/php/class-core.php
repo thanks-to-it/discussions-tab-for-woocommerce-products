@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class
  *
- * @version 1.3.7
+ * @version 1.3.8
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -37,94 +37,68 @@ class Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.3.6
+	 * @version 1.3.8
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
 	 */
 	function __construct() {
 		if ( 'yes' === get_option( 'alg_dtwp_opt_enable', 'yes' ) ) {
-
 			// Handle template
 			add_filter( 'woocommerce_locate_template',             array( $this, 'locate_template' ), 10, 3 );
 			add_filter( 'woocommerce_locate_core_template',        array( $this, 'locate_template' ), 10, 3 );
-
 			// Scripts
 			add_action( 'wp_enqueue_scripts',                      array( $this, 'load_scripts' ) );
-
 			// Adds discussion tab in product page
 			add_filter( 'woocommerce_product_tabs',                array( $this, 'add_discussions_tab' ) );
-
 			// Inserts comments as discussion comment type in database
 			add_action( 'comment_form_top',                        array( $this, 'add_discussions_comment_type_in_form' ) );
 			add_filter( 'preprocess_comment',                      array( $this, 'add_discussions_comment_type_in_comment_data' ) );
-
 			// Hides discussion comments on improper places
 			add_action( 'pre_get_comments',                        array( $this, 'hide_discussion_comments_on_default_callings' ) );
-
 			// Loads discussion comments
 			add_filter( 'comments_template_query_args',            array( $this, 'filter_discussions_comments_template_query_args' ) );
-
 			// Swaps woocommerce template (single-product-reviews.php) with default comments template
 			add_filter( 'comments_template',                       array( $this, 'load_discussions_comments_template' ), 20 );
-
 			// Tags the respond form so it can have it's ID changed
 			add_action( 'comment_form_before',                     array( $this, 'create_respond_form_wrapper_start' ) );
 			add_action( 'comment_form_after',                      array( $this, 'create_respond_form_wrapper_end' ) );
-
 			// Change reply link respond id
 			add_filter( 'comment_reply_link_args',                 array( $this, 'change_reply_link_respond_id' ) );
-
 			// Fixes comments count
 			add_filter( 'get_comments_number',                     array( $this, 'fix_discussions_comments_number' ), 10, 2 );
 			add_filter( 'woocommerce_product_get_review_count',    array( $this, 'fix_reviews_number' ), 10, 2 );
-
 			// Get avatar data
 			add_filter( 'get_avatar_comment_types',                array( $this, 'add_discussions_to_avatar_comment_types' ) );
-
 			// Filters params passed to `wp_list_comments` function
 			add_filter( 'wp_list_comments_args',                   array( $this, 'filter_wp_list_comments_args' ) );
-
 			// Filters the class of `wp_list_comments` wrapper
 			add_filter( 'alg_dtwp_wp_list_comments_wrapper_class', array( $this, 'filter_wp_list_comments_wrapper_class' ) );
-
 			// Filters the comment class
 			add_filter( 'comment_class',                           array( $this, 'filter_comment_class' ) );
-
 			// Changes comment link to `#discussion-`
 			add_filter( 'get_comment_link',                        array( $this, 'change_comment_link' ), 10, 4 );
-
 			// Handle shortcodes
 			add_filter( 'comment_text',                            array( $this, 'handle_shortcodes' ), 10, 2 );
-
 			// Open comments for product post type
 			add_filter( 'comments_open',                           array( $this, 'comments_open' ), 20, 2 );
-
 			// Display comments form
 			add_action( 'alg_dtwp_comments_end',                   array( $this, 'setup_comments_form_position' ) );
 			add_action( 'alg_dtwp_comments_start',                 array( $this, 'setup_comments_form_position' ) );
-
 			// Detect plugin update
 			add_action( 'upgrader_process_complete',               array( $this, 'detect_plugin_update' ), 10, 2 );
-
 			// Compatibility
 			new Compatibility();
-
 			// My account tab
 			new My_Account();
-
 			// New comment Email
 			new New_Comment_Email();
-
 			// Filters and sanitize comment data
 			add_filter( 'pre_comment_content', array( $this, 'filter_and_sanitize_comment' ), 20 );
-
 			// Fix comment edit redirect
 			add_filter( 'comment_edit_redirect', array( $this, 'fix_comment_edit_redirect_from_frontend' ), 11, 2 );
-
 			// Edit comment link
 			add_filter( 'edit_comment_link', array( $this, 'handle_discussion_comment_edit_link' ), 10, 2 );
-
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
@@ -475,7 +449,7 @@ class Core {
 	/**
 	 * Enqueues main scripts.
 	 *
-	 * @version 1.3.0
+	 * @version 1.3.8
 	 * @since   1.0.0
 	 */
 	function load_scripts() {
@@ -491,6 +465,8 @@ class Core {
 		if ( is_product() ) {
 			wp_enqueue_script( 'alg-dtwp', alg_wc_products_discussions_tab()->plugin_url() . '/assets/js/frontend' . $suffix . '.js', array(), $version, true );
 			wp_localize_script( 'alg-dtwp', 'alg_dtwp', apply_filters( 'alg_dtwp_localize_script', array(
+				'ajaxurl'           => admin_url( 'admin-ajax.php' ),
+				'postID'            => get_the_ID(),
 				'tabID'             => alg_wc_products_discussions_tab()->core->get_discussions_tab_id(),
 				'commentLink'       => $this->get_comment_link(),
 				'respondID'         => $this->discussions_respond_id_wrapper,
