@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Advanced Section Settings
  *
- * @version 1.3.3
+ * @version 1.3.9
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -30,7 +30,7 @@ class Settings_Advanced extends Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.3.3
+	 * @version 1.3.9
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) add "Comments columns" option ("Setups comments columns in admin").
 	 */
@@ -95,6 +95,14 @@ class Settings_Advanced extends Settings_Section {
 				'default'  => wp_json_encode( alg_wc_products_discussions_tab()->core->get_default_allowed_comment_html(), JSON_PRETTY_PRINT ),
 				'css'      => $this->get_sanitization_content_css(),
 				'type'     => 'textarea',
+			),
+			array(
+				'title'    => __( 'Content escaping', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => sprintf(__( 'Escape content between %s and %s tags using %s', 'discussions-tab-for-woocommerce-products' ),'<code>code</code>','<code>pre</code>','<a href="https://developer.wordpress.org/reference/functions/esc_html/" target="_blank"><code>esc_html()</code></code></a>'),
+				'id'       => 'alg_dtwp_escape_code_and_pre',
+				'default'  => 'no',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+				'type'     => 'checkbox',
 			),
 			array(
 				'title'    => __( 'Content removal', 'discussions-tab-for-woocommerce-products' ),

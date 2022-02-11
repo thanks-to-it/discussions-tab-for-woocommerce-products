@@ -8,23 +8,28 @@
 .alg-dtwp-iconpicker-selected {
   box-shadow: 0 0 0 1px #ddd !important;
   color: #000 !important;
-  background: #ddd; }
+  background: #ddd;
+}
 
 .iconpicker-popover {
-  width: 229px !important; }
+  width: 229px !important;
+}
 
 .iconpicker-popover.popover {
-  z-index: 5; }
+  z-index: 5;
+}
 
 .wp-picker-container {
-  vertical-align: middle; }
+  vertical-align: middle;
+}
 
 .color-picker {
-  display: inline-block !important; }
+  display: inline-block !important;
+}
 
 .wp-picker-input-wrap {
   vertical-align: top;
-  display: inline-block; }
-
+  display: inline-block;
+}
 
 /*# sourceMappingURL=admin.css.map*/

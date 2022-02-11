@@ -2,8 +2,8 @@
 Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
-Tested up to: 5.8
-Stable tag: 1.3.8
+Tested up to: 5.9
+Stable tag: 1.3.9
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,7 +64,13 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 
 == Changelog ==
 
-= 1.3.8 - 11/01/2021 =
+= 1.3.9 - 10/02/2022 =
+* Dev - Advanced - Comment content - Add option to escape content between code and pre tags using esc_html().
+* WC tested up to: 6.1.
+* Tested up to: 5.9.
+* Fix node packages.
+
+= 1.3.8 - 11/01/2022 =
 * Dev - Email - Unsubscribing - Add a checkbox above the discussion comments allowing to subscribe/unsubscribe.
 * Dev - Email - Unsubscribing - Remove unsubscribe link from "New comment email".
 * Dev - Email - Unsubscribing - Remove `dtwp_subscribed` comment meta and replace it by `dtwp_unsubscribed` post meta.
