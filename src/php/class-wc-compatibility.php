@@ -123,7 +123,8 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 			if (
 				is_admin() &&
 				$comment &&
-				$_comment->comment_ID === $comment->comment_parent
+				$_comment->comment_ID === $comment->comment_parent &&
+				alg_wc_pdt_get_comment_type_id() === $comment->comment_type
 			) {
 				$_comment = $comment;
 			}
