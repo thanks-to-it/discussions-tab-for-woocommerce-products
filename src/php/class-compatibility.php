@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Compatibility Class
  *
- * @version 1.1.0
+ * @version 1.4.0
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -18,12 +18,14 @@ class Compatibility {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.1.0
-	 * @since   1.1.0
+	 * @version 1.4.0
+	 * @since   1.4.0
 	 */
 	function __construct() {
 		add_filter( 'get_comment_type',               array( $this, 'fix_hub_get_comment_type' ) );
 		add_filter( 'alg_dtwp_wp_list_comments_args', array( $this, 'filter_wp_list_comments_args' ) );
+		$wc_compatibility = new WC_Compatibility();
+		$wc_compatibility->init();
 	}
 
 	/**

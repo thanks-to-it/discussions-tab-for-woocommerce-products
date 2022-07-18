@@ -140,21 +140,23 @@
 }
 .alg-dtwp-loading-tab a:after {
   content: " " !important;
-  position: absolute;
-  top: 50%;
-  right: 1em;
-  display: block;
   border: 3px solid #ddd;
   border-radius: 50%;
   border-top: 3px solid #000;
   width: 15px;
   height: 15px;
-  margin-top: -11px;
   -webkit-animation: alg-dtwp-spin 1.3s linear infinite;
   /* Safari */
   animation: alg-dtwp-spin 1.3s linear infinite;
   transition: opacity ease 0.3s, right ease 0.3s;
   opacity: 1;
+  position: relative;
+  margin-top: 0;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 7px;
 }
 
 @-webkit-keyframes alg-dtwp-spin {

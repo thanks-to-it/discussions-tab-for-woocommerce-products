@@ -1,8 +1,8 @@
 <?php
 /**
- * Discussions Tab for WooCommerce Products - Advanced Section Settings
+ * Discussions Tab for WooCommerce Products - Advanced Section Settings.
  *
- * @version 1.3.9
+ * @version 1.4.0
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -30,7 +30,7 @@ class Settings_Advanced extends Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.3.9
+	 * @version 1.4.0
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) add "Comments columns" option ("Setups comments columns in admin").
 	 */
@@ -126,7 +126,27 @@ class Settings_Advanced extends Settings_Section {
 				'id'       => 'alg_dtwp_opt_comment_content',
 			),
 		);
-		return array_merge( $advanced_settings,$comment_content );
+		$wc_compatibility_opts = array(
+			array(
+				'title' => __( 'WooCommerce compatibility', 'discussions-tab-for-woocommerce-products' ),
+				'desc'  => __( 'From time to time, WooCommerce changes some details in the code that might affect the Discussions plugin. This is how you can handle with them.', 'discussions-tab-for-woocommerce-products' ),
+				'type'  => 'title',
+				'id'    => 'alg_dtwp_opt_wc_compatibility_options',
+			),
+			array(
+				'title'         => __( 'Reviews change', 'discussions-tab-for-woocommerce-products' ),
+				'desc'          => __( 'Fix product reviews change from WooCommerce 6.7.0', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip'      => __( 'WooCommerce tried to separate the reviews from comments and that created some problems on admin.', 'discussions-tab-for-woocommerce-products' ),
+				'id'            => 'alg_dtwp_fix_reviews_change',
+				'default'       => 'yes',
+				'type'          => 'checkbox',
+			),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'alg_dtwp_opt_wc_compatibility_options',
+			),
+		);
+		return array_merge( $advanced_settings, $comment_content, $wc_compatibility_opts );
 	}
 
 	/**

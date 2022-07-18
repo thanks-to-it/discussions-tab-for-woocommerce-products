@@ -1,8 +1,8 @@
 <?php
 /**
- * Discussions Tab for WooCommerce Products - Core Class
+ * Discussions Tab for WooCommerce Products - Core Class.
  *
- * @version 1.3.8
+ * @version 1.4.0
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -37,7 +37,7 @@ class Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.3.8
+	 * @version 1.4.0
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
