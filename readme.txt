@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 6.0
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,7 +64,13 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 
 == Changelog ==
 
-= 1.4.0 - 18/07/2022 =
+= 1.4.2 - 15/08/2022 =
+* Fix - Improve parent comment id fixer.
+* Fix - Pagination link.
+* Fix - Advanced - WooCommerce compatibility - Improve compatibility.
+* WC tested up to: 6.8.
+
+= 1.4.1 - 18/07/2022 =
 * Fix - Advanced - WooCommerce compatibility - Improve compatibility.
 * Tested up to: 6.0.
 

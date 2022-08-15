@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discussions Tab for WooCommerce Products 1.4.1\n"
+"Project-Id-Version: Discussions Tab for WooCommerce Products 1.4.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/discussions-tab-for-woocommerce-products\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-18T21:44:41+02:00\n"
+"POT-Creation-Date: 2022-08-15T18:35:23+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: discussions-tab-for-woocommerce-products\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: src/php/class-admin.php:59
 #: src/php/class-admin.php:128
-#: src/php/class-core.php:351
+#: src/php/class-core.php:371
 #: src/php/class-my-account.php:59
 #: src/php/settings/class-settings-texts.php:63
 #: src/php/settings/class-settings.php:26
@@ -85,11 +85,11 @@ msgstr ""
 msgid "Convert to Review"
 msgstr ""
 
-#: src/php/class-core.php:283
+#: src/php/class-core.php:303
 msgid "Leave a reply"
 msgstr ""
 
-#: src/php/class-core.php:284
+#: src/php/class-core.php:304
 #: src/php/settings/class-settings-texts.php:125
 msgid "Post Comment"
 msgstr ""
@@ -364,7 +364,7 @@ msgid "Load comments via AJAX if the discussions tab is triggered"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:71
-msgid "Enable if you have a lot of discussions comments. "
+msgid "For now, the option %s needs to be disabled, i.e., the comments pagination needs to be disabled."
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:78

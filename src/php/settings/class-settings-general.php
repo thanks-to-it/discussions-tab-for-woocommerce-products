@@ -68,7 +68,7 @@ class Settings_General extends Settings_Section {
 			array(
 				'title'    => __( 'AJAX discussions', 'discussions-tab-for-woocommerce-products' ),
 				'desc'     => __( 'Load comments via AJAX if the discussions tab is triggered', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => __( 'Enable if you have a lot of discussions comments. ', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => sprintf( __( 'For now, the option %s needs to be disabled, i.e., the comments pagination needs to be disabled.', 'discussions-tab-for-woocommerce-products' ), '<a href="' . admin_url( 'options-discussion.php' ) . '">' . __( 'Break Comments' ) . '</a>' ),
 				'id'       => 'alg_dtwp_opt_ajax_tab',
 				'default'  => 'no',
 				'type'     => 'checkbox',

@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class.
  *
- * @version 1.4.0
+ * @version 1.4.2
  * @since   1.1.0
  * @author  Thanks to IT
  */
@@ -37,7 +37,7 @@ class Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.4.0
+	 * @version 1.4.2
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -99,9 +99,29 @@ class Core {
 			add_filter( 'comment_edit_redirect', array( $this, 'fix_comment_edit_redirect_from_frontend' ), 11, 2 );
 			// Edit comment link
 			add_filter( 'edit_comment_link', array( $this, 'handle_discussion_comment_edit_link' ), 10, 2 );
+			// Fix pagination link
+			add_filter( 'get_comments_pagenum_link', array( $this, 'fix_pagination_link' ) );
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * fix_pagination_link.
+	 *
+	 * @version 1.4.2
+	 * @since   1.4.2
+	 *
+	 * @param $link
+	 *
+	 * @return null|string|string[]
+	 */
+	function fix_pagination_link( $link ) {
+		if ( $this->is_discussion_tab ) {
+			$tab_link = '#tab-' . $this->get_discussions_tab_id();
+			$link     = preg_replace( '/#comments$/', $tab_link, $link );
+		}
+		return $link;
 	}
 
 	/**

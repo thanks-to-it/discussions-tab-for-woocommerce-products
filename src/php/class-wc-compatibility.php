@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - WooCommerce compatibility.
  *
- * @version 1.4.0
+ * @version 1.4.2
  * @since   1.4.0
  * @author  Thanks to IT
  */
@@ -108,7 +108,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		/**
 		 * fix_get_comment.
 		 *
-		 * @version 1.4.0
+		 * @version 1.4.2
 		 * @since   1.4.0
 		 *
 		 * @param $_comment
@@ -116,15 +116,15 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		 * @return array|false|null|\WP_Comment|\WP_Error
 		 */
 		function fix_get_comment( $_comment ) {
-			if ( 'yes' !== get_option( 'alg_dtwp_fix_reviews_change', 'yes' ) ) {
-				return $_comment;
-			}
 			global $comment;
 			if (
 				is_admin() &&
+				! empty( $screen = get_current_screen() ) &&
+				'comment' === $screen->base &&
 				$comment &&
 				$_comment->comment_ID === $comment->comment_parent &&
-				alg_wc_pdt_get_comment_type_id() === $comment->comment_type
+				alg_wc_pdt_get_comment_type_id() === $comment->comment_type &&
+				'yes' === get_option( 'alg_dtwp_fix_reviews_change', 'yes' )
 			) {
 				$_comment = $comment;
 			}
