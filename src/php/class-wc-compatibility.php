@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - WooCommerce compatibility.
  *
- * @version 1.4.2
+ * @version 1.4.3
  * @since   1.4.0
  * @author  Thanks to IT
  */
@@ -33,7 +33,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		 *
 		 * WooCommerce tried to separate the reviews from comments and that created some problems on admin.
 		 *
-		 * @version 1.4.0
+		 * @version 1.4.3
 		 * @since   1.4.0
 		 *
 		 * @see https://github.com/woocommerce/woocommerce/compare/6.6.1...6.7.0?diff=split
@@ -43,11 +43,56 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		 */
 		function fix_wc_670() {
 			add_filter( 'admin_comment_types_dropdown', array( $this, 'exclude_review_from_admin_comment_types_dropdown' ), PHP_INT_MAX );
-			add_filter( 'comments_list_table_query_args', array( $this, 'add_post_type_to_admin_comments_list_table_and_remove_reviews' ), PHP_INT_MAX );
+			add_filter( 'comments_list_table_query_args', array( $this, 'add_post_type_to_admin_comments_list_table_and_remove_reviews' ), PHP_INT_MAX - 1 );
 			add_action( 'before_woocommerce_init', array( $this, 'prevent_wc_from_removing_products_from_comment_clauses' ) );
 			add_filter( 'gettext', array( $this, 'fix_comment_title' ), PHP_INT_MAX, 2 );
-			add_filter( 'get_comment', array( $this, 'fix_get_comment' ), PHP_INT_MAX );
+			add_filter( 'gettext', array( $this, 'fix_get_comment_parent' ), PHP_INT_MAX, 2 );
 			add_filter( 'parent_file', array( $this, 'fix_menu_item' ), PHP_INT_MAX );
+			add_action( 'pre_get_comments', array( $this, 'fix_comments_count' ), PHP_INT_MAX );
+			add_filter( 'wp_count_comments', array( $this, 'remove_wc_comment_count' ), 1 );
+		}
+
+		/**
+		 * remove_wc_comment_count.
+		 *
+		 * @see WC_Comments::wp_count_comments
+		 *
+		 * @version 1.4.3
+		 * @since   1.4.3
+		 */
+		function remove_wc_comment_count() {
+			if (
+				! empty( $screen = \get_current_screen() ) &&
+				'edit-comments' === $screen->base &&
+				'yes' === get_option( 'alg_dtwp_fix_reviews_change', 'yes' )
+			) {
+				remove_filter( 'wp_count_comments', array( 'WC_Comments', 'wp_count_comments' ), 10 );
+			}
+		}
+
+		/**
+		 * fix_comments_count.
+		 *
+		 * @version 1.4.3
+		 * @since   1.4.3
+		 *
+		 * @param $query
+		 */
+		function fix_comments_count( $query ) {
+			if (
+				is_admin() &&
+				! empty( $screen = \get_current_screen() ) &&
+				'edit-comments' === $screen->base &&
+				'yes' === get_option( 'alg_dtwp_fix_reviews_change', 'yes' ) &&
+				! empty( $query->query_vars['count'] )
+			) {
+				$comment_types            = apply_filters( 'admin_comment_types_dropdown', array() );
+				$comment_types['comment'] = __( 'Comments' );
+				if ( isset( $_GET['comment_type'] ) ) {
+					$comment_types = array( $_GET['comment_type'] => $_GET['comment_type'] );
+				}
+				$query->query_vars['type__in'] = array_keys( $comment_types );
+			}
 		}
 
 		/**
@@ -106,29 +151,30 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		}
 
 		/**
-		 * fix_get_comment.
+		 * fix_get_comment_parent.
 		 *
-		 * @version 1.4.2
-		 * @since   1.4.0
+		 * @version 1.4.3
+		 * @since   1.4.3
 		 *
-		 * @param $_comment
+		 * @param $translation
+		 * @param $text
 		 *
-		 * @return array|false|null|\WP_Comment|\WP_Error
+		 * @return mixed
 		 */
-		function fix_get_comment( $_comment ) {
+		function fix_get_comment_parent( $translation, $text ) {
 			global $comment;
 			if (
-				is_admin() &&
-				! empty( $screen = get_current_screen() ) &&
-				'comment' === $screen->base &&
 				$comment &&
-				$_comment->comment_ID === $comment->comment_parent &&
+				is_admin() &&
+				! empty( $screen = \get_current_screen() ) &&
 				alg_wc_pdt_get_comment_type_id() === $comment->comment_type &&
-				'yes' === get_option( 'alg_dtwp_fix_reviews_change', 'yes' )
+				'comment' === $screen->base &&
+				isset( $_GET['c'] ) &&
+				(int) $_GET['c'] !== (int) $comment->comment_ID
 			) {
-				$_comment = $comment;
+				$comment = get_comment( $_GET['c'] );
 			}
-			return $_comment;
+			return $translation;
 		}
 
 		/**
@@ -166,7 +212,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 				if ( ! empty( $args['post_type'] ) && 'any' !== $args['post_type'] ) {
 					$post_types = (array) $args['post_type'];
 				} else {
-					$post_types = get_post_types();
+					$post_types = \get_post_types();
 				}
 				$post_types[]      = 'product';
 				$args['post_type'] = $post_types;
