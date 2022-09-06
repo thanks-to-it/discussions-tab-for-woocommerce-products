@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - WooCommerce compatibility.
  *
- * @version 1.4.3
+ * @version 1.4.4
  * @since   1.4.0
  * @author  Thanks to IT
  */
@@ -57,13 +57,12 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		 *
 		 * @see WC_Comments::wp_count_comments
 		 *
-		 * @version 1.4.3
+		 * @version 1.4.4
 		 * @since   1.4.3
 		 */
 		function remove_wc_comment_count() {
 			if (
-				! empty( $screen = \get_current_screen() ) &&
-				'edit-comments' === $screen->base &&
+				false !== strpos( $this->get_request_uri(), 'edit-comments.php' ) &&
 				'yes' === get_option( 'alg_dtwp_fix_reviews_change', 'yes' )
 			) {
 				remove_filter( 'wp_count_comments', array( 'WC_Comments', 'wp_count_comments' ), 10 );
@@ -71,9 +70,21 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		}
 
 		/**
+		 * get_request_uri.
+		 *
+		 * @version 1.4.4
+		 * @since   1.4.4
+		 *
+		 * @return mixed
+		 */
+		function get_request_uri(){
+			return $_SERVER['REQUEST_URI'];
+		}
+
+		/**
 		 * fix_comments_count.
 		 *
-		 * @version 1.4.3
+		 * @version 1.4.4
 		 * @since   1.4.3
 		 *
 		 * @param $query
@@ -81,8 +92,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		function fix_comments_count( $query ) {
 			if (
 				is_admin() &&
-				! empty( $screen = \get_current_screen() ) &&
-				'edit-comments' === $screen->base &&
+				false !== strpos( $this->get_request_uri(), 'edit-comments.php' ) &&
 				'yes' === get_option( 'alg_dtwp_fix_reviews_change', 'yes' ) &&
 				! empty( $query->query_vars['count'] )
 			) {
@@ -98,7 +108,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		/**
 		 * fix_menu_item.
 		 *
-		 * @version 1.4.0
+		 * @version 1.4.4
 		 * @since   1.4.0
 		 *
 		 * @param $parent_file
@@ -106,10 +116,9 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		 * @return string
 		 */
 		function fix_menu_item( $parent_file ) {
-			global $submenu_file, $current_screen;
+			global $submenu_file;
 			if (
-				isset( $current_screen->id, $_GET['c'] ) &&
-				'comment' === $current_screen->id &&
+				false !== strpos( $this->get_request_uri(), 'comment.php' ) &&
 				'yes' === get_option( 'alg_dtwp_fix_reviews_change', 'yes' )
 			) {
 				$comment_id = absint( $_GET['c'] );
@@ -153,7 +162,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 		/**
 		 * fix_get_comment_parent.
 		 *
-		 * @version 1.4.3
+		 * @version 1.4.4
 		 * @since   1.4.3
 		 *
 		 * @param $translation
@@ -166,9 +175,8 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 			if (
 				$comment &&
 				is_admin() &&
-				! empty( $screen = \get_current_screen() ) &&
 				alg_wc_pdt_get_comment_type_id() === $comment->comment_type &&
-				'comment' === $screen->base &&
+				false !== strpos( $this->get_request_uri(), 'comment.php' ) &&
 				isset( $_GET['c'] ) &&
 				(int) $_GET['c'] !== (int) $comment->comment_ID
 			) {
