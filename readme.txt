@@ -1,9 +1,9 @@
 === Discussions Tab for WooCommerce Products ===
-Contributors: algoritmika, anbinder, karzin
+Contributors: wpcodefactory, algoritmika, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
-Tested up to: 6.0
-Stable tag: 1.4.4
+Tested up to: 6.1
+Stable tag: 1.4.5
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,11 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.4.5 - 08/03/2023 =
+* Move to WPFactory.
+* Tested up to: 6.1.
+* WC tested up to: 7.4.
 
 = 1.4.4 - 06/09/2022 =
 * Fix - Error - Undefined function `get_current_screen()`.

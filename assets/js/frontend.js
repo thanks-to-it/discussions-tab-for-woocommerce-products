@@ -386,7 +386,7 @@ var __webpack_exports__ = {};
  *
  * @version 1.2.8
  * @since   1.2.6
- * @author  Thanks to IT
+ * @author  WPFactory
  */
 // Dynamic modules
 __webpack_require__.p = alg_dtwp.plugin_url + "/assets/";

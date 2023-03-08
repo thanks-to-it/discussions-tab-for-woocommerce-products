@@ -10,7 +10,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Iconpicker manager
  *
- * @author  Thanks to IT
+ * @author  WPFactory
  */
 jQuery(function ($) {
   var alg_dtwp_admin_iconpicker = {
@@ -79,7 +79,7 @@ var __webpack_exports__ = {};
  *
  * @version 1.2.6
  * @since   1.2.6
- * @author  Thanks to IT
+ * @author  WPFactory
  */
 var iconpicker = __webpack_require__(/*! ./modules/iconpicker-manager */ "./src/js/modules/iconpicker-manager.js");
 })();

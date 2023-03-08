@@ -3,14 +3,14 @@
 Plugin Name: Discussions Tab for WooCommerce Products
 Plugin URI: https://wpfactory.com/item/discussions-tab-for-woocommerce-products/
 Description: Creates a discussions tab for WooCommerce products.
-Version: 1.4.4
-Author: Thanks to IT
-Author URI: http://github.com/thanks-to-it
+Version: 1.4.5
+Author: WPFactory
+Author URI: https://wpfactory.com
 Text Domain: discussions-tab-for-woocommerce-products
 Domain Path: /langs
-Copyright: © 2022 Thanks to IT
+Copyright: © 2023 WPFactory
 WC requires at least: 3.0.0
-WC tested up to: 6.8
+WC tested up to: 7.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -69,7 +69,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @var   string
 	 * @since 1.1.0
 	 */
-	public $version = '1.4.4';
+	public $version = '1.4.5';
 
 	/**
 	 * @var   Alg_WC_Products_Discussions_Tab The single instance of the class

@@ -3,6 +3,6 @@
  *
  * @version 1.2.6
  * @since   1.2.6
- * @author  Thanks to IT
+ * @author  WPFactory
  */
 const iconpicker = require( './modules/iconpicker-manager' );

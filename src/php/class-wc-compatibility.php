@@ -4,7 +4,7 @@
  *
  * @version 1.4.4
  * @since   1.4.0
- * @author  Thanks to IT
+ * @author  WPFactory
  */
 
 namespace WPFactory\WC_Products_Discussions_Tab;
@@ -177,6 +177,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\WC_Compatibility' ) 
 				is_admin() &&
 				alg_wc_pdt_get_comment_type_id() === $comment->comment_type &&
 				false !== strpos( $this->get_request_uri(), 'comment.php' ) &&
+				'yes' === get_option( 'alg_dtwp_fix_reviews_change', 'yes' ) &&
 				isset( $_GET['c'] ) &&
 				(int) $_GET['c'] !== (int) $comment->comment_ID
 			) {

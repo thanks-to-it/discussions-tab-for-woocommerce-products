@@ -4,7 +4,7 @@
  *
  * @version 1.2.6
  * @since   1.1.0
- * @author  Thanks to IT
+ * @author  WPFactory
  */
 
 namespace WPFactory\WC_Products_Discussions_Tab\Settings;

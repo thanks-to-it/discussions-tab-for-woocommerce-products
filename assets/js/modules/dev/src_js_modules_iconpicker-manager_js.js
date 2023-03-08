@@ -9,7 +9,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Iconpicker manager
  *
- * @author  Thanks to IT
+ * @author  WPFactory
  */
 jQuery(function ($) {
   var alg_dtwp_admin_iconpicker = {

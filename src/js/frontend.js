@@ -3,7 +3,7 @@
  *
  * @version 1.2.8
  * @since   1.2.6
- * @author  Thanks to IT
+ * @author  WPFactory
  */
 // Dynamic modules
 __webpack_public_path__ = alg_dtwp.plugin_url + "/assets/";
