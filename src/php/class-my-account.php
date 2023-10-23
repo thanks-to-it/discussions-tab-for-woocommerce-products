@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - My Account
  *
- * @version 1.3.2
+ * @version 1.4.8
  * @since   1.2.7
  * @author  WPFactory
  */
@@ -20,7 +20,7 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\My_Account' ) ) :
 		protected $tab_title='';
 
 		/**
-		 * @version 1.3.2
+		 * @version 1.4.8
 		 * @since   1.2.7
 		 *
 		 * My_Account constructor.
@@ -32,8 +32,8 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\My_Account' ) ) :
 			add_filter( 'woocommerce_account_menu_items', array( $this, 'my_custom_my_account_menu_items' ) );
 			add_action( 'woocommerce_account_' . $this->get_tab_id() . '_endpoint', array( $this, 'my_custom_endpoint_content' ) );
 			add_filter( 'the_title', array( $this, 'my_custom_endpoint_title' ) );
-			register_activation_hook( alg_wc_products_discussions_tab()->get_filename_path(), array( $this, 'my_custom_flush_rewrite_rules' ) );
-			register_deactivation_hook( alg_wc_products_discussions_tab()->get_filename_path(), array( $this, 'my_custom_flush_rewrite_rules' ) );
+			register_activation_hook( alg_wc_products_discussions_tab()->get_filesystem_path(), array( $this, 'my_custom_flush_rewrite_rules' ) );
+			register_deactivation_hook( alg_wc_products_discussions_tab()->get_filesystem_path(), array( $this, 'my_custom_flush_rewrite_rules' ) );
 			add_action( 'alg_wc_products_discussions_tab_plugin_update', array( $this, 'my_custom_flush_rewrite_rules' ) );
 			add_action( 'woocommerce_settings_save_' . 'alg_wc_products_discussions_tab', array( $this, 'my_custom_flush_rewrite_rules' ) );
 		}

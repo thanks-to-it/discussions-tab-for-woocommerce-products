@@ -3,14 +3,14 @@
 Plugin Name: Discussions Tab for WooCommerce Products
 Plugin URI: https://wpfactory.com/item/discussions-tab-for-woocommerce-products/
 Description: Creates a discussions tab for WooCommerce products.
-Version: 1.4.8
+Version: 1.4.9
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: discussions-tab-for-woocommerce-products
 Domain Path: /langs
 Copyright: © 2023 WPFactory
 WC requires at least: 3.0.0
-WC tested up to: 8.1
+WC tested up to: 8.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -40,6 +40,12 @@ if (
 	! alg_wc_products_discussions_tab_is_plugin_active( 'woocommerce/woocommerce.php' ) ||
 	( 'discussions-tab-for-woocommerce-products.php' === basename( __FILE__ ) && alg_wc_products_discussions_tab_is_plugin_active( 'discussions-tab-for-woocommerce-products-pro/discussions-tab-for-woocommerce-products-pro.php' ) )
 ) {
+	if ( function_exists( 'alg_wc_products_discussions_tab' ) ) {
+		$plugin = alg_wc_products_discussions_tab();
+		if ( method_exists( $plugin, 'set_free_version_filesystem_path' ) ) {
+			$plugin->set_free_version_filesystem_path( __FILE__ );
+		}
+	}
 	return;
 }
 
@@ -69,7 +75,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @var   string
 	 * @since 1.1.0
 	 */
-	public $version = '1.4.8';
+	public $version = '1.4.9';
 
 	/**
 	 * @var   Alg_WC_Products_Discussions_Tab The single instance of the class
@@ -85,6 +91,20 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @var \WPFactory\WC_Products_Discussions_Tab\Core
 	 */
 	public $core;
+
+	/**
+	 * $file_system_path.
+	 *
+	 * @since 1.4.9
+	 */
+	protected $file_system_path;
+
+	/**
+	 * $free_version_file_system_path.
+	 *
+	 * @since 1.4.9
+	 */
+	protected $free_version_file_system_path;
 
 	/**
 	 * Main Alg_WC_Products_Discussions_Tab Instance
@@ -117,21 +137,30 @@ final class Alg_WC_Products_Discussions_Tab {
 	/**
 	 * init.
 	 *
-	 * @version 1.3.4
+	 * @version 1.4.9
 	 * @since   1.3.4
 	 *
 	 * @todo    [dev] readme.txt: Premium Version: "Support"?
 	 * @todo    [dev] add translation (i.e. WPML/Polylang) shortcode
 	 */
 	function init(){
+
 		// Set up localisation
-		load_plugin_textdomain( 'discussions-tab-for-woocommerce-products', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
+		add_action( 'init', array( $this, 'localize' ) );
+
+		// Adds compatibility with HPOS.
+		add_action( 'before_woocommerce_init', function () {
+			$this->declare_compatibility_with_hpos( $this->get_filesystem_path() );
+			if ( ! empty( $this->get_free_version_filesystem_path() ) ) {
+				$this->declare_compatibility_with_hpos( $this->get_free_version_filesystem_path() );
+			}
+		} );
 
 		// Include required files
 		$this->includes();
 
 		// Pro
-		if ( 'discussions-tab-for-woocommerce-products-pro.php' === basename( __FILE__ ) ) {
+		if ( 'discussions-tab-for-woocommerce-products-pro.php' === basename( $this->get_filesystem_path() ) ) {
 			new \WPFactory\WC_Products_Discussions_Tab\Pro\Pro();
 		}
 
@@ -142,6 +171,18 @@ final class Alg_WC_Products_Discussions_Tab {
 		if ( is_admin() ) {
 			$this->admin();
 		}
+	}
+
+	/**
+	 * localize.
+	 *
+	 * @version 1.4.9
+	 * @since   1.4.9
+	 *
+	 */
+	function localize() {
+		// Set up localisation
+		load_plugin_textdomain( 'discussions-tab-for-woocommerce-products', false, dirname( plugin_basename( $this->get_filesystem_path() ) ) . '/langs/' );
 	}
 
 	/**
@@ -158,12 +199,12 @@ final class Alg_WC_Products_Discussions_Tab {
 	/**
 	 * admin.
 	 *
-	 * @version 1.3.4
+	 * @version 1.4.9
 	 * @since   1.1.0
 	 */
 	function admin() {
 		// Action links
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( $this->get_filesystem_path() ), array( $this, 'action_links' ) );
 		// Admin core
 		new \WPFactory\WC_Products_Discussions_Tab\Admin();
 		// Settings
@@ -185,7 +226,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	/**
 	 * action_links.
 	 *
-	 * @version 1.3.3
+	 * @version 1.4.9
 	 * @since   1.1.0
 	 * @param   mixed $links
 	 * @return  array
@@ -193,7 +234,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	function action_links( $links ) {
 		$custom_links = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_products_discussions_tab' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
-		if ( 'discussions-tab-for-woocommerce-products.php' === basename( __FILE__ ) ) {
+		if ( 'discussions-tab-for-woocommerce-products.php' === basename( $this->get_filesystem_path() ) ) {
 			$custom_links[] = '<a target="_blank" href="https://wpfactory.com/item/discussions-tab-for-woocommerce-products/">' .
 				__( 'Unlock All', 'discussions-tab-for-woocommerce-products' ) . '</a>';
 		}
@@ -222,37 +263,91 @@ final class Alg_WC_Products_Discussions_Tab {
 	}
 
 	/**
-	 * plugin_url.
+	 * Get the plugin url.
 	 *
-	 * @version 1.1.0
+	 * @version 1.4.9
 	 * @since   1.1.0
 	 * @return  string
 	 */
 	function plugin_url() {
-		return untrailingslashit( plugin_dir_url( __FILE__ ) );
+		return untrailingslashit( plugin_dir_url( $this->get_filesystem_path() ) );
 	}
 
 	/**
-	 * get_filename_path.
+	 * Get the plugin path.
 	 *
-	 * @version 1.1.0
-	 * @since   1.1.0
-	 *
-	 * @return string
-	 */
-	function get_filename_path(){
-		return __FILE__;
-	}
-
-	/**
-	 * plugin_path.
-	 *
-	 * @version 1.1.0
+	 * @version 1.4.9
 	 * @since   1.1.0
 	 * @return  string
 	 */
 	function plugin_path() {
-		return untrailingslashit( plugin_dir_path( __FILE__ ) );
+		return untrailingslashit( plugin_dir_path( $this->get_filesystem_path() ) );
+	}
+
+	/**
+	 * get_filesystem_path.
+	 *
+	 * @version 1.4.9
+	 * @since   1.4.9
+	 *
+	 * @return string
+	 */
+	function get_filesystem_path() {
+		return $this->file_system_path;
+	}
+
+	/**
+	 * set_filesystem_path.
+	 *
+	 * @version 1.4.9
+	 * @since   1.4.9
+	 *
+	 * @param   mixed  $file_system_path
+	 */
+	public function set_filesystem_path( $file_system_path ) {
+		$this->file_system_path = $file_system_path;
+	}
+
+	/**
+	 * get_free_version_filesystem_path.
+	 *
+	 * @version 1.4.9
+	 * @since   1.4.9
+	 *
+	 * @return mixed
+	 */
+	public function get_free_version_filesystem_path() {
+		return $this->free_version_file_system_path;
+	}
+
+	/**
+	 * set_free_version_filesystem_path.
+	 *
+	 * @version 1.4.9
+	 * @since   1.4.9
+	 *
+	 * @param   mixed  $free_version_file_system_path
+	 */
+	public function set_free_version_filesystem_path( $free_version_file_system_path ) {
+		$this->free_version_file_system_path = $free_version_file_system_path;
+	}
+
+	/**
+	 * Declare compatibility with custom order tables for WooCommerce.
+	 *
+	 * @version 1.4.9
+	 * @since   1.4.9
+	 *
+	 * @param $filesystem_path
+	 *
+	 * @return void
+	 * @link    https://github.com/woocommerce/woocommerce/wiki/High-Performance-Order-Storage-Upgrade-Recipe-Book#declaring-extension-incompatibility
+	 *
+	 */
+	function declare_compatibility_with_hpos( $filesystem_path ) {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', $filesystem_path, true );
+		}
 	}
 
 }
@@ -273,5 +368,9 @@ if ( ! function_exists( 'alg_wc_products_discussions_tab' ) ) {
 	}
 }
 
-$plugin = alg_wc_products_discussions_tab();
-$plugin->init();
+// Initializes the plugin.
+add_action( 'plugins_loaded', function () {
+	$plugin = alg_wc_products_discussions_tab();
+	$plugin->set_filesystem_path( __FILE__ );
+	$plugin->init();
+} );

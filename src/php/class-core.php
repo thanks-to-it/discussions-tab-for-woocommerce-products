@@ -243,14 +243,14 @@ class Core {
 	/**
 	 * detect_plugin_update.
 	 *
-	 * @version 1.2.9
+	 * @version 1.4.8
 	 * @since   1.2.9
 	 *
 	 * @param $upgrader_object
 	 * @param $options
 	 */
 	function detect_plugin_update( $upgrader_object, $options ) {
-		$current_plugin_path_name = plugin_basename( alg_wc_products_discussions_tab()->get_filename_path() );
+		$current_plugin_path_name = plugin_basename( alg_wc_products_discussions_tab()->get_filesystem_path() );
 		if ( $options['action'] == 'update' && $options['type'] == 'plugin' ) {
 			foreach ( $options['plugins'] as $each_plugin ) {
 				if ( $each_plugin == $current_plugin_path_name ) {
