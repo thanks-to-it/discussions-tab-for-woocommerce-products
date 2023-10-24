@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings.
  *
- * @version 1.3.7
+ * @version 1.5.1
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -30,7 +30,7 @@ class Settings_General extends Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.3.7
+	 * @version 1.5.1
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
@@ -72,15 +72,6 @@ class Settings_General extends Settings_Section {
 				'id'       => 'alg_dtwp_opt_ajax_tab',
 				'default'  => 'no',
 				'type'     => 'checkbox',
-				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
-			),
-			array(
-				'title'    => __( 'AJAX discussions', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Load comments via AJAX if the discussions tab is triggered', 'discussions-tab-for-woocommerce-products' ),
-				'desc_tip' => sprintf( __( 'For now, the option %s needs to be disabled, i.e., the comments pagination needs to be disabled.', 'discussions-tab-for-woocommerce-products' ), '<a href="' . admin_url( 'options-discussion.php' ) . '">' . __( 'Break Comments' ) . '</a>' ),
-				'id'       => 'alg_dtwp_opt_ajax_tab',
-				'default'  => 'no',
-				'type'     => 'text',
 				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
