@@ -75,6 +75,15 @@ class Settings_General extends Settings_Section {
 				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
+				'title'    => __( 'AJAX discussions', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Load comments via AJAX if the discussions tab is triggered', 'discussions-tab-for-woocommerce-products' ),
+				'desc_tip' => sprintf( __( 'For now, the option %s needs to be disabled, i.e., the comments pagination needs to be disabled.', 'discussions-tab-for-woocommerce-products' ), '<a href="' . admin_url( 'options-discussion.php' ) . '">' . __( 'Break Comments' ) . '</a>' ),
+				'id'       => 'alg_dtwp_opt_ajax_tab',
+				'default'  => 'no',
+				'type'     => 'text',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
 				'title'             => __( 'Comment actions', 'discussions-tab-for-woocommerce-products' ),
 				'desc'              => sprintf( __( 'Show "edit comment link" only for users with the %s capability', 'discussions-tab-for-woocommerce-products' ), '<code>' . 'moderate_comments' . '</code>' ),
 				'id'                => 'alg_dtwp_edit_comments_link_requires_moderate_comments',
