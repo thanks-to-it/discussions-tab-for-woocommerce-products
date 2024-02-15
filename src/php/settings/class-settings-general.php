@@ -82,6 +82,13 @@ class Settings_General extends Settings_Section {
 				'type'              => 'checkbox',
 			),
 			array(
+				'title'             => __( 'Guest users', 'discussions-tab-for-woocommerce-products' ),
+				'desc'              => __( 'Hide discussion comments from guest users', 'discussions-tab-for-woocommerce-products' ),
+				'id'                => 'alg_dtwp_hide_discussion_comments_from_guests',
+				'default'           => 'no',
+				'type'              => 'checkbox',
+			),
+			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_dtwp_opt_general',
 			),

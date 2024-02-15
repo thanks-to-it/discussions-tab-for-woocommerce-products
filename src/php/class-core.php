@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class.
  *
- * @version 1.4.2
+ * @version 1.5.2
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -37,7 +37,7 @@ class Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.4.2
+	 * @version 1.5.2
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -101,9 +101,33 @@ class Core {
 			add_filter( 'edit_comment_link', array( $this, 'handle_discussion_comment_edit_link' ), 10, 2 );
 			// Fix pagination link
 			add_filter( 'get_comments_pagenum_link', array( $this, 'fix_pagination_link' ) );
+			// Hide discussion comments for guest users.
+			add_action( 'pre_get_comments', array( $this, 'hide_discussion_comments_for_guests' ) );
 		}
 		// Core contentCalled
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * hide_discussion_comments_for_guests.
+	 *
+	 * @version 1.5.2
+	 * @since   1.5.2
+	 *
+	 * @param $query
+	 *
+	 * @return void
+	 */
+	function hide_discussion_comments_for_guests( $query ) {
+		if (
+			( ! is_admin() || is_ajax() ) &&
+			! is_user_logged_in() &&
+			isset( $query->query_vars['type'] ) &&
+			$query->query_vars['type'] === alg_wc_pdt_get_comment_type_id() &&
+			'yes' === get_option( 'alg_dtwp_hide_discussion_comments_from_guests', 'no' )
+		) {
+			$query->query_vars['post__in'] = array( 0 );
+		}
 	}
 
 	/**

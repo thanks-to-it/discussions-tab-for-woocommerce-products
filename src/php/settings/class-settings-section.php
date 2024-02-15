@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Section Settings
  *
- * @version 1.1.0
+ * @version 1.5.2
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -14,6 +14,24 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Section' ) ) :
 
 class Settings_Section {
+
+	/**
+	 * $id.
+	 *
+	 * @since 1.5.2
+	 *
+	 * @var
+	 */
+	public $id;
+
+	/**
+	 * $desc.
+	 *
+	 * @since 1.5.2
+	 *
+	 * @var
+	 */
+	public $desc;
 
 	/**
 	 * Constructor.
