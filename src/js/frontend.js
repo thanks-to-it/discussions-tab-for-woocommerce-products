@@ -22,6 +22,7 @@ if (modules && modules.length) {
 // Static modules
 const staticModules = [
 	'cancel-btn-fixer',
+	'tab-opener',
 	'parent-comment-id-fixer',
 	'scroller'
 ];

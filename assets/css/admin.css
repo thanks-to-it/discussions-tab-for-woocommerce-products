@@ -8,6 +8,8 @@
 .alg-dtwp-iconpicker-selected {
   box-shadow: 0 0 0 1px #ddd !important;
   color: #000 !important;
+}
+.alg-dtwp-iconpicker-selected {
   background: #ddd;
 }
 

@@ -15,7 +15,6 @@ var tabContentLoader = {
   check: function check() {
     var tab = jQuery('#tab-title-' + tabContentLoader.tabID);
     tabContentLoader.tab = tab;
-
     if (tab.length && jQuery('#tab-title-' + tabContentLoader.tabID).attr('class').indexOf('active') !== -1) {
       tab.addClass('alg-dtwp-loading-tab');
       tabContentLoader.contentCalled = true;
@@ -31,7 +30,6 @@ var tabContentLoader = {
       if (response.success) {
         jQuery("#tab-" + tabContentLoader.tabID).html(response.data.content);
       }
-
       tabContentLoader.tab.addClass('alg-dtwp-loaded');
       setTimeout(function () {
         tabContentLoader.tab.removeClass('alg-dtwp-loaded');
@@ -47,11 +45,9 @@ var ajaxTab = {
   init: function init() {
     jQuery('body').on('click', '#tab-title-' + alg_dtwp.tabID, function (e) {
       var time = null;
-
       if (time) {
         clearTimeout(time);
       }
-
       time = setTimeout(function () {
         if (!tabContentLoader.contentCalled) {
           tabContentLoader.check();

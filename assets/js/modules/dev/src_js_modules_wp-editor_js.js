@@ -11,12 +11,12 @@ var WPEditor = {
     wp.editor.remove('discussion');
     wp.editor.initialize('discussion', {
       tinymce: {
-        wpautop: true //toolbar1: 'code',
+        wpautop: true
+        //toolbar1: 'code',
         //toolbar1: 'bold italic link codesample',
         //plugins : 'charmap colorpicker compat3x directionality fullscreen hr image lists media paste tabfocus textcolor wordpress wpautoresize wpdialogs wpeditimage wpemoji wpgallery wplink wptextpattern wpview',
         //toolbar1: 'bold italic underline strikethrough | bullist numlist | blockquote hr wp_more | alignleft aligncenter alignright | link unlink | fullscreen | wp_adv',
         //toolbar2: 'formatselect alignjustify forecolor | pastetext removeformat charmap | outdent indent | undo redo | wp_help'
-
       },
       teeny: true,
       quicktags: true
@@ -41,7 +41,9 @@ var WPEditor = {
     toolbarArr = toolbarArr.filter(function (btn) {
       return ['bullist', 'numlist'].indexOf(btn) === -1;
     });
-    editor.settings.toolbar1 = toolbarArr.join(); //editor.settings.wpautop=true;
+    editor.settings.toolbar1 = toolbarArr.join();
+
+    //editor.settings.wpautop=true;
     //editor.settings.autop=true;
     //editor.settings.forced_root_block = '';
     //editor.settings.force_br_newlines = true;

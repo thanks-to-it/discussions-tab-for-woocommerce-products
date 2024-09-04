@@ -56,6 +56,14 @@ var map = {
 		"./src/js/modules/subscription.js",
 		"src_js_modules_subscription_js"
 	],
+	"./tab-opener": [
+		"./src/js/modules/tab-opener.js",
+		"src_js_modules_tab-opener_js"
+	],
+	"./tab-opener.js": [
+		"./src/js/modules/tab-opener.js",
+		"src_js_modules_tab-opener_js"
+	],
 	"./wp-editor": [
 		"./src/js/modules/wp-editor.js",
 		"src_js_modules_wp-editor_js"
@@ -232,6 +240,7 @@ module.exports = webpackAsyncContext;
 /******/ 					script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 				}
 /******/ 		
+/******/ 		
 /******/ 				script.src = url;
 /******/ 			}
 /******/ 			inProgress[url] = [done];
@@ -245,7 +254,6 @@ module.exports = webpackAsyncContext;
 /******/ 				doneFns && doneFns.forEach((fn) => (fn(event)));
 /******/ 				if(prev) return prev(event);
 /******/ 			}
-/******/ 			;
 /******/ 			var timeout = setTimeout(onScriptComplete.bind(null, undefined, { type: 'timeout', target: script }), 120000);
 /******/ 			script.onerror = onScriptComplete.bind(null, script.onerror);
 /******/ 			script.onload = onScriptComplete.bind(null, script.onload);
@@ -270,11 +278,14 @@ module.exports = webpackAsyncContext;
 /******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
 /******/ 		var document = __webpack_require__.g.document;
 /******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT')
+/******/ 				scriptUrl = document.currentScript.src;
 /******/ 			if (!scriptUrl) {
 /******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
+/******/ 				}
 /******/ 			}
 /******/ 		}
 /******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
@@ -329,7 +340,7 @@ module.exports = webpackAsyncContext;
 /******/ 								}
 /******/ 							};
 /******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
-/******/ 						} else installedChunks[chunkId] = 0;
+/******/ 						}
 /******/ 					}
 /******/ 				}
 /******/ 		};
@@ -375,7 +386,6 @@ module.exports = webpackAsyncContext;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
 (() => {
 /*!****************************!*\
@@ -391,17 +401,16 @@ var __webpack_exports__ = {};
 // Dynamic modules
 __webpack_require__.p = alg_dtwp.plugin_url + "/assets/";
 var modules = alg_dtwp.modulesToLoad;
-
 if (modules && modules.length) {
   modules.forEach(function (module) {
     __webpack_require__("./src/js/modules lazy recursive ^\\.\\/.*$")("./".concat(module)).then(function (component) {
       component.init();
     });
   });
-} // Static modules
+}
 
-
-var staticModules = ['cancel-btn-fixer', 'parent-comment-id-fixer', 'scroller'];
+// Static modules
+var staticModules = ['cancel-btn-fixer', 'tab-opener', 'parent-comment-id-fixer', 'scroller'];
 staticModules.forEach(function (module_name) {
   __webpack_require__("./src/js/modules lazy recursive ^\\.\\/.*$")("./".concat(module_name)).then(function (component) {
     component.init();

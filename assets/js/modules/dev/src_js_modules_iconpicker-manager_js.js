@@ -11,12 +11,12 @@
  *
  * @author  WPFactory
  */
+
 jQuery(function ($) {
   var alg_dtwp_admin_iconpicker = {
     init: function init() {
       var icon_input = $('.alg-dtwp-icon-picker');
       this.createIconNextToInput(icon_input);
-
       if (icon_input.length) {
         this.callIconPicker(icon_input);
       }

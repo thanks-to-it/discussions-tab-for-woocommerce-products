@@ -14,31 +14,11 @@ var scroller = {
     jQuery('document').ready(function () {
       setTimeout(scroller.scrollByAnchor, 200);
     });
-
-    window.onhashchange = function () {
-      scroller.scrollByAnchor();
-    };
-
-    jQuery('document').ready(function () {
-      scroller.activateDiscussionsTab();
-    });
-  },
-  activateDiscussionsTab: function activateDiscussionsTab() {
-    var hash = window.location.hash;
-
-    if (hash.toLowerCase().indexOf(alg_dtwp.commentLink + '-') >= 0 || hash === '#' + alg_dtwp.tabID || hash === '#tab-' + alg_dtwp.tabID) {
-      var alg_dtwp_tab = alg_dtwp.tabID;
-      var discussionsTabA = jQuery('#tab-title-' + alg_dtwp_tab + ' a');
-
-      if (discussionsTabA.length) {
-        discussionsTabA.trigger('click');
-      }
-    }
+    window.addEventListener('hashchange', scroller.scrollByAnchor);
   },
   scrollByAnchor: function scrollByAnchor() {
     var currentURL = window.location.href;
     var target = jQuery('a[href*="' + currentURL + '"]');
-
     if (window.location.hash.length && target.length) {
       var element = target.closest('.comment')[0];
       var offset = 145;

@@ -18,7 +18,6 @@ var cancelBtnFixer = {
         $(document).off('click', '#cancel-comment-reply-link', hide);
         $(document).on('click', '#cancel-comment-reply-link', hide);
       });
-
       function hide(e) {
         e.preventDefault();
         cancel_btn.hide();

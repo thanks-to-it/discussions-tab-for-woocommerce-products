@@ -43,16 +43,8 @@
 }
 
 .alg-dtwp-anchor-source > .comment-body .comment-text {
-  -webkit-animation: alg-dtwp-blink 1s;
-          animation: alg-dtwp-blink 1s;
-  -webkit-animation-iteration-count: 3;
-          animation-iteration-count: 3;
-}
-
-@-webkit-keyframes alg-dtwp-blink {
-  50% {
-    background-color: #e6e6e6;
-  }
+  animation: alg-dtwp-blink 1s;
+  animation-iteration-count: 3;
 }
 
 @keyframes alg-dtwp-blink {
@@ -136,17 +128,19 @@
 }
 .alg-dtwp-loading-tab.alg-dtwp-loaded a:after {
   opacity: 0 !important;
+}
+.alg-dtwp-loading-tab.alg-dtwp-loaded a:after {
   right: -1em;
 }
 .alg-dtwp-loading-tab a:after {
   content: " " !important;
+}
+.alg-dtwp-loading-tab a:after {
   border: 3px solid #ddd;
   border-radius: 50%;
   border-top: 3px solid #000;
   width: 15px;
-  height: 15px;
-  -webkit-animation: alg-dtwp-spin 1.3s linear infinite;
-  /* Safari */
+  height: 15px; /* Safari */
   animation: alg-dtwp-spin 1.3s linear infinite;
   transition: opacity ease 0.3s, right ease 0.3s;
   opacity: 1;
@@ -157,15 +151,6 @@
   display: inline-block;
   vertical-align: middle;
   margin-left: 7px;
-}
-
-@-webkit-keyframes alg-dtwp-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes alg-dtwp-spin {
