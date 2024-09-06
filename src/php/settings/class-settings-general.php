@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings.
  *
- * @version 1.5.1
+ * @version 1.5.5
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -30,7 +30,7 @@ class Settings_General extends Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.5.1
+	 * @version 1.5.5
 	 * @since   1.1.0
 	 * @todo    [dev] check if "Comment link" set to `comment` causes any issues; if so - add some description at least (see https://wordpress.org/support/topic/missing-source-files/)
 	 */
@@ -54,6 +54,14 @@ class Settings_General extends Settings_Section {
 				'desc'     => __( 'Open comments for product post type', 'discussions-tab-for-woocommerce-products' ),
 				'desc_tip' => __( 'Enable if you can\'t see the comment form on the discussion tab or if you\'re getting the "Comments are closed" message. ', 'discussions-tab-for-woocommerce-products' ),
 				'id'       => 'alg_dtwp_opt_open_comments',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Comment Reply JS', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => sprintf( __( 'Enqueue the %s script on the product page', 'discussions-tab-for-woocommerce-products' ), '<code>comment-reply</code>' ),
+				'desc_tip' => __( 'Enable it if the page reloads after clicking the Reply button from a Discussion comment.', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_enqueue_comment_reply_on_product',
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),

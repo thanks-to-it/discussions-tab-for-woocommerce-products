@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: discussions-tab-for-woocommerce-products 1.5.4\n"
+"Project-Id-Version: discussions-tab-for-woocommerce-products 1.5.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/discussions-tab-for-woocommerce-products\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-05T01:19:00+02:00\n"
+"POT-Creation-Date: 2024-09-06T18:41:47+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: discussions-tab-for-woocommerce-products\n"
@@ -154,7 +154,7 @@ msgid "Use zero if you don't want to set a parent comment ID"
 msgstr ""
 
 #: src/php/pro/class-admin-comment-editor.php:316
-#: src/php/settings/class-settings-general.php:132
+#: src/php/settings/class-settings-general.php:140
 msgid "User ID"
 msgstr ""
 
@@ -479,181 +479,193 @@ msgid "Enable if you can't see the comment form on the discussion tab or if you'
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:61
-msgid "Verified owners"
+msgid "Comment Reply JS"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:62
-msgid "Discussions comments can only be left by \"verified owners\""
+msgid "Enqueue the %s script on the product page"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:63
+msgid "Enable it if the page reloads after clicking the Reply button from a Discussion comment."
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:69
-msgid "AJAX discussions"
+msgid "Verified owners"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:70
-msgid "Load comments via AJAX if the discussions tab is triggered"
+msgid "Discussions comments can only be left by \"verified owners\""
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:71
-msgid "For now, the option %s needs to be disabled, i.e., the comments pagination needs to be disabled."
+#: src/php/settings/class-settings-general.php:77
+msgid "AJAX discussions"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:78
-msgid "Comment actions"
+msgid "Load comments via AJAX if the discussions tab is triggered"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:79
-msgid "Show \"edit comment link\" only for users with the %s capability"
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:85
-msgid "Guest users"
+msgid "For now, the option %s needs to be disabled, i.e., the comments pagination needs to be disabled."
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:86
+msgid "Comment actions"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:87
+msgid "Show \"edit comment link\" only for users with the %s capability"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:93
+msgid "Guest users"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:94
 msgid "Hide discussion comments from guest users"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:99
+#: src/php/settings/class-settings-general.php:107
 msgid "Editable comment meta on admin"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:101
+#: src/php/settings/class-settings-general.php:109
 msgid "Data about the comment itself, like comment type, comment parent ID and the post/product in which the comment belongs to."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:105
+#: src/php/settings/class-settings-general.php:113
 msgid "Comment type conversion"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:106
+#: src/php/settings/class-settings-general.php:114
 msgid "Allow admin to convert discussions to reviews and vice versa"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:107
+#: src/php/settings/class-settings-general.php:115
 msgid "Will add \"Convert to Review\" and \"Convert to Discussion\" options to admin's %s section."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:108
+#: src/php/settings/class-settings-general.php:116
 msgid "Comments"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:114
+#: src/php/settings/class-settings-general.php:122
 msgid "Parent ID"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:115
+#: src/php/settings/class-settings-general.php:123
 msgid "Allow admin to edit discussion comment parent ID"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:116
-#: src/php/settings/class-settings-general.php:125
-#: src/php/settings/class-settings-general.php:134
+#: src/php/settings/class-settings-general.php:124
+#: src/php/settings/class-settings-general.php:133
+#: src/php/settings/class-settings-general.php:142
 msgid "A new meta box will be added to the \"edit comment\" page."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:123
+#: src/php/settings/class-settings-general.php:131
 msgid "Post ID"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:124
+#: src/php/settings/class-settings-general.php:132
 msgid "Allow admin to edit discussion comment post ID"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:133
+#: src/php/settings/class-settings-general.php:141
 msgid "Allow admin to edit discussion comment user ID"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:148
+#: src/php/settings/class-settings-general.php:156
 msgid "Discussions tab"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:150
+#: src/php/settings/class-settings-general.php:158
 msgid "A tab added to the product page with the discussion comments."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:154
+#: src/php/settings/class-settings-general.php:162
 msgid "Count replies"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:155
+#: src/php/settings/class-settings-general.php:163
 msgid "Consider replies when counting the discussions comments total amount"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:156
+#: src/php/settings/class-settings-general.php:164
 msgid "Changes how the %s from the %s option works."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:156
+#: src/php/settings/class-settings-general.php:164
 msgid "Texts > Tab title"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:162
+#: src/php/settings/class-settings-general.php:170
 msgid "Tab link"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:163
+#: src/php/settings/class-settings-general.php:171
 msgid "Link that will automatically open your discussions tab."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:164
-#: src/php/settings/class-settings-general.php:173
+#: src/php/settings/class-settings-general.php:172
+#: src/php/settings/class-settings-general.php:181
 msgid "E.g.: %s"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:171
+#: src/php/settings/class-settings-general.php:179
 msgid "Comment link"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:172
+#: src/php/settings/class-settings-general.php:180
 msgid "Link that will automatically open your discussions tab on a specific comment."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:174
+#: src/php/settings/class-settings-general.php:182
 msgid "This link will be displayed after a comment is posted on frontend."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:181
+#: src/php/settings/class-settings-general.php:189
 msgid "Tab position"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:182
+#: src/php/settings/class-settings-general.php:190
 msgid "Tab priority (i.e. position)."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:183
+#: src/php/settings/class-settings-general.php:191
 msgid "Default WooCommerce tabs priorities are: %s."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:201
+#: src/php/settings/class-settings-general.php:209
 msgid "Discussions form"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:203
+#: src/php/settings/class-settings-general.php:211
 msgid "The form used to display the discussions comment field."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:207
+#: src/php/settings/class-settings-general.php:215
 msgid "Comment form position"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:208
+#: src/php/settings/class-settings-general.php:216
 msgid "The place where the \"Leave a reply\" form will be displayed."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:212
+#: src/php/settings/class-settings-general.php:220
 msgid "Top"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:213
+#: src/php/settings/class-settings-general.php:221
 msgid "Bottom"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:220
+#: src/php/settings/class-settings-general.php:228
 msgid "Rich text editor"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:221
+#: src/php/settings/class-settings-general.php:229
 msgid "Enable TinyMCE on discussion comments"
 msgstr ""
 

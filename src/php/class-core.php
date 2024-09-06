@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class.
  *
- * @version 1.5.2
+ * @version 1.5.5
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -493,7 +493,7 @@ class Core {
 	/**
 	 * Enqueues main scripts.
 	 *
-	 * @version 1.3.8
+	 * @version 1.5.5
 	 * @since   1.0.0
 	 */
 	function load_scripts() {
@@ -507,6 +507,9 @@ class Core {
 			$version
 		);
 		if ( is_product() ) {
+			if ( 'yes' === get_option( 'alg_dtwp_enqueue_comment_reply_on_product', 'no' ) ) {
+				wp_enqueue_script( 'comment-reply' );
+			}
 			wp_enqueue_script( 'alg-dtwp', alg_wc_products_discussions_tab()->plugin_url() . '/assets/js/frontend' . $suffix . '.js', array(), $version, true );
 			wp_localize_script( 'alg-dtwp', 'alg_dtwp', apply_filters( 'alg_dtwp_localize_script', array(
 				'ajaxurl'           => admin_url( 'admin-ajax.php' ),
