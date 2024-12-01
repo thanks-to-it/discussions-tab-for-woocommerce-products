@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
-Tested up to: 6.6
-Stable tag: 1.5.5
+Tested up to: 6.7
+Stable tag: 1.5.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,11 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.5.6 - 01/12/2024 =
+* Fix - Templates were not pointing to the right place.
+* Tested up to: 6.7.
+* WC tested up to: 9.4.
 
 = 1.5.5 - 06/09/2024 =
 * Dev - Added new option to enqueue the comment-reply script on the product page.

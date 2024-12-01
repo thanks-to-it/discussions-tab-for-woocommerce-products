@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class.
  *
- * @version 1.5.5
+ * @version 1.5.6
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -623,7 +623,7 @@ class Core {
 	/**
 	 * Swaps woocommerce template (single-product-reviews.php) with default comments template.
 	 *
-	 * @version 1.1.0
+	 * @version 1.5.6
 	 * @since   1.0.0
 	 * @param   $template
 	 * @return  mixed
@@ -635,9 +635,10 @@ class Core {
 		if ( 'product' !== get_post_type() || ! alg_wc_pdt_is_discussion_tab() ) {
 			return $template;
 		}
-		$check_dirs = array(
-			trailingslashit( get_stylesheet_directory() ) . WC()->template_path(),
-			trailingslashit( get_template_directory() )   . WC()->template_path(),
+		$template_path = 'discussions-tab-for-woocommerce-products';
+		$check_dirs    = array(
+			trailingslashit( get_stylesheet_directory() ) . $template_path,
+			trailingslashit( get_template_directory() ) . $template_path,
 			trailingslashit( get_stylesheet_directory() ),
 			trailingslashit( get_template_directory() ),
 			trailingslashit( alg_wc_products_discussions_tab()->plugin_path() ) . 'templates/',
@@ -650,6 +651,7 @@ class Core {
 				return trailingslashit( $dir ) . 'dtwp-comments.php';
 			}
 		}
+
 		return $template;
 	}
 
