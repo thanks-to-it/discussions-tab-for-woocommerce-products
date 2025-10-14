@@ -1,9 +1,9 @@
 === Discussions Tab for WooCommerce Products ===
-Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
+Contributors: algoritmika, thankstoit, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
-Tested up to: 6.7
-Stable tag: 1.5.6
+Tested up to: 6.8
+Stable tag: 1.5.7
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,8 +28,6 @@ That will make your brand more credible and your customers more confident. As a 
 
 = Premium Version =
 
-With [premium plugin version](https://wpfactory.com/item/discussions-tab-for-woocommerce-products/) you can:
-
 * Use social networks like **Facebook** at your favor. Let your customers auto fill their names, e-mail and even get their Facebook profile picture with just one click.
 * Decide if comments should be posted by anyone or only the ones **who bought the product**.
 * **Notify** comment authors via **email** when they receive replies.
@@ -40,17 +38,12 @@ With [premium plugin version](https://wpfactory.com/item/discussions-tab-for-woo
 
 * We are open to your suggestions and feedback.
 * Thank you for using or trying out one of our plugins!
-* [Visit plugin site](https://wpfactory.com/item/discussions-tab-for-woocommerce-products/).
 
 == Frequently Asked Questions ==
 
 = How can I help translating it? =
 
 You can do it through [translate.wordpress](https://translate.wordpress.org/projects/wp-plugins/discussions-tab-for-woocommerce-products).
-
-= Is there a Pro version? =
-
-Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocommerce-products/ "Discussions Tab for WooCommerce Products Pro").
 
 == Installation ==
 
@@ -63,6 +56,10 @@ Yes, it's located [here](https://wpfactory.com/item/discussions-tab-for-woocomme
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.5.7 - 14/10/2025 =
+* WC tested up to: 10.2.
+* Tested up to: 6.8.
 
 = 1.5.6 - 01/12/2024 =
 * Fix - Templates were not pointing to the right place.

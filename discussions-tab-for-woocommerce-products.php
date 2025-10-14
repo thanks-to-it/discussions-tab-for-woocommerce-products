@@ -1,16 +1,15 @@
 <?php
 /*
 Plugin Name: Discussions Tab for WooCommerce Products
-Plugin URI: https://wpfactory.com/item/discussions-tab-for-woocommerce-products/
+Plugin URI: https://wordpress.org/plugins/discussions-tab-for-woocommerce-products/
 Description: Creates a discussions tab for WooCommerce products.
-Version: 1.5.6
-Author: WPFactory
-Author URI: https://wpfactory.com
+Version: 1.5.7
+Author: Algoritmika Ltd
+Author URI: https://profiles.wordpress.org/algoritmika/
 Text Domain: discussions-tab-for-woocommerce-products
 Domain Path: /langs
-Copyright: © 2024 WPFactory
 WC requires at least: 3.0.0
-WC tested up to: 9.4
+WC tested up to: 10.2
 Requires Plugins: woocommerce
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -65,7 +64,7 @@ if ( ! class_exists( 'Alg_WC_Products_Discussions_Tab' ) ) :
  * Main Alg_WC_Products_Discussions_Tab Class
  *
  * @class   Alg_WC_Products_Discussions_Tab
- * @version 1.1.1
+ * @version 1.5.7
  * @since   1.1.0
  */
 final class Alg_WC_Products_Discussions_Tab {
@@ -76,7 +75,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @var   string
 	 * @since 1.1.0
 	 */
-	public $version = '1.5.6';
+	public $version = '1.5.7';
 
 	/**
 	 * @var   Alg_WC_Products_Discussions_Tab The single instance of the class
@@ -236,7 +235,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	/**
 	 * action_links.
 	 *
-	 * @version 1.4.9
+	 * @version 1.5.7
 	 * @since   1.1.0
 	 * @param   mixed $links
 	 * @return  array
@@ -244,10 +243,6 @@ final class Alg_WC_Products_Discussions_Tab {
 	function action_links( $links ) {
 		$custom_links = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_products_discussions_tab' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
-		if ( 'discussions-tab-for-woocommerce-products.php' === basename( $this->get_filesystem_path() ) ) {
-			$custom_links[] = '<a target="_blank" href="https://wpfactory.com/item/discussions-tab-for-woocommerce-products/">' .
-				__( 'Unlock All', 'discussions-tab-for-woocommerce-products' ) . '</a>';
-		}
 		return array_unique(array_merge( $custom_links, $links ));
 	}
 
