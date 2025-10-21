@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Social Section Settings
  *
- * @version 1.2.6
+ * @version 1.5.8
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -23,8 +23,19 @@ class Settings_Social extends Settings_Section {
 	 */
 	function __construct() {
 		$this->id   = 'social';
-		$this->desc = __( 'Social', 'discussions-tab-for-woocommerce-products' );
 		parent::__construct();
+	}
+
+	/**
+	 * set_variables.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @return void
+	 */
+	public function set_variables() {
+		$this->desc = __( 'Social', 'discussions-tab-for-woocommerce-products' );
 	}
 
 	/**

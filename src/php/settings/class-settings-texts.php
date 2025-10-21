@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Texts Section Settings
  *
- * @version 1.2.0
+ * @version 1.5.8
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -18,13 +18,24 @@ class Settings_Texts extends Settings_Section {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.1.0
+	 * @version 1.5.8
 	 * @since   1.1.0
 	 */
 	function __construct() {
 		$this->id   = 'texts';
-		$this->desc = __( 'Texts', 'discussions-tab-for-woocommerce-products' );
 		parent::__construct();
+	}
+
+	/**
+	 * set_variables.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @return void
+	 */
+	public function set_variables() {
+		$this->desc = __( 'Texts', 'discussions-tab-for-woocommerce-products' );
 	}
 
 	/**

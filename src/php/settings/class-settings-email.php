@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Email Section Settings
  *
- * @version 1.3.8
+ * @version 1.5.8
  * @since   1.3.4
  * @author  WPFactory
  */
@@ -18,13 +18,24 @@ if ( ! class_exists( 'WPFactory\WC_Products_Discussions_Tab\Settings\Settings_Em
 		/**
 		 * Constructor.
 		 *
-		 * @version 1.3.4
+		 * @version 1.5.8
 		 * @since   1.3.4
 		 */
 		function __construct() {
 			$this->id   = 'email';
-			$this->desc = __( 'Email', 'discussions-tab-for-woocommerce-products' );
 			parent::__construct();
+		}
+
+		/**
+		 * set_variables.
+		 *
+		 * @version 1.5.8
+		 * @since   1.5.8
+		 *
+		 * @return void
+		 */
+		public function set_variables() {
+			$this->desc = __( 'Email', 'discussions-tab-for-woocommerce-products' );
 		}
 
 		/**

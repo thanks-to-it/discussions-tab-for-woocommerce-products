@@ -3,7 +3,7 @@
 Plugin Name: Discussions Tab for WooCommerce Products
 Plugin URI: https://wordpress.org/plugins/discussions-tab-for-woocommerce-products/
 Description: Creates a discussions tab for WooCommerce products.
-Version: 1.5.7
+Version: 1.5.8
 Author: Algoritmika Ltd
 Author URI: https://profiles.wordpress.org/algoritmika/
 Text Domain: discussions-tab-for-woocommerce-products
@@ -75,7 +75,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @var   string
 	 * @since 1.1.0
 	 */
-	public $version = '1.5.7';
+	public $version = '1.5.8';
 
 	/**
 	 * @var   Alg_WC_Products_Discussions_Tab The single instance of the class

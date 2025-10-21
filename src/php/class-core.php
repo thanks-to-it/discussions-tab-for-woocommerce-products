@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class.
  *
- * @version 1.5.6
+ * @version 1.5.8
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -37,75 +37,194 @@ class Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.5.2
+	 * @version 1.5.8
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
 	 */
 	function __construct() {
 		if ( 'yes' === get_option( 'alg_dtwp_opt_enable', 'yes' ) ) {
-			// Handle template
+
+			// Handle template.
 			add_filter( 'woocommerce_locate_template',             array( $this, 'locate_template' ), 10, 3 );
 			add_filter( 'woocommerce_locate_core_template',        array( $this, 'locate_template' ), 10, 3 );
-			// Scripts
+
+			// Scripts.
 			add_action( 'wp_enqueue_scripts',                      array( $this, 'load_scripts' ) );
-			// Adds discussion tab in product page
+
+			// Adds discussion tab in product page.
 			add_filter( 'woocommerce_product_tabs',                array( $this, 'add_discussions_tab' ) );
-			// Inserts comments as discussion comment type in database
+
+			// Inserts comments as discussion comment type in database.
 			add_action( 'comment_form_top',                        array( $this, 'add_discussions_comment_type_in_form' ) );
 			add_filter( 'preprocess_comment',                      array( $this, 'add_discussions_comment_type_in_comment_data' ) );
-			// Hides discussion comments on improper places
+
+			// Hides discussion comments on improper places.
 			add_action( 'pre_get_comments',                        array( $this, 'hide_discussion_comments_on_default_callings' ) );
-			// Loads discussion comments
+
+			// Loads discussion comments.
 			add_filter( 'comments_template_query_args',            array( $this, 'filter_discussions_comments_template_query_args' ) );
-			// Swaps woocommerce template (single-product-reviews.php) with default comments template
+
+			// Swaps woocommerce template (single-product-reviews.php) with default comments template.
 			add_filter( 'comments_template',                       array( $this, 'load_discussions_comments_template' ), 20 );
-			// Tags the respond form so it can have it's ID changed
+
+			// Tags the respond form so it can have it's ID changed.
 			add_action( 'comment_form_before',                     array( $this, 'create_respond_form_wrapper_start' ) );
 			add_action( 'comment_form_after',                      array( $this, 'create_respond_form_wrapper_end' ) );
-			// Change reply link respond id
+
+			// Change reply link respond id.
 			add_filter( 'comment_reply_link_args',                 array( $this, 'change_reply_link_respond_id' ) );
-			// Fixes comments count
+
+			// Fixes comments count.
 			add_filter( 'get_comments_number',                     array( $this, 'fix_discussions_comments_number' ), 10, 2 );
 			add_filter( 'woocommerce_product_get_review_count',    array( $this, 'fix_reviews_number' ), 10, 2 );
-			// Get avatar data
+
+			// Get avatar data.
 			add_filter( 'get_avatar_comment_types',                array( $this, 'add_discussions_to_avatar_comment_types' ) );
-			// Filters params passed to `wp_list_comments` function
+
+			// Filters params passed to `wp_list_comments` function.
 			add_filter( 'wp_list_comments_args',                   array( $this, 'filter_wp_list_comments_args' ) );
-			// Filters the class of `wp_list_comments` wrapper
+
+			// Filters the class of `wp_list_comments` wrapper.
 			add_filter( 'alg_dtwp_wp_list_comments_wrapper_class', array( $this, 'filter_wp_list_comments_wrapper_class' ) );
-			// Filters the comment class
+
+			// Filters the comment class.
 			add_filter( 'comment_class',                           array( $this, 'filter_comment_class' ) );
-			// Changes comment link to `#discussion-`
+
+			// Changes comment link to `#discussion-`.
 			add_filter( 'get_comment_link',                        array( $this, 'change_comment_link' ), 10, 4 );
-			// Handle shortcodes
+
+			// Handle shortcodes.
 			add_filter( 'comment_text',                            array( $this, 'handle_shortcodes' ), 10, 2 );
-			// Open comments for product post type
+
+			// Open comments for product post type.
 			add_filter( 'comments_open',                           array( $this, 'comments_open' ), 20, 2 );
-			// Display comments form
+
+			// Display comments form.
 			add_action( 'alg_dtwp_comments_end',                   array( $this, 'setup_comments_form_position' ) );
 			add_action( 'alg_dtwp_comments_start',                 array( $this, 'setup_comments_form_position' ) );
-			// Detect plugin update
+
+			// Detect plugin update.
 			add_action( 'upgrader_process_complete',               array( $this, 'detect_plugin_update' ), 10, 2 );
-			// Compatibility
+
+			// Compatibility.
 			new Compatibility();
-			// My account tab
+
+			// My account tab.
 			new My_Account();
-			// New comment Email
+
+			// New comment Email.
 			new New_Comment_Email();
-			// Filters and sanitize comment data
+
+			// Filters and sanitize comment data.
 			add_filter( 'pre_comment_content', array( $this, 'filter_and_sanitize_comment' ), 20 );
-			// Fix comment edit redirect
+
+			// Fix comment edit redirect.
 			add_filter( 'comment_edit_redirect', array( $this, 'fix_comment_edit_redirect_from_frontend' ), 11, 2 );
-			// Edit comment link
+
+			// Edit comment link.
 			add_filter( 'edit_comment_link', array( $this, 'handle_discussion_comment_edit_link' ), 10, 2 );
-			// Fix pagination link
+
+			// Fix pagination link.
 			add_filter( 'get_comments_pagenum_link', array( $this, 'fix_pagination_link' ) );
+
 			// Hide discussion comments for guest users.
 			add_action( 'pre_get_comments', array( $this, 'hide_discussion_comments_for_guests' ) );
+
+			// Triggers `alg_dtwp_pre_discussion_comment_on_post` action.
+			add_action( 'pre_comment_on_post', array( $this, 'pre_discussion_comment_on_post' ) );
+
+			// Check for errors before creating a discussion comment on a post.
+			add_action( 'alg_dtwp_pre_discussion_comment_on_post', array( $this, 'validate_pre_discussion_comment_on_post' ) );
+			add_filter( 'alg_dtwp_pre_discussion_comment_on_post_errors', array( $this, 'add_post_author_and_admin_exceptions_to_possible_errors' ), 100, 2 );
 		}
-		// Core contentCalled
+		// Core content called.
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * add_post_author_and_admin_exceptions_to_possible_errors.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @param $errors
+	 * @param $comment_post_id
+	 *
+	 * @return array|mixed
+	 */
+	function add_post_author_and_admin_exceptions_to_possible_errors( $errors, $comment_post_id ) {
+		if (
+			(
+				'yes' === get_option( 'alg_dtwp_product_authors_post_discussion_comments', 'yes' ) &&
+				intval( get_post_field( 'post_author', $comment_post_id ) ) === get_current_user_id()
+			) ||
+			(
+				'yes' === get_option( 'alg_dtwp_administrator_post_discussion_comments', 'yes' ) &&
+				current_user_can( 'administrator' )
+			)
+		) {
+			$errors = array();
+		}
+
+		return $errors;
+	}
+
+	/**
+	 * pre_discussion_comment_on_post.
+	 *
+	 * Fires before a discussion comment is posted.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @return void
+	 */
+	function pre_discussion_comment_on_post() {
+		if (
+			! isset( $_REQUEST[ alg_wc_pdt_get_comment_type_id() ] ) ||
+			! isset( $_REQUEST['comment_post_ID'] )
+		) {
+			return;
+		}
+		do_action( 'alg_dtwp_pre_discussion_comment_on_post', intval( $_REQUEST['comment_post_ID'] ) );
+	}
+
+	/**
+	 * validate_pre_discussion_comment_on_post.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @param $comment_post_id
+	 *
+	 * @return void
+	 */
+	function validate_pre_discussion_comment_on_post( $comment_post_id ) {
+		if ( ! empty( $errors = $this->get_pre_discussion_comment_on_post_errors( $comment_post_id ) ) ) {
+			$first_error = reset( $errors );
+			wp_die(
+				$first_error,
+				rtrim( $first_error, '.' ),
+				array(
+					'code' => 403,
+				)
+			);
+		}
+	}
+
+	/**
+	 * get_pre_discussion_comment_on_post_errors.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @param $comment_post_id
+	 *
+	 * @return mixed|null
+	 */
+	function get_pre_discussion_comment_on_post_errors( $comment_post_id ) {
+		return apply_filters( 'alg_dtwp_pre_discussion_comment_on_post_errors', array(), $comment_post_id );
 	}
 
 	/**
@@ -307,10 +426,10 @@ class Core {
 	 * @version 1.2.4
 	 * @since   1.2.4
 	 */
-	function setup_comments_form_position() {
+	function setup_comments_form_position($comment_post_id) {
 		$comment_form_position = apply_filters( 'alg_dtwp_opt_comment_form_position', 'alg_dtwp_comments_end' );
 		if ( $comment_form_position == current_filter() ) {
-			$this->display_comments_form();
+			$this->display_comments_form($comment_post_id);
 		}
 		if ( 'alg_dtwp_comments_start' == $comment_form_position ) {
 			echo '<div style="margin-bottom:50px"></div>';
@@ -320,14 +439,17 @@ class Core {
 	/**
 	 * display_comments_form.
 	 *
-	 * @version 1.2.4
+	 * @version 1.5.8
 	 * @since   1.2.4
 	 */
-	function display_comments_form() {
+	function display_comments_form( $comment_post_id ) {
+		$errors     = $this->get_pre_discussion_comment_on_post_errors( $comment_post_id );
+		$has_errors = ! empty( $errors );
+
 		$discussions_respond_title        = sanitize_text_field( get_option( 'alg_dtwp_discussions_respond_title', __( 'Leave a reply', 'discussions-tab-for-woocommerce-products' ) ) );
 		$discussions_comment_btn_label    = sanitize_text_field( get_option( 'alg_dtwp_discussions_post_comment_label', __( 'Post Comment', 'discussions-tab-for-woocommerce-products' ) ) );
 		$discussions_textarea_placeholder = sanitize_text_field( get_option( 'alg_dtwp_discussions_textarea_placeholder', '' ) );
-		comment_form( array(
+		$comment_form_params              = array(
 			'title_reply'     => $discussions_respond_title,
 			'label_submit'    => $discussions_comment_btn_label,
 			'class_container' => 'alg-dtwp-comment-respond',
@@ -341,7 +463,26 @@ class Core {
 				),
 				'<textarea id="discussion" name="comment" cols="45" rows="8" maxlength="65525" required="required" placeholder="' . $discussions_textarea_placeholder . '"></textarea>'
 			),
-		) );
+		);
+
+		if ( $has_errors ) {
+			$first_error = reset($errors);
+			$comment_form_params['comment_notes_after'] = '<p style="color:red;margin-bottom:20px">'.$first_error.'</p>';
+		}
+
+		comment_form( $comment_form_params );
+
+		$form_html = ob_get_clean();
+
+		// Disable all input, textarea, and select fields.
+		if ( $has_errors ) {
+			$form_html = str_replace( '<textarea', '<textarea disabled="disabled"', $form_html );
+			$form_html = str_replace( '<input', '<input disabled="disabled"', $form_html );
+			$form_html = str_replace( '<select', '<select disabled="disabled"', $form_html );
+		}
+
+		echo $form_html;
+
 	}
 
 	/**

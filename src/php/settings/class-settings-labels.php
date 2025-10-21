@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Labels Section Settings
  *
- * @version 1.3.3
+ * @version 1.5.8
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -18,13 +18,24 @@ class Settings_Labels extends Settings_Section {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.1.0
+	 * @version 1.5.8
 	 * @since   1.1.0
 	 */
 	function __construct() {
 		$this->id   = 'labels';
-		$this->desc = __( 'Labels', 'discussions-tab-for-woocommerce-products' );
 		parent::__construct();
+	}
+
+	/**
+	 * set_variables.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @return void
+	 */
+	public function set_variables() {
+		$this->desc = __( 'Labels', 'discussions-tab-for-woocommerce-products' );
 	}
 
 	/**

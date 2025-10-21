@@ -1,10 +1,10 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/modules lazy recursive ^\\.\\/.*$":
-/*!********************************************************!*\
-  !*** ./src/js/modules/ lazy ^\.\/.*$ namespace object ***!
-  \********************************************************/
+/***/ "./src/js/modules lazy recursive ^\\.\\/.*$ referencedExports: init":
+/*!********************************************************************************!*\
+  !*** ./src/js/modules/ lazy ^\.\/.*$ referencedExports: init namespace object ***!
+  \********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
@@ -88,7 +88,7 @@ function webpackAsyncContext(req) {
 	});
 }
 webpackAsyncContext.keys = () => (Object.keys(map));
-webpackAsyncContext.id = "./src/js/modules lazy recursive ^\\.\\/.*$";
+webpackAsyncContext.id = "./src/js/modules lazy recursive ^\\.\\/.*$ referencedExports: init";
 module.exports = webpackAsyncContext;
 
 /***/ })
@@ -144,7 +144,7 @@ module.exports = webpackAsyncContext;
 /******/ 			__webpack_require__.r(ns);
 /******/ 			var def = {};
 /******/ 			leafPrototypes = leafPrototypes || [null, getProto({}), getProto([]), getProto(getProto)];
-/******/ 			for(var current = mode & 2 && value; typeof current == 'object' && !~leafPrototypes.indexOf(current); current = getProto(current)) {
+/******/ 			for(var current = mode & 2 && value; (typeof current == 'object' || typeof current == 'function') && !~leafPrototypes.indexOf(current); current = getProto(current)) {
 /******/ 				Object.getOwnPropertyNames(current).forEach((key) => (def[key] = () => (value[key])));
 /******/ 			}
 /******/ 			def['default'] = () => (value);
@@ -235,7 +235,6 @@ module.exports = webpackAsyncContext;
 /******/ 				script = document.createElement('script');
 /******/ 		
 /******/ 				script.charset = 'utf-8';
-/******/ 				script.timeout = 120;
 /******/ 				if (__webpack_require__.nc) {
 /******/ 					script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 				}
@@ -291,7 +290,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
 /******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
 /******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		scriptUrl = scriptUrl.replace(/^blob:/, "").replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
 /******/ 		__webpack_require__.p = scriptUrl + "../";
 /******/ 	})();
 /******/ 	
@@ -386,7 +385,7 @@ module.exports = webpackAsyncContext;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
 (() => {
 /*!****************************!*\
   !*** ./src/js/frontend.js ***!
@@ -403,7 +402,7 @@ __webpack_require__.p = alg_dtwp.plugin_url + "/assets/";
 var modules = alg_dtwp.modulesToLoad;
 if (modules && modules.length) {
   modules.forEach(function (module) {
-    __webpack_require__("./src/js/modules lazy recursive ^\\.\\/.*$")("./".concat(module)).then(function (component) {
+    __webpack_require__("./src/js/modules lazy recursive ^\\.\\/.*$ referencedExports: init")("./".concat(module)).then(function (component) {
       component.init();
     });
   });
@@ -412,13 +411,13 @@ if (modules && modules.length) {
 // Static modules
 var staticModules = ['cancel-btn-fixer', 'tab-opener', 'parent-comment-id-fixer', 'scroller'];
 staticModules.forEach(function (module_name) {
-  __webpack_require__("./src/js/modules lazy recursive ^\\.\\/.*$")("./".concat(module_name)).then(function (component) {
+  __webpack_require__("./src/js/modules lazy recursive ^\\.\\/.*$ referencedExports: init")("./".concat(module_name)).then(function (component) {
     component.init();
   });
 });
 })();
 
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
 (() => {
 /*!********************************!*\
   !*** ./src/scss/frontend.scss ***!

@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: discussions-tab-for-woocommerce-products 1.5.7\n"
+"Project-Id-Version: discussions-tab-for-woocommerce-products 1.5.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/discussions-tab-for-woocommerce-products\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-15T00:21:46+02:00\n"
+"POT-Creation-Date: 2025-10-21T22:56:44+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: discussions-tab-for-woocommerce-products\n"
@@ -36,9 +36,9 @@ msgstr ""
 
 #: src/php/class-admin.php:59
 #: src/php/class-admin.php:128
-#: src/php/class-core.php:395
+#: src/php/class-core.php:536
 #: src/php/class-my-account.php:59
-#: src/php/settings/class-settings-texts.php:63
+#: src/php/settings/class-settings-texts.php:74
 #: src/php/settings/class-settings.php:26
 #: templates/dtwp-comments.php:20
 msgid "Discussions"
@@ -80,12 +80,12 @@ msgstr ""
 msgid "Convert to Review"
 msgstr ""
 
-#: src/php/class-core.php:327
+#: src/php/class-core.php:449
 msgid "Leave a reply"
 msgstr ""
 
-#: src/php/class-core.php:328
-#: src/php/settings/class-settings-texts.php:125
+#: src/php/class-core.php:450
+#: src/php/settings/class-settings-texts.php:136
 msgid "Post Comment"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgid "Use zero if you don't want to set a parent comment ID"
 msgstr ""
 
 #: src/php/pro/class-admin-comment-editor.php:316
-#: src/php/settings/class-settings-general.php:140
+#: src/php/settings/class-settings-general.php:178
 msgid "User ID"
 msgstr ""
 
@@ -159,25 +159,29 @@ msgid "Use zero if you don't want to set a user ID"
 msgstr ""
 
 #: src/php/pro/class-labels.php:93
-#: src/php/settings/class-settings-labels.php:180
-#: src/php/settings/class-settings-labels.php:189
+#: src/php/settings/class-settings-labels.php:191
+#: src/php/settings/class-settings-labels.php:200
 msgid "Product author"
 msgstr ""
 
 #: src/php/pro/class-labels.php:134
 #: src/php/pro/class-labels.php:188
 #: src/php/pro/class-labels.php:191
-#: src/php/settings/class-settings-labels.php:128
+#: src/php/settings/class-settings-labels.php:139
 msgid "Verified owner"
 msgstr ""
 
 #: src/php/pro/class-new-comment-email-pro.php:177
-#: src/php/settings/class-settings-email.php:39
+#: src/php/settings/class-settings-email.php:50
 msgid "New comment email"
 msgstr ""
 
+#: src/php/pro/class-pro.php:292
+msgid "It's required to be a verified owner to leave a discussion comment."
+msgstr ""
+
 #: src/php/pro/class-social.php:195
-#: src/php/settings/class-settings-social.php:81
+#: src/php/settings/class-settings-social.php:92
 msgid "Fill with Facebook"
 msgstr ""
 
@@ -186,8 +190,8 @@ msgstr ""
 #: src/php/pro/class-support.php:84
 #: src/php/pro/class-support.php:324
 #: src/php/pro/class-support.php:369
-#: src/php/settings/class-settings-labels.php:242
-#: src/php/settings/class-settings-labels.php:250
+#: src/php/settings/class-settings-labels.php:253
+#: src/php/settings/class-settings-labels.php:261
 msgid "Support"
 msgstr ""
 
@@ -225,7 +229,7 @@ msgid "One email per line"
 msgstr ""
 
 #: src/php/pro/class-support.php:367
-#: src/php/settings/class-settings-labels.php:214
+#: src/php/settings/class-settings-labels.php:225
 msgid "Support Reps"
 msgstr ""
 
@@ -237,779 +241,800 @@ msgstr ""
 msgid "If you do that,\tthe Support reps from the product page will overwrite the general settings below."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:26
+#: src/php/settings/class-settings-advanced.php:38
 msgid "Advanced"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:40
+#: src/php/settings/class-settings-advanced.php:51
 msgid "Template Options"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:41
+#: src/php/settings/class-settings-advanced.php:52
 msgid "Options regarding comments template."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:46
+#: src/php/settings/class-settings-advanced.php:57
 msgid "Comments callback function"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:47
+#: src/php/settings/class-settings-advanced.php:58
 msgid "It will be used to override the function that displays discussions comments."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:48
+#: src/php/settings/class-settings-advanced.php:59
 msgid "Note: You only need to worry about this option if your discussion comments look weird or ugly."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:49
+#: src/php/settings/class-settings-advanced.php:60
 msgid "To get your callback function name, find the file %s inside your theme and take a look at the %s parameter inside the %s function."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:64
+#: src/php/settings/class-settings-advanced.php:75
 msgid "Comment content"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:65
+#: src/php/settings/class-settings-advanced.php:76
 msgid "The content from discussions comments."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:70
+#: src/php/settings/class-settings-advanced.php:81
 msgid "Shortcodes"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:71
-#: src/php/settings/class-settings-advanced.php:79
+#: src/php/settings/class-settings-advanced.php:82
+#: src/php/settings/class-settings-advanced.php:90
 msgid "Enable shortcodes in discussion comments"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:78
+#: src/php/settings/class-settings-advanced.php:89
 msgid "Enable shortcodes to be viewed in <a href=\"%s\" target=\"_blank\">edit comments page</a> on admin"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:79
+#: src/php/settings/class-settings-advanced.php:90
 msgid "\"%s\" option must be enabled."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:86
+#: src/php/settings/class-settings-advanced.php:97
 msgid "Content sanitization"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:87
+#: src/php/settings/class-settings-advanced.php:98
 msgid "Enable custom sanitization for discussion comments"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:100
+#: src/php/settings/class-settings-advanced.php:111
 msgid "Content escaping"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:101
+#: src/php/settings/class-settings-advanced.php:112
 msgid "Escape content between %s and %s tags using %s"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:108
+#: src/php/settings/class-settings-advanced.php:119
 msgid "Content removal"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:109
+#: src/php/settings/class-settings-advanced.php:120
 msgid "Remove content from discussion comments"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:110
+#: src/php/settings/class-settings-advanced.php:121
 msgid "The content won't be removed from db. It will be only filtered with the %s hook."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:117
+#: src/php/settings/class-settings-advanced.php:128
 msgid "Content that will be removed:"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:118
+#: src/php/settings/class-settings-advanced.php:129
 msgid "Add one value per line."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:131
+#: src/php/settings/class-settings-advanced.php:142
 msgid "WooCommerce compatibility"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:132
+#: src/php/settings/class-settings-advanced.php:143
 msgid "From time to time, WooCommerce changes some details in the code that might affect the Discussions plugin. This is how you can handle with them."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:137
+#: src/php/settings/class-settings-advanced.php:148
 msgid "Reviews change"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:138
+#: src/php/settings/class-settings-advanced.php:149
 msgid "Fix product reviews change from WooCommerce 6.7.0"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:139
+#: src/php/settings/class-settings-advanced.php:150
 msgid "WooCommerce tried to separate the reviews from comments and that created some problems on admin."
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:161
+#: src/php/settings/class-settings-advanced.php:172
 msgid "HTML tags allowed:"
 msgstr ""
 
-#: src/php/settings/class-settings-advanced.php:162
+#: src/php/settings/class-settings-advanced.php:173
 msgid "JSON not valid. Please check the content."
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:26
+#: src/php/settings/class-settings-email.php:38
 msgid "Email"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:41
+#: src/php/settings/class-settings-email.php:52
 msgid "A notification sent via email when there is a new discussion comment."
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:42
+#: src/php/settings/class-settings-email.php:53
 msgid "The email depends on the %s option."
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:42
+#: src/php/settings/class-settings-email.php:53
 msgid "Email me whenever > Anyone posts a comment"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:46
+#: src/php/settings/class-settings-email.php:57
 msgid "Email text"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:47
+#: src/php/settings/class-settings-email.php:58
 msgid "Remove undesired texts and actions from the email"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:48
+#: src/php/settings/class-settings-email.php:59
 msgid "Removes the IP address, texts like \"In reply to:\" and actions like \"Trash it\", \"Spam it\" and \"Delete it\"."
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:55
+#: src/php/settings/class-settings-email.php:66
 msgid "Replace <code>#comments</code> anchor by discussions tab anchor"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:56
+#: src/php/settings/class-settings-email.php:67
 msgid "It should fix the permalink after texts like: %s"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:56
+#: src/php/settings/class-settings-email.php:67
 msgid "You can see all comments on this post here:"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:63
-#: src/php/settings/class-settings-labels.php:26
-#: src/php/settings/class-settings-labels.php:46
+#: src/php/settings/class-settings-email.php:74
+#: src/php/settings/class-settings-labels.php:38
+#: src/php/settings/class-settings-labels.php:57
 msgid "Labels"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:64
+#: src/php/settings/class-settings-email.php:75
 msgid "Show comment author label next to author name"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:71
 #: src/php/settings/class-settings-email.php:82
-#: src/php/settings/class-settings-email.php:100
+#: src/php/settings/class-settings-email.php:93
+#: src/php/settings/class-settings-email.php:111
 msgid "Comment authors"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:72
+#: src/php/settings/class-settings-email.php:83
 msgid "Also notify comment authors via email when they receive replies"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:73
+#: src/php/settings/class-settings-email.php:84
 msgid "By default, only product authors are notified. This option notifies all thread participants."
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:80
+#: src/php/settings/class-settings-email.php:91
 msgid "Unsubscribing"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:81
+#: src/php/settings/class-settings-email.php:92
 msgid "Create a checkbox above the discussion comments allowing registered users to subscribe/unsubscribe."
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:82
+#: src/php/settings/class-settings-email.php:93
 msgid "If enabled, it will make more sense to also enable the %s option."
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:98
+#: src/php/settings/class-settings-email.php:109
 msgid "Manual email"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:99
+#: src/php/settings/class-settings-email.php:110
 msgid "Allow sending manual emails to the product author on the \"edit comment\" page"
 msgstr ""
 
-#: src/php/settings/class-settings-email.php:100
+#: src/php/settings/class-settings-email.php:111
 msgid "If the %s option is enabled and the comment is a reply the parent comment author will also be notified."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:26
+#: src/php/settings/class-settings-general.php:38
 msgid "General"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:41
+#: src/php/settings/class-settings-general.php:52
 msgid "General Options"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:46
+#: src/php/settings/class-settings-general.php:57
 msgid "Enable plugin"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:47
+#: src/php/settings/class-settings-general.php:58
 msgid "Enable %s plugin"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:47
+#: src/php/settings/class-settings-general.php:58
 msgid "Discussions Tab for WooCommerce Products"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:53
+#: src/php/settings/class-settings-general.php:64
 msgid "Open comments"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:54
+#: src/php/settings/class-settings-general.php:65
 msgid "Open comments for product post type"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:55
+#: src/php/settings/class-settings-general.php:66
 msgid "Enable if you can't see the comment form on the discussion tab or if you're getting the \"Comments are closed\" message. "
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:61
+#: src/php/settings/class-settings-general.php:72
 msgid "Comment Reply JS"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:62
+#: src/php/settings/class-settings-general.php:73
 msgid "Enqueue the %s script on the product page"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:63
+#: src/php/settings/class-settings-general.php:74
 msgid "Enable it if the page reloads after clicking the Reply button from a Discussion comment."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:69
-msgid "Verified owners"
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:70
-msgid "Discussions comments can only be left by \"verified owners\""
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:77
+#: src/php/settings/class-settings-general.php:80
 msgid "AJAX discussions"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:78
+#: src/php/settings/class-settings-general.php:81
 msgid "Load comments via AJAX if the discussions tab is triggered"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:79
+#: src/php/settings/class-settings-general.php:82
 msgid "For now, the option %s needs to be disabled, i.e., the comments pagination needs to be disabled."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:86
+#: src/php/settings/class-settings-general.php:89
 msgid "Comment actions"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:87
+#: src/php/settings/class-settings-general.php:90
 msgid "Show \"edit comment link\" only for users with the %s capability"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:93
+#: src/php/settings/class-settings-general.php:96
 msgid "Guest users"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:94
+#: src/php/settings/class-settings-general.php:97
 msgid "Hide discussion comments from guest users"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:107
-msgid "Editable comment meta on admin"
+#: src/php/settings/class-settings-general.php:103
+msgid "Verified owners"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:109
-msgid "Data about the comment itself, like comment type, comment parent ID and the post/product in which the comment belongs to."
+#: src/php/settings/class-settings-general.php:104
+msgid "Demand customers to purchase a product to leave discussion comments on it"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:113
-msgid "Comment type conversion"
+#: src/php/settings/class-settings-general.php:118
+msgid "Posting Permissions"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:114
-msgid "Allow admin to convert discussions to reviews and vice versa"
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:115
-msgid "Will add \"Convert to Review\" and \"Convert to Discussion\" options to admin's %s section."
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:116
-msgid "Comments"
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:122
-msgid "Parent ID"
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:123
-msgid "Allow admin to edit discussion comment parent ID"
+#: src/php/settings/class-settings-general.php:119
+msgid "Users matching any of the selected types will be allowed to post."
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:124
-#: src/php/settings/class-settings-general.php:133
-#: src/php/settings/class-settings-general.php:142
-msgid "A new meta box will be added to the \"edit comment\" page."
+msgid "Administrator"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:125
+msgid "Allow the administrator to leave discussion comments"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:131
-msgid "Post ID"
+#: src/php/settings/class-settings-labels.php:164
+msgid "Product authors"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:132
-msgid "Allow admin to edit discussion comment post ID"
+msgid "Allow product authors to leave discussion comments on their products"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:141
-msgid "Allow admin to edit discussion comment user ID"
+#: src/php/settings/class-settings-general.php:145
+msgid "Editable comment meta on admin"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:156
-msgid "Discussions tab"
+#: src/php/settings/class-settings-general.php:147
+msgid "Data about the comment itself, like comment type, comment parent ID and the post/product in which the comment belongs to."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:158
-msgid "A tab added to the product page with the discussion comments."
+#: src/php/settings/class-settings-general.php:151
+msgid "Comment type conversion"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:152
+msgid "Allow admin to convert discussions to reviews and vice versa"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:153
+msgid "Will add \"Convert to Review\" and \"Convert to Discussion\" options to admin's %s section."
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:154
+msgid "Comments"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:160
+msgid "Parent ID"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:161
+msgid "Allow admin to edit discussion comment parent ID"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:162
-msgid "Count replies"
+#: src/php/settings/class-settings-general.php:171
+#: src/php/settings/class-settings-general.php:180
+msgid "A new meta box will be added to the \"edit comment\" page."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:163
-msgid "Consider replies when counting the discussions comments total amount"
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:164
-msgid "Changes how the %s from the %s option works."
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:164
-msgid "Texts > Tab title"
+#: src/php/settings/class-settings-general.php:169
+msgid "Post ID"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:170
-msgid "Tab link"
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:171
-msgid "Link that will automatically open your discussions tab."
-msgstr ""
-
-#: src/php/settings/class-settings-general.php:172
-#: src/php/settings/class-settings-general.php:181
-msgid "E.g.: %s"
+msgid "Allow admin to edit discussion comment post ID"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:179
-msgid "Comment link"
+msgid "Allow admin to edit discussion comment user ID"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:180
-msgid "Link that will automatically open your discussions tab on a specific comment."
+#: src/php/settings/class-settings-general.php:194
+msgid "Discussions tab"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:182
-msgid "This link will be displayed after a comment is posted on frontend."
+#: src/php/settings/class-settings-general.php:196
+msgid "A tab added to the product page with the discussion comments."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:189
-msgid "Tab position"
+#: src/php/settings/class-settings-general.php:200
+msgid "Count replies"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:190
-msgid "Tab priority (i.e. position)."
+#: src/php/settings/class-settings-general.php:201
+msgid "Consider replies when counting the discussions comments total amount"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:191
-msgid "Default WooCommerce tabs priorities are: %s."
+#: src/php/settings/class-settings-general.php:202
+msgid "Changes how the %s from the %s option works."
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:202
+msgid "Texts > Tab title"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:208
+msgid "Tab link"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:209
-msgid "Discussions form"
+msgid "Link that will automatically open your discussions tab."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:211
-msgid "The form used to display the discussions comment field."
+#: src/php/settings/class-settings-general.php:210
+#: src/php/settings/class-settings-general.php:219
+msgid "E.g.: %s"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:215
-msgid "Comment form position"
+#: src/php/settings/class-settings-general.php:217
+msgid "Comment link"
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:216
-msgid "The place where the \"Leave a reply\" form will be displayed."
+#: src/php/settings/class-settings-general.php:218
+msgid "Link that will automatically open your discussions tab on a specific comment."
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:220
-msgid "Top"
+msgid "This link will be displayed after a comment is posted on frontend."
 msgstr ""
 
-#: src/php/settings/class-settings-general.php:221
-msgid "Bottom"
+#: src/php/settings/class-settings-general.php:227
+msgid "Tab position"
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:228
-msgid "Rich text editor"
+msgid "Tab priority (i.e. position)."
 msgstr ""
 
 #: src/php/settings/class-settings-general.php:229
+msgid "Default WooCommerce tabs priorities are: %s."
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:247
+msgid "Discussions form"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:249
+msgid "The form used to display the discussions comment field."
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:253
+msgid "Comment form position"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:254
+msgid "The place where the \"Leave a reply\" form will be displayed."
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:258
+msgid "Top"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:259
+msgid "Bottom"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:266
+msgid "Rich text editor"
+msgstr ""
+
+#: src/php/settings/class-settings-general.php:267
 msgid "Enable TinyMCE on discussion comments"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:41
+#: src/php/settings/class-settings-labels.php:52
 msgid "Labels Options"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:47
-#: src/php/settings/class-settings-social.php:45
+#: src/php/settings/class-settings-labels.php:58
+#: src/php/settings/class-settings-social.php:56
 msgid "Enable section"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:54
+#: src/php/settings/class-settings-labels.php:65
 msgid "Icons positioning"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:59
+#: src/php/settings/class-settings-labels.php:70
 msgid "Next to comment text"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:60
+#: src/php/settings/class-settings-labels.php:71
 msgid "Next to comment author"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:71
+#: src/php/settings/class-settings-labels.php:82
 msgid "Tips Style"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:73
+#: src/php/settings/class-settings-labels.php:84
 msgid "Tips are hints that are displayed when mouse is over the icons."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:77
+#: src/php/settings/class-settings-labels.php:88
 msgid "Tip text color"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:83
+#: src/php/settings/class-settings-labels.php:94
 msgid "Tip background color"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:89
+#: src/php/settings/class-settings-labels.php:100
 msgid "Tip border color"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:101
+#: src/php/settings/class-settings-labels.php:112
 msgid "Verified Owners"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:103
+#: src/php/settings/class-settings-labels.php:114
 msgid "Customers who bought products."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:107
-#: src/php/settings/class-settings-labels.php:159
-#: src/php/settings/class-settings-labels.php:220
-#: src/php/settings/class-settings-social.php:62
-#: src/php/settings/class-settings-social.php:71
+#: src/php/settings/class-settings-labels.php:118
+#: src/php/settings/class-settings-labels.php:170
+#: src/php/settings/class-settings-labels.php:231
+#: src/php/settings/class-settings-social.php:73
+#: src/php/settings/class-settings-social.php:82
 msgid "Enable"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:108
+#: src/php/settings/class-settings-labels.php:119
 msgid "Detect comments left by customers who have purchased products"
-msgstr ""
-
-#: src/php/settings/class-settings-labels.php:114
-#: src/php/settings/class-settings-labels.php:166
-#: src/php/settings/class-settings-labels.php:227
-msgid "Icon"
-msgstr ""
-
-#: src/php/settings/class-settings-labels.php:115
-#: src/php/settings/class-settings-labels.php:167
-#: src/php/settings/class-settings-labels.php:228
-msgid "Requires \"Load Font Awesome\" option to be enabled."
-msgstr ""
-
-#: src/php/settings/class-settings-labels.php:116
-#: src/php/settings/class-settings-labels.php:126
-#: src/php/settings/class-settings-labels.php:168
-#: src/php/settings/class-settings-labels.php:178
-#: src/php/settings/class-settings-labels.php:187
-#: src/php/settings/class-settings-labels.php:229
-#: src/php/settings/class-settings-labels.php:239
-#: src/php/settings/class-settings-labels.php:248
-msgid "Leave empty to disable."
-msgstr ""
-
-#: src/php/settings/class-settings-labels.php:124
-#: src/php/settings/class-settings-labels.php:176
-#: src/php/settings/class-settings-labels.php:237
-msgid "Icon tip text"
 msgstr ""
 
 #: src/php/settings/class-settings-labels.php:125
 #: src/php/settings/class-settings-labels.php:177
 #: src/php/settings/class-settings-labels.php:238
+msgid "Icon"
+msgstr ""
+
+#: src/php/settings/class-settings-labels.php:126
+#: src/php/settings/class-settings-labels.php:178
+#: src/php/settings/class-settings-labels.php:239
+msgid "Requires \"Load Font Awesome\" option to be enabled."
+msgstr ""
+
+#: src/php/settings/class-settings-labels.php:127
+#: src/php/settings/class-settings-labels.php:137
+#: src/php/settings/class-settings-labels.php:179
+#: src/php/settings/class-settings-labels.php:189
+#: src/php/settings/class-settings-labels.php:198
+#: src/php/settings/class-settings-labels.php:240
+#: src/php/settings/class-settings-labels.php:250
+#: src/php/settings/class-settings-labels.php:259
+msgid "Leave empty to disable."
+msgstr ""
+
+#: src/php/settings/class-settings-labels.php:135
+#: src/php/settings/class-settings-labels.php:187
+#: src/php/settings/class-settings-labels.php:248
+msgid "Icon tip text"
+msgstr ""
+
+#: src/php/settings/class-settings-labels.php:136
+#: src/php/settings/class-settings-labels.php:188
+#: src/php/settings/class-settings-labels.php:249
 msgid "Text displayed when mouse is over the icon."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:133
-#: src/php/settings/class-settings-labels.php:194
-#: src/php/settings/class-settings-labels.php:255
+#: src/php/settings/class-settings-labels.php:144
+#: src/php/settings/class-settings-labels.php:205
+#: src/php/settings/class-settings-labels.php:266
 msgid "Background color"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:134
+#: src/php/settings/class-settings-labels.php:145
 msgid "Background color for the icon."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:140
-#: src/php/settings/class-settings-labels.php:201
-#: src/php/settings/class-settings-labels.php:262
+#: src/php/settings/class-settings-labels.php:151
+#: src/php/settings/class-settings-labels.php:212
+#: src/php/settings/class-settings-labels.php:273
 msgid "Text color"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:141
+#: src/php/settings/class-settings-labels.php:152
 msgid "Text color for the icon"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:153
-msgid "Product authors"
-msgstr ""
-
-#: src/php/settings/class-settings-labels.php:155
+#: src/php/settings/class-settings-labels.php:166
 msgid "Users who own the products."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:160
+#: src/php/settings/class-settings-labels.php:171
 msgid "Detect comments left by product authors"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:185
-#: src/php/settings/class-settings-labels.php:246
+#: src/php/settings/class-settings-labels.php:196
+#: src/php/settings/class-settings-labels.php:257
 msgid "Title"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:186
-#: src/php/settings/class-settings-labels.php:247
+#: src/php/settings/class-settings-labels.php:197
+#: src/php/settings/class-settings-labels.php:258
 msgid "Text displayed above profile picture."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:195
-#: src/php/settings/class-settings-labels.php:256
+#: src/php/settings/class-settings-labels.php:206
+#: src/php/settings/class-settings-labels.php:267
 msgid "Background color for the icon and title."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:202
-#: src/php/settings/class-settings-labels.php:263
+#: src/php/settings/class-settings-labels.php:213
+#: src/php/settings/class-settings-labels.php:274
 msgid "Text color for the icon and title."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:216
+#: src/php/settings/class-settings-labels.php:227
 msgid "Users who will be marked as support representatives."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:221
+#: src/php/settings/class-settings-labels.php:232
 msgid "Detect comments left by support reps"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:269
+#: src/php/settings/class-settings-labels.php:280
 msgid "My account tab"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:272
+#: src/php/settings/class-settings-labels.php:283
 msgid "Add discussions tab on <a href=\"%s\">My Account page</a> to setup the support reps"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:273
+#: src/php/settings/class-settings-labels.php:284
 msgid "Only users with the %s capability will be able to see the tab."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:277
+#: src/php/settings/class-settings-labels.php:288
 msgid "Support metabox"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:280
+#: src/php/settings/class-settings-labels.php:291
 msgid "Add metabox on product pages to setup the support reps"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:281
+#: src/php/settings/class-settings-labels.php:292
 msgid "If enabled and not empty will overwrite the my account tab setup."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:291
+#: src/php/settings/class-settings-labels.php:302
 msgid "Advanced Options"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:296
+#: src/php/settings/class-settings-labels.php:307
 msgid "Load Font Awesome"
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:297
+#: src/php/settings/class-settings-labels.php:308
 msgid "Loads most recent version of Font Awesome."
 msgstr ""
 
-#: src/php/settings/class-settings-labels.php:298
+#: src/php/settings/class-settings-labels.php:309
 msgid "Only mark this if you are not loading Font Awesome anywhere else. Font Awesome is responsible for creating icons."
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:26
-#: src/php/settings/class-settings-social.php:44
+#: src/php/settings/class-settings-social.php:38
+#: src/php/settings/class-settings-social.php:55
 msgid "Social"
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:39
+#: src/php/settings/class-settings-social.php:50
 msgid "Facebook Options"
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:52
+#: src/php/settings/class-settings-social.php:63
 msgid "Facebook App ID"
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:53
+#: src/php/settings/class-settings-social.php:64
 msgid "To get your App ID, you need to create a Facebook App <a href=\"%s\" target=\"_blank\">following these steps</a>."
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:61
+#: src/php/settings/class-settings-social.php:72
 msgid "Autofill"
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:63
+#: src/php/settings/class-settings-social.php:74
 msgid "Use Facebook to fill the discussions form with name and e-mail."
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:64
+#: src/php/settings/class-settings-social.php:75
 msgid "Facebook App ID is necessary."
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:70
+#: src/php/settings/class-settings-social.php:81
 msgid "Autofill avatar"
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:72
+#: src/php/settings/class-settings-social.php:83
 msgid "Use Facebook profile picture to replace the avatar."
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:73
+#: src/php/settings/class-settings-social.php:84
 msgid "Requires the autofill option enabled."
 msgstr ""
 
-#: src/php/settings/class-settings-social.php:79
+#: src/php/settings/class-settings-social.php:90
 msgid "Autofill button label"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:26
+#: src/php/settings/class-settings-texts.php:38
 msgid "Texts"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:38
+#: src/php/settings/class-settings-texts.php:49
 msgid "Product Title"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:40
-#: src/php/settings/class-settings-texts.php:95
+#: src/php/settings/class-settings-texts.php:51
+#: src/php/settings/class-settings-texts.php:106
 #: templates/dtwp-comments.php:14
 msgid "One thought on \"%1$s\""
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:41
-#: src/php/settings/class-settings-texts.php:107
+#: src/php/settings/class-settings-texts.php:52
+#: src/php/settings/class-settings-texts.php:118
 #: templates/dtwp-comments.php:16
 msgid "%2$d thoughts on \"%1$s\""
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:55
+#: src/php/settings/class-settings-texts.php:66
 msgid "Texts Options"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:60
+#: src/php/settings/class-settings-texts.php:71
 msgid "Discussions label"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:61
+#: src/php/settings/class-settings-texts.php:72
 msgid "How discussions will be labeled in front-end."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:69
+#: src/php/settings/class-settings-texts.php:80
 msgid "Tab title"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:70
+#: src/php/settings/class-settings-texts.php:81
 msgid "Discussions tab title."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:71
+#: src/php/settings/class-settings-texts.php:82
 msgid "Placeholders: %s"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:80
+#: src/php/settings/class-settings-texts.php:91
 msgid "No discussions"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:81
+#: src/php/settings/class-settings-texts.php:92
 msgid "When there is still no comments."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:83
+#: src/php/settings/class-settings-texts.php:94
 #: templates/dtwp-comments.php:18
 msgid "There are no discussions yet."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:89
+#: src/php/settings/class-settings-texts.php:100
 msgid "Title - singular"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:90
+#: src/php/settings/class-settings-texts.php:101
 msgid "The discussions title for tab content in front-end (singular)."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:91
-#: src/php/settings/class-settings-texts.php:103
+#: src/php/settings/class-settings-texts.php:102
+#: src/php/settings/class-settings-texts.php:114
 msgid "%s is the Product title. %s stands for the Comments count."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:93
-#: src/php/settings/class-settings-texts.php:105
+#: src/php/settings/class-settings-texts.php:104
+#: src/php/settings/class-settings-texts.php:116
 msgid "Example"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:101
+#: src/php/settings/class-settings-texts.php:112
 msgid "Title - plural"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:102
+#: src/php/settings/class-settings-texts.php:113
 msgid "The discussions title for tab content in front-end (plural)."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:113
+#: src/php/settings/class-settings-texts.php:124
 msgid "Respond label"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:114
+#: src/php/settings/class-settings-texts.php:125
 msgid "Title displayed on respond form."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:116
+#: src/php/settings/class-settings-texts.php:127
 msgid "Leave a Reply"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:122
+#: src/php/settings/class-settings-texts.php:133
 msgid "Comment button"
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:123
+#: src/php/settings/class-settings-texts.php:134
 msgid "Label for post comment button."
 msgstr ""
 
-#: src/php/settings/class-settings-texts.php:131
+#: src/php/settings/class-settings-texts.php:142
 msgid "Textarea placeholder"
 msgstr ""
 

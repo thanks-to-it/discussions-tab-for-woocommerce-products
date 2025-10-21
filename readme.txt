@@ -3,7 +3,7 @@ Contributors: algoritmika, thankstoit, anbinder, karzin
 Tags: woocommerce, woocommerce comments, woocommerce reviews, woocommerce product discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support, tab, product comments, woo commerce
 Requires at least: 4.4
 Tested up to: 6.8
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,6 +56,12 @@ You can do it through [translate.wordpress](https://translate.wordpress.org/proj
 1. Display a Discussions tab in your product page.
 
 == Changelog ==
+
+= 1.5.8 - 21/10/2025 =
+* Fix - Fixed Translation domain was triggered too early message.
+* Dev - New option added to allow administrators to post discussion comments.
+* Dev - New option added to allow product authors to post discussion comments.
+* Dev - Showing errors before trying to submit the discussion comment.
 
 = 1.5.7 - 14/10/2025 =
 * WC tested up to: 10.2.

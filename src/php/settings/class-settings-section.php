@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Section Settings
  *
- * @version 1.5.2
+ * @version 1.5.8
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -45,12 +45,25 @@ class Settings_Section {
 	}
 
 	/**
+	 * set_variables.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @return void
+	 */
+	function set_variables() {
+
+	}
+
+	/**
 	 * settings_section.
 	 *
-	 * @version 1.1.0
+	 * @version 1.5.8
 	 * @since   1.1.0
 	 */
 	function settings_section( $sections ) {
+		$this->set_variables();
 		$sections[ $this->id ] = $this->desc;
 		return $sections;
 	}

@@ -68,7 +68,7 @@ jQuery(function ($) {
 /******/ 	}
 /******/ 	
 /************************************************************************/
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
 (() => {
 /*!*************************!*\
   !*** ./src/js/admin.js ***!
@@ -83,7 +83,7 @@ jQuery(function ($) {
 var iconpicker = __webpack_require__(/*! ./modules/iconpicker-manager */ "./src/js/modules/iconpicker-manager.js");
 })();
 
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
 (() => {
 /*!*****************************!*\
   !*** ./src/scss/admin.scss ***!

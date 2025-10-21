@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - General Section Settings.
  *
- * @version 1.5.5
+ * @version 1.5.8
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -23,8 +23,19 @@ class Settings_General extends Settings_Section {
 	 */
 	function __construct() {
 		$this->id   = '';
-		$this->desc = __( 'General', 'discussions-tab-for-woocommerce-products' );
 		parent::__construct();
+	}
+
+	/**
+	 * set_variables.
+	 *
+	 * @version 1.5.8
+	 * @since   1.5.8
+	 *
+	 * @return void
+	 */
+	public function set_variables() {
+		$this->desc = __( 'General', 'discussions-tab-for-woocommerce-products' );
 	}
 
 	/**
@@ -66,14 +77,6 @@ class Settings_General extends Settings_Section {
 				'type'     => 'checkbox',
 			),
 			array(
-				'title'    => __( 'Verified owners', 'discussions-tab-for-woocommerce-products' ),
-				'desc'     => __( 'Discussions comments can only be left by "verified owners"', 'discussions-tab-for-woocommerce-products' ),
-				'id'       => 'alg_dtwp_opt_v_owner_restrict',
-				'default'  => 'no',
-				'type'     => 'checkbox',
-				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
-			),
-			array(
 				'title'    => __( 'AJAX discussions', 'discussions-tab-for-woocommerce-products' ),
 				'desc'     => __( 'Load comments via AJAX if the discussions tab is triggered', 'discussions-tab-for-woocommerce-products' ),
 				'desc_tip' => sprintf( __( 'For now, the option %s needs to be disabled, i.e., the comments pagination needs to be disabled.', 'discussions-tab-for-woocommerce-products' ), '<a href="' . admin_url( 'options-discussion.php' ) . '">' . __( 'Break Comments' ) . '</a>' ),
@@ -97,8 +100,43 @@ class Settings_General extends Settings_Section {
 				'type'              => 'checkbox',
 			),
 			array(
+				'title'    => __( 'Verified owners', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Demand customers to purchase a product to leave discussion comments on it', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_opt_v_owner_restrict',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_products_discussions_tab_settings', array( 'disabled' => 'disabled' ) ),
+			),
+			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_dtwp_opt_general',
+			),
+		);
+
+		$permissions_settings = array(
+			array(
+				'title' => __( 'Posting Permissions', 'discussions-tab-for-woocommerce-products' ),
+				'desc'  => __( 'Users matching any of the selected types will be allowed to post.', 'discussions-tab-for-woocommerce-products' ),
+				'type'  => 'title',
+				'id'    => 'alg_dtwp_allowed_to_post_opts',
+			),
+			array(
+				'title'    => __( 'Administrator', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Allow the administrator to leave discussion comments', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_administrator_post_discussion_comments',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Product authors', 'discussions-tab-for-woocommerce-products' ),
+				'desc'     => __( 'Allow product authors to leave discussion comments on their products', 'discussions-tab-for-woocommerce-products' ),
+				'id'       => 'alg_dtwp_product_authors_post_discussion_comments',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_dtwp_allowed_to_post_opts',
 			),
 		);
 
@@ -238,7 +276,7 @@ class Settings_General extends Settings_Section {
 			),
 		);
 
-		return array_merge( $general_settings, $discussions_tab, $comment_form, $comment_meta );
+		return array_merge( $general_settings, $permissions_settings, $discussions_tab, $comment_form, $comment_meta );
 	}
 
 	/**
