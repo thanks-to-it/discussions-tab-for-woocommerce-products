@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: discussions-tab-for-woocommerce-products 1.5.8\n"
+"Project-Id-Version: discussions-tab-for-woocommerce-products 1.5.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/discussions-tab-for-woocommerce-products\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-21T22:56:44+02:00\n"
+"POT-Creation-Date: 2025-11-24T23:37:31+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: discussions-tab-for-woocommerce-products\n"
@@ -34,9 +34,62 @@ msgstr ""
 msgid "https://profiles.wordpress.org/algoritmika/"
 msgstr ""
 
+#: src/php/class-admin-comment-editor.php:93
+msgid "Product does not exist."
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:96
+msgid "Comment parent ID %s does not exist."
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:98
+msgid "Comment parent ID %s is not a discussion comment."
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:100
+msgid "Parent comment ID %s does not belong to product %s."
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:102
+msgid "User %s does not exist."
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:124
+msgid "Comment %s has been successfully updated."
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:129
+msgid "%s has changed from %s to %s"
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:217
+msgid "Edit comment info"
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:289
+msgid "Product"
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:306
+msgid "Parent comment ID"
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:307
+msgid "Use zero if you don't want to set a parent comment ID"
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:316
+#: src/php/settings/class-settings-general.php:178
+msgid "User ID"
+msgstr ""
+
+#: src/php/class-admin-comment-editor.php:317
+msgid "Use zero if you don't want to set a user ID"
+msgstr ""
+
 #: src/php/class-admin.php:59
 #: src/php/class-admin.php:128
-#: src/php/class-core.php:536
+#: src/php/class-core.php:830
 #: src/php/class-my-account.php:59
 #: src/php/settings/class-settings-texts.php:74
 #: src/php/settings/class-settings.php:26
@@ -80,13 +133,35 @@ msgstr ""
 msgid "Convert to Review"
 msgstr ""
 
-#: src/php/class-core.php:449
+#: src/php/class-core.php:423
+msgid "It's required to be a verified owner to leave a discussion comment."
+msgstr ""
+
+#: src/php/class-core.php:743
 msgid "Leave a reply"
 msgstr ""
 
-#: src/php/class-core.php:450
+#: src/php/class-core.php:744
 #: src/php/settings/class-settings-texts.php:136
 msgid "Post Comment"
+msgstr ""
+
+#: src/php/class-labels.php:117
+#: src/php/settings/class-settings-labels.php:191
+#: src/php/settings/class-settings-labels.php:200
+msgid "Product author"
+msgstr ""
+
+#: src/php/class-labels.php:158
+#: src/php/class-labels.php:212
+#: src/php/class-labels.php:215
+#: src/php/settings/class-settings-labels.php:139
+msgid "Verified owner"
+msgstr ""
+
+#: src/php/class-new-comment-email-pro.php:177
+#: src/php/settings/class-settings-email.php:50
+msgid "New comment email"
 msgstr ""
 
 #: src/php/class-new-comment-email.php:67
@@ -97,148 +172,73 @@ msgstr ""
 msgid "There has been a problem with the notification."
 msgstr ""
 
+#: src/php/class-social.php:195
+#: src/php/settings/class-settings-social.php:92
+msgid "Fill with Facebook"
+msgstr ""
+
+#: src/php/class-support.php:56
+#: src/php/class-support.php:81
+#: src/php/class-support.php:84
+#: src/php/class-support.php:324
+#: src/php/class-support.php:369
+#: src/php/settings/class-settings-labels.php:253
+#: src/php/settings/class-settings-labels.php:261
+msgid "Support"
+msgstr ""
+
+#: src/php/class-support.php:257
+msgid "Support reps updated successfully."
+msgstr ""
+
+#: src/php/class-support.php:259
+msgid "It was not possible to save the support reps. Please check if there is some invalid email and try again."
+msgstr ""
+
+#: src/php/class-support.php:302
+msgid "It's also possible to add support reps via My Account page."
+msgstr ""
+
+#: src/php/class-support.php:302
+msgid "If you do that, the support reps setup below will overwrite the settings from My Account page."
+msgstr ""
+
+#: src/php/class-support.php:306
+msgid "Support reps"
+msgstr ""
+
+#: src/php/class-support.php:324
+#: src/php/class-support.php:369
+msgid "Users that will be publicly marked as \"%s\" if they use the Discussions comments from any of your products."
+msgstr ""
+
+#: src/php/class-support.php:349
+msgid "Support reps emails"
+msgstr ""
+
+#: src/php/class-support.php:350
+msgid "One email per line"
+msgstr ""
+
+#: src/php/class-support.php:367
+#: src/php/settings/class-settings-labels.php:225
+msgid "Support Reps"
+msgstr ""
+
+#: src/php/class-support.php:373
+msgid "It's also possible to add specific Support reps by product accessing your product page."
+msgstr ""
+
+#: src/php/class-support.php:374
+msgid "If you do that,\tthe Support reps from the product page will overwrite the general settings below."
+msgstr ""
+
 #: src/php/class-wc-compatibility.php:157
 msgid "Edit comment"
 msgstr ""
 
 #: src/php/class-wc-compatibility.php:157
 msgid "Moderate comment"
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:93
-msgid "Product does not exist."
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:96
-msgid "Comment parent ID %s does not exist."
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:98
-msgid "Comment parent ID %s is not a discussion comment."
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:100
-msgid "Parent comment ID %s does not belong to product %s."
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:102
-msgid "User %s does not exist."
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:124
-msgid "Comment %s has been successfully updated."
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:129
-msgid "%s has changed from %s to %s"
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:217
-msgid "Edit comment info"
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:289
-msgid "Product"
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:306
-msgid "Parent comment ID"
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:307
-msgid "Use zero if you don't want to set a parent comment ID"
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:316
-#: src/php/settings/class-settings-general.php:178
-msgid "User ID"
-msgstr ""
-
-#: src/php/pro/class-admin-comment-editor.php:317
-msgid "Use zero if you don't want to set a user ID"
-msgstr ""
-
-#: src/php/pro/class-labels.php:93
-#: src/php/settings/class-settings-labels.php:191
-#: src/php/settings/class-settings-labels.php:200
-msgid "Product author"
-msgstr ""
-
-#: src/php/pro/class-labels.php:134
-#: src/php/pro/class-labels.php:188
-#: src/php/pro/class-labels.php:191
-#: src/php/settings/class-settings-labels.php:139
-msgid "Verified owner"
-msgstr ""
-
-#: src/php/pro/class-new-comment-email-pro.php:177
-#: src/php/settings/class-settings-email.php:50
-msgid "New comment email"
-msgstr ""
-
-#: src/php/pro/class-pro.php:292
-msgid "It's required to be a verified owner to leave a discussion comment."
-msgstr ""
-
-#: src/php/pro/class-social.php:195
-#: src/php/settings/class-settings-social.php:92
-msgid "Fill with Facebook"
-msgstr ""
-
-#: src/php/pro/class-support.php:56
-#: src/php/pro/class-support.php:81
-#: src/php/pro/class-support.php:84
-#: src/php/pro/class-support.php:324
-#: src/php/pro/class-support.php:369
-#: src/php/settings/class-settings-labels.php:253
-#: src/php/settings/class-settings-labels.php:261
-msgid "Support"
-msgstr ""
-
-#: src/php/pro/class-support.php:257
-msgid "Support reps updated successfully."
-msgstr ""
-
-#: src/php/pro/class-support.php:259
-msgid "It was not possible to save the support reps. Please check if there is some invalid email and try again."
-msgstr ""
-
-#: src/php/pro/class-support.php:302
-msgid "It's also possible to add support reps via My Account page."
-msgstr ""
-
-#: src/php/pro/class-support.php:302
-msgid "If you do that, the support reps setup below will overwrite the settings from My Account page."
-msgstr ""
-
-#: src/php/pro/class-support.php:306
-msgid "Support reps"
-msgstr ""
-
-#: src/php/pro/class-support.php:324
-#: src/php/pro/class-support.php:369
-msgid "Users that will be publicly marked as \"%s\" if they use the Discussions comments from any of your products."
-msgstr ""
-
-#: src/php/pro/class-support.php:349
-msgid "Support reps emails"
-msgstr ""
-
-#: src/php/pro/class-support.php:350
-msgid "One email per line"
-msgstr ""
-
-#: src/php/pro/class-support.php:367
-#: src/php/settings/class-settings-labels.php:225
-msgid "Support Reps"
-msgstr ""
-
-#: src/php/pro/class-support.php:373
-msgid "It's also possible to add specific Support reps by product accessing your product page."
-msgstr ""
-
-#: src/php/pro/class-support.php:374
-msgid "If you do that,\tthe Support reps from the product page will overwrite the general settings below."
 msgstr ""
 
 #: src/php/settings/class-settings-advanced.php:38

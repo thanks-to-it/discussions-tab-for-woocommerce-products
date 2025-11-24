@@ -2,7 +2,7 @@
 /**
  * Discussions Tab for WooCommerce Products - Core Class.
  *
- * @version 1.5.8
+ * @version 1.5.9
  * @since   1.1.0
  * @author  WPFactory
  */
@@ -35,9 +35,36 @@ class Core {
 	public $discussions_respond_id_location = 'alg_dtwp_respond_location';
 
 	/**
+	 * $escape_code_and_pre.
+	 *
+	 * @since 1.5.9.
+	 *
+	 * @var
+	 */
+	public $escape_code_and_pre;
+
+	/**
+	 * $need_to_remove_content_from_comments.
+	 *
+	 * @since 1.5.9.
+	 *
+	 * @var
+	 */
+	public $need_to_remove_content_from_comments;
+
+	/**
+	 * $content_to_remove_from_comments.
+	 *
+	 * @since 1.5.9.
+	 *
+	 * @var
+	 */
+	public $content_to_remove_from_comments;
+
+	/**
 	 * Constructor.
 	 *
-	 * @version 1.5.8
+	 * @version 1.5.9
 	 * @since   1.1.0
 	 * @todo    [dev] (maybe) `get_option()`: `filter_var()`?
 	 * @todo    [dev] (maybe) create `class-alg-wc-products-discussions-tab-scripts.php`
@@ -137,9 +164,276 @@ class Core {
 			// Check for errors before creating a discussion comment on a post.
 			add_action( 'alg_dtwp_pre_discussion_comment_on_post', array( $this, 'validate_pre_discussion_comment_on_post' ) );
 			add_filter( 'alg_dtwp_pre_discussion_comment_on_post_errors', array( $this, 'add_post_author_and_admin_exceptions_to_possible_errors' ), 100, 2 );
+
+			$this->handle_previous_pro_features();
 		}
 		// Core content called.
 		do_action( 'alg_wc_products_discussions_tab_core_loaded' );
+	}
+
+	/**
+	 * handle_previous_pro_features.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * @return void
+	 */
+	function handle_previous_pro_features(){
+		add_filter( 'alg_wc_products_discussions_tab_settings', array( $this, 'settings' ), 10, 3 );
+		add_action( 'alg_wc_products_discussions_tab_core_loaded', array( $this, 'core_action' ) );
+		// Ajax tab.
+		add_filter( 'alg_dtwp_comments_template_output_validation', array( $this, 'handle_ajax_tab' ) );
+		add_filter( 'alg_dtwp_js_modules_to_load', array( $this, 'load_ajax_tab' ) );
+		add_action( 'wp_ajax_nopriv_' . 'alg_dtwp_get_tab_content', array( $this, 'load_comments_template_via_ajax' ) );
+		add_action( 'wp_ajax_' . 'alg_dtwp_get_tab_content', array( $this, 'load_comments_template_via_ajax' ) );
+		// Comment form position.
+		add_filter( 'alg_dtwp_opt_comment_form_position', array( $this, 'filter_comments_form_position' ) );
+		// TinyMCE.
+		add_filter( 'alg_dtwp_js_modules_to_load', array( $this, 'load_wp_editor' ) );
+		// Remove content.
+		add_filter( 'comment_text', array( $this, 'remove_content_from_comments' ), 10, 2 );
+		// Content escaping.
+		add_filter( 'comment_text', array( $this, 'escape_code_and_pre' ), 1 );
+	}
+
+	/**
+	 * escape_code_and_pre.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * escape_code_and_pre.
+	 *
+	 * @param $text
+	 *
+	 * @return string;
+	 */
+	function escape_code_and_pre( $text ) {
+		$escape_code_and_pre = ! isset( $this->escape_code_and_pre ) ? $this->escape_code_and_pre = 'yes' === get_option( 'alg_dtwp_escape_code_and_pre', 'no' ) : $this->escape_code_and_pre;
+		if ( $escape_code_and_pre ) {
+			$text = preg_replace_callback( '/\<pre\>(.+?)\<\/pre\>/s', function ( $matches ) {
+				return '<pre>' . esc_html( $matches[1] ) . '</pre>';
+			}, $text );
+			$text = preg_replace_callback( '/\<code\>(.+?)\<\/code\>/s', function ( $matches ) {
+				return '<code>' . esc_html( $matches[1] ) . '</code>';
+			}, $text );
+		}
+		return $text;
+	}
+
+	/**
+	 * need_to_remove_content_from_comments.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * @return mixed|void
+	 */
+	function need_to_remove_content_from_comments() {
+		if ( ! isset( $this->need_to_remove_content_from_comments ) ) {
+			$this->need_to_remove_content_from_comments = get_option( 'alg_dtwp_opt_remove_content', 'no' );
+		}
+		return 'yes' === $this->need_to_remove_content_from_comments;
+	}
+
+	/**
+	 * get_content_to_remove_from_comments.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * @return mixed|void
+	 */
+	function get_content_to_remove_from_comments() {
+		if ( ! isset( $this->content_to_remove_from_comments ) ) {
+			$this->content_to_remove_from_comments = get_option( 'alg_dtwp_opt_content_to_remove', '<p>&nbsp;</p>' );
+		}
+		return $this->content_to_remove_from_comments;
+	}
+
+	/**
+	 * remove_content_from_comments.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * @param $comment_text
+	 * @param $comment
+	 *
+	 * @return string
+	 */
+	function remove_content_from_comments( $comment_text, $comment ) {
+		if (
+			$this->need_to_remove_content_from_comments()
+			&& ! empty( $content_to_remove = $this->get_content_to_remove_from_comments() )
+			&& $comment
+			&& ! empty( $comment->comment_type )
+			&& alg_wc_pdt_get_comment_type_id() === $comment->comment_type
+		) {
+			$content_to_remove_arr = explode( "\n", str_replace( "\r", "", $content_to_remove ) );
+			$comment_text          = str_replace( $content_to_remove_arr, '', $comment_text );
+		}
+		return $comment_text;
+	}
+
+	/**
+	 * load_ajax_tab.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * @param $localize_data
+	 *
+	 * @return array
+	 */
+	function load_ajax_tab( $modules_to_load ) {
+		if (
+			'yes' !== get_option( 'alg_dtwp_opt_ajax_tab', 'no' )
+			|| ! is_product()
+		) {
+			return $modules_to_load;
+		}
+		$modules_to_load[] = 'ajax-tab';
+		return $modules_to_load;
+	}
+
+	/**
+	 * load_wp_editor.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * @param $modules_to_load
+	 *
+	 * @return array
+	 */
+	function load_wp_editor( $modules_to_load ) {
+		if (
+			is_product()
+			&& 'yes' === get_option( 'alg_dtwp_opt_tinymce', 'no' )
+			&& user_can_richedit()
+		) {
+			wp_enqueue_editor();
+			$modules_to_load[] = 'wp-editor';
+		}
+		return $modules_to_load;
+	}
+
+	/**
+	 * filter_comments_form_position.
+	 *
+	 * @vesion 1.5.9
+	 * @since  1.5.9
+	 *
+	 * @param $position
+	 *
+	 * @return mixed|void
+	 */
+	function filter_comments_form_position( $position ) {
+		$position = get_option( 'alg_dtwp_opt_comment_form_position', 'alg_dtwp_comments_end' );
+		return $position;
+	}
+
+	/**
+	 * load_comments_template_via_ajax.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 */
+	function load_comments_template_via_ajax() {
+		global $withcomments, $post;
+		$withcomments = true;
+		$post         = get_post( intval( $_POST['post_id'] ) );
+		if ( is_null( $post ) ) {
+			wp_send_json_error();
+		} else {
+			$comments_template = alg_wc_products_discussions_tab()->core->get_comments_template( false );
+			wp_send_json_success( array( 'content' => $comments_template ) );
+		}
+	}
+
+	/**
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * @param $validation
+	 *
+	 * @return bool
+	 */
+	function handle_ajax_tab( $validation ) {
+		if ( 'yes' === get_option( 'alg_dtwp_opt_ajax_tab', 'no' ) ) {
+			$validation = false;
+		}
+		return $validation;
+	}
+
+	/**
+	 * core_action.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 */
+	function core_action() {
+		// Core
+		if ( 'yes' === get_option( 'alg_dtwp_opt_enable', 'yes' ) ) {
+
+			// Tests if is verified owner before create discussion comment on post.
+			add_filter( 'alg_dtwp_pre_discussion_comment_on_post_errors', array( $this, 'add_verified_owner_error_on_pre_discussion_comment_on_post' ), 10, 2 );
+
+			// Social.
+			if ( 'yes' === get_option( 'alg_dtwp_social_enable', 'no' ) ) {
+				new Social();
+			}
+
+			// Labels.
+			if ( 'yes' === get_option( 'alg_dtwp_labels_enable', 'no' ) ) {
+				new Labels();
+			}
+
+			// Support reps.
+			if ( 'yes' === get_option( 'alg_dtwp_opt_support_label', 'no' ) ) {
+				new Support();
+			}
+
+			// Admin comment editor.
+			new Admin_Comment_Editor();
+
+			// New comment email.
+			new New_Comment_Email_Pro();
+		}
+	}
+
+	/**
+	 * add_verified_owner_error_on_pre_discussion_comment_on_post.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 *
+	 * @param $errors
+	 * @param $comment_post_id
+	 *
+	 * @return mixed
+	 */
+	function add_verified_owner_error_on_pre_discussion_comment_on_post( $errors, $comment_post_id ) {
+		if (
+			'yes' === get_option( 'alg_dtwp_opt_v_owner_restrict', 'no' ) &&
+			! wc_customer_bought_product( '', get_current_user_id(), $comment_post_id )
+		) {
+			$errors['verified_owner'] = __( 'It\'s required to be a verified owner to leave a discussion comment.', 'discussions-tab-for-woocommerce-products' );
+		}
+
+		return $errors;
+	}
+
+	/**
+	 * settings.
+	 *
+	 * @version 1.5.9
+	 * @since   1.5.9
+	 */
+	function settings( $value, $type = '', $args = array() ) {
+		return '';
 	}
 
 	/**

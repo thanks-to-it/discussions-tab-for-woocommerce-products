@@ -3,13 +3,13 @@
 Plugin Name: Discussions Tab for WooCommerce Products
 Plugin URI: https://wordpress.org/plugins/discussions-tab-for-woocommerce-products/
 Description: Creates a discussions tab for WooCommerce products.
-Version: 1.5.8
+Version: 1.5.9
 Author: Algoritmika Ltd
 Author URI: https://profiles.wordpress.org/algoritmika/
 Text Domain: discussions-tab-for-woocommerce-products
 Domain Path: /langs
 WC requires at least: 3.0.0
-WC tested up to: 10.2
+WC tested up to: 10.3
 Requires Plugins: woocommerce
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -75,7 +75,7 @@ final class Alg_WC_Products_Discussions_Tab {
 	 * @var   string
 	 * @since 1.1.0
 	 */
-	public $version = '1.5.8';
+	public $version = '1.5.9';
 
 	/**
 	 * @var   Alg_WC_Products_Discussions_Tab The single instance of the class
@@ -168,10 +168,10 @@ final class Alg_WC_Products_Discussions_Tab {
 		// Include required files
 		$this->includes();
 
-		// Pro
-		if ( 'discussions-tab-for-woocommerce-products-pro.php' === basename( $this->get_filesystem_path() ) ) {
+		// Old Pro version.
+		/*if ( 'discussions-tab-for-woocommerce-products-pro.php' === basename( $this->get_filesystem_path() ) ) {
 			new \WPFactory\WC_Products_Discussions_Tab\Pro\Pro();
-		}
+		}*/
 
 		// Core
 		$this->core = new \WPFactory\WC_Products_Discussions_Tab\Core();
